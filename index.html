@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arglo Médica - Distribuidora de Insumos Médicos y Bioseguridad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-symbol">
+                    <div class="symbol-circle blue"></div>
+                    <div class="symbol-circle yellow"></div>
+                    <div class="symbol-circle red"></div>
+                </div>
+                <span class="logo-name">ARGLO MÉDICA</span>
+            </div>
+
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="html/catalogo.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <nav class="mobile-nav">
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="html/catalogo.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero-section">
+            <div class="hero-grid"></div>
+            <div class="floating-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+            <div class="particles" id="particles"></div>
+
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <div class="badge-pulse"></div>
+                        <span>Distribuidores Autorizados • Stock Permanente</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        <span class="title-word">INSUMOS</span>
+                        <span class="title-word gradient-text">MÉDICOS</span>
+                        <span class="title-word">Y BIOSEGURIDAD</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Tu socio estratégico en distribución de insumos médicos, equipos de protección personal, 
+                        material desechable y equipamiento para clínicas, hospitales, laboratorios y centros estéticos.
+                    </p>
+
+                    <div class="hero-cta">
+                        <a href="html/catalogo.html" class="cta-button cta-primary">
+                            <span>Ver Catálogo</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contacto" class="cta-button cta-secondary">
+                            <span>Solicitar Cotización</span>
+                            <i class="fas fa-file-invoice"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-3d-scene">
+                        <div class="floating-device device-1">
+                            <div class="device-icon">
+                                <i class="fas fa-hand-holding-medical"></i>
+                            </div>
+                            <span class="device-label">Guantes de Nitrilo</span>
+                        </div>
+
+                        <div class="floating-device device-2">
+                            <div class="device-icon">
+                                <i class="fas fa-syringe"></i>
+                            </div>
+                            <span class="device-label">Material Desechable</span>
+                        </div>
+
+                        <div class="floating-device device-3">
+                            <div class="device-icon">
+                                <i class="fas fa-head-side-mask"></i>
+                            </div>
+                            <span class="device-label">Mascarillas N95</span>
+                        </div>
+
+                        <div class="floating-device device-4">
+                            <div class="device-icon">
+                                <i class="fas fa-pump-medical"></i>
+                            </div>
+                            <span class="device-label">Gel Ultrasonido</span>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stats-inline">
+                    <div class="stat-item fade-in-view">
+                        <span class="stat-number" data-target="88">0</span>
+                        <p class="stat-label">Productos en Catálogo</p>
+                    </div>
+
+                    <div class="stat-item fade-in-view">
+                        <span class="stat-number" data-target="15">0</span>
+                        <p class="stat-label">Categorías Diferentes</p>
+                    </div>
+
+                    <div class="stat-item fade-in-view">
+                        <span class="stat-number" data-target="24">0</span>
+                        <p class="stat-label">Entrega en Horas</p>
+                    </div>
+
+                    <div class="stat-item fade-in-view">
+                        <span class="stat-number" data-target="100">0</span>
+                        <p class="stat-label">% Satisfacción Cliente</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="productos" class="products-section">
+            <div class="section-header">
+                <span class="section-label">Nuestros Productos</span>
+                <h2 class="section-title">Catálogo Completo de Insumos Médicos</h2>
+                <p class="section-subtitle">
+                    Más de 88 productos especializados para satisfacer todas las necesidades de su institución
+                </p>
+            </div>
+
+            <div class="products-container">
+                <div class="products-carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-hands"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Protección Personal</span>
+                                <h3 class="product-title">Guantes Médicos</h3>
+                                <p class="product-description">
+                                    Amplia selección de guantes: Nitrilo, Látex (con/sin polvo), Vinyl, 
+                                    Texturizados y Quirúrgicos estériles. Cajas de 100 unidades. 
+                                    Ideales para procedimientos médicos, odontológicos y manipulación de alimentos.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Libre de Látex disponible</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-star"></i>
+                                        <span>Alta resistencia</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-head-side-mask"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Protección Respiratoria</span>
+                                <h3 class="product-title">Mascarillas Certificadas</h3>
+                                <p class="product-description">
+                                    Mascarillas KN95, N95, KF94 y Cubre Bocas desechables de 3 capas. 
+                                    Disponibles en varios colores y estampados. Protección contra virus, 
+                                    bacterias y partículas contaminantes. Cajas de 10 a 50 unidades.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>5 capas de protección</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>Certificadas</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-user-nurse"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Ropa Médica</span>
+                                <h3 class="product-title">Batas y Ropa Desechable</h3>
+                                <p class="product-description">
+                                    Batas sin manga, manga larga e impermeables. Gorros (clip, malla, cirugía), 
+                                    cubre zapatos, cubre barba, capuchas protectoras y kimonos. Tela no tejida SMS. 
+                                    Paquetes de 10 a 100 unidades según el producto.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-tint"></i>
+                                        <span>Resistente a líquidos</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-recycle"></i>
+                                        <span>Desechable</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-band-aid"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Curación</span>
+                                <h3 class="product-title">Material de Curación</h3>
+                                <p class="product-description">
+                                    Gasas estériles y no tejidas, algodón en rollo y torundas, vendas Coban, 
+                                    Micropore 3M, pads de alcohol y yodo. Aplicadores largos y cortos. 
+                                    Todo lo necesario para procedimientos de curación y desinfección.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-shield-virus"></i>
+                                        <span>Antiséptico</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-box"></i>
+                                        <span>Alta absorción</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-pump-medical"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Especialidades</span>
+                                <h3 class="product-title">Gel Ultrasonido y Estética</h3>
+                                <p class="product-description">
+                                    Gel conductor para ultrasonido (5 litros), aceite para masaje con extractos 
+                                    naturales, vaselina en pasta. Productos para radiofrecuencia, depilación láser 
+                                    y tratamientos estéticos. No irrita la piel.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-leaf"></i>
+                                        <span>Base natural</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-flask"></i>
+                                        <span>Grado médico</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-bacteria"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Esterilización</span>
+                                <h3 class="product-title">Productos de Esterilización</h3>
+                                <p class="product-description">
+                                    Bolsas y rollos para esterilizar papel grado médico (200 unidades/200 metros). 
+                                    Cinta testigo indicadora. Barreras adhesivas. Sistema completo para control 
+                                    de procesos de esterilización en diferentes tamaños.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-temperature-high"></i>
+                                        <span>Indicador químico</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-check-double"></i>
+                                        <span>Control de calidad</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-spray-can"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Limpieza</span>
+                                <h3 class="product-title">Desinfectantes Profesionales</h3>
+                                <p class="product-description">
+                                    Línea Esterilix (Equipos, Superficie, X-7), Cleaner 256 concentrado, 
+                                    Detercel enzimático, Cloridex antiséptico quirúrgico. Alcohol en gel 
+                                    (300ml y galón), alcohol líquido, agua oxigenada y destilada.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-virus-slash"></i>
+                                        <span>Alto espectro</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-industry"></i>
+                                        <span>Uso profesional</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-tooth"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Odontología</span>
+                                <h3 class="product-title">Insumos Dentales</h3>
+                                <p class="product-description">
+                                    Suctor de saliva/eyector (100 unidades), rodillos dentales (500-1000 unidades), 
+                                    baberos servitoallas (125 unidades), vasos desechables de cartón y plástico. 
+                                    Todo para tu consultorio dental.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-recycle"></i>
+                                        <span>Desechables</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-tooth"></i>
+                                        <span>Uso dental</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-bed"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Equipamiento</span>
+                                <h3 class="product-title">Mobiliario Médico</h3>
+                                <p class="product-description">
+                                    Camillas hidráulicas, fijas y tipo maleta. Bancos giratorios con/sin respaldo. 
+                                    Apoya brazos ajustables. Sábanas y cubre camillas desechables. 
+                                    Papel para camilla (54cm x 38mts). Soluciones completas de mobiliario.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-weight-hanging"></i>
+                                        <span>Soporta 150kg</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-arrows-alt-v"></i>
+                                        <span>Altura ajustable</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-heartbeat"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Monitoreo</span>
+                                <h3 class="product-title">Equipos de Medición</h3>
+                                <p class="product-description">
+                                    Oxímetros de pulso digitales, K9 Pro (medidor de temperatura con dispensador 
+                                    automático), jeringas desechables estériles, lancetas (caja 100 unidades). 
+                                    Tecnología para diagnóstico preciso.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-digital-tachograph"></i>
+                                        <span>Digital</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-bolt"></i>
+                                        <span>Lectura rápida</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-glasses"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Protección Facial</span>
+                                <h3 class="product-title">Caretas y Lentes de Seguridad</h3>
+                                <p class="product-description">
+                                    Caretas protectoras faciales simples y con espacio para lentes. 
+                                    Gafas y lentes de seguridad con patillas ajustables. Protección contra 
+                                    salpicaduras, impactos, químicos y partículas. Material PET ligero.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Protección ocular</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-feather-alt"></i>
+                                        <span>Ligero y cómodo</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card fade-in-view">
+                            <div class="product-header">
+                                <i class="product-icon fas fa-dumpster"></i>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Gestión de Residuos</span>
+                                <h3 class="product-title">Basureros Bioinfecciosos</h3>
+                                <p class="product-description">
+                                    Basureros y recipientes rojos para residuos bioinfecciosos. 
+                                    Especialmente diseñados para desechar gasas con sangre, agujas, 
+                                    guantes contaminados. Obligatorios en hospitales, clínicas y laboratorios.
+                                </p>
+                                <div class="product-features">
+                                    <div class="feature-badge">
+                                        <i class="fas fa-biohazard"></i>
+                                        <span>Bioinfeccioso</span>
+                                    </div>
+                                    <div class="feature-badge">
+                                        <i class="fas fa-balance-scale"></i>
+                                        <span>Normativa</span>
+                                    </div>
+                                </div>
+                                <a href="#contacto" class="product-cta">
+                                    <span>Cotizar ahora</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="prevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn" id="nextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="services-section">
+            <div class="services-background">
+                <div class="services-orb services-orb-1"></div>
+                <div class="services-orb services-orb-2"></div>
+            </div>
+
+            <div class="services-container">
+                <div class="services-header">
+                    <span class="section-label">Nuestros Servicios</span>
+                    <h2 class="section-title">Más que Productos, Soluciones Completas</h2>
+                    <p class="section-subtitle">
+                        Te acompañamos en cada etapa para garantizar el abastecimiento continuo de tu clínica u hospital
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card fade-in-view">
+                        <div class="service-number">01</div>
+                        <div class="service-icon-wrapper">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3 class="service-title">Asesoría Personalizada</h3>
+                        <p class="service-description">
+                            Nuestro equipo te ayuda a seleccionar los productos adecuados según 
+                            tus necesidades específicas. Cotizaciones inmediatas y asesoría técnica 
+                            sobre cada producto de nuestro catálogo.
+                        </p>
+                    </div>
+
+                    <div class="service-card fade-in-view">
+                        <div class="service-number">02</div>
+                        <div class="service-icon-wrapper">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3 class="service-title">Stock Permanente</h3>
+                        <p class="service-description">
+                            Mantenemos inventario disponible de todos nuestros productos. 
+                            Sin esperas ni retrasos. Abastecimiento garantizado para que nunca 
+                            te falten los insumos esenciales de tu operación diaria.
+                        </p>
+                    </div>
+
+                    <div class="service-card fade-in-view">
+                        <div class="service-number">03</div>
+                        <div class="service-icon-wrapper">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3 class="service-title">Entrega Rápida</h3>
+                        <p class="service-description">
+                            Sistema de distribución eficiente con entregas en 24-48 horas 
+                            en todo Costa Rica. Pedidos urgentes disponibles. Tu proveedor 
+                            confiable cuando más lo necesitas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nosotros" class="about-section">
+            <div class="about-container">
+                <div class="section-header">
+                    <span class="section-label">Nosotros</span>
+                    <h2 class="section-title">Tu Distribuidor de Confianza</h2>
+                </div>
+
+                <div class="about-bento-redesign fade-in-view">
+                    <!-- Hero Card -->
+                    <div class="bento-hero">
+                        <div class="hero-glow"></div>
+                        <div class="hero-content-wrapper">
+                            <h2 class="hero-heading">
+                                Especializados en 
+                                <span class="gradient-text-animated">insumos médicos</span>
+                            </h2>
+                            <p class="hero-description">
+                                Arglo Médica es una empresa costarricense dedicada a la distribución 
+                                de insumos médicos, equipos de protección personal, material desechable 
+                                y equipamiento para el sector salud.
+                            </p>
+                            <div class="hero-stats">
+                                <div class="mini-stat">
+                                    <span class="mini-stat-number">88+</span>
+                                    <span class="mini-stat-label">Productos</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-stat-number">15</span>
+                                    <span class="mini-stat-label">Categorías</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-stat-number">100%</span>
+                                    <span class="mini-stat-label">Calidad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Cards -->
+                    <div class="bento-feature feature-1">
+                        <div class="feature-icon-wrapper">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Amplio Catálogo</h3>
+                            <p>Productos especializados en múltiples categorías para todas tus necesidades médicas</p>
+                        </div>
+                        <div class="feature-decoration"></div>
+                    </div>
+
+                    <div class="bento-feature feature-2">
+                        <div class="feature-icon-wrapper">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Calidad Garantizada</h3>
+                            <p>Estándares internacionales con marcas reconocidas como 3M</p>
+                        </div>
+                        <div class="feature-decoration"></div>
+                    </div>
+
+                    <!-- Wide Card -->
+                    <div class="bento-wide">
+                        <div class="wide-icon-circle">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="wide-content">
+                            <h3>Atención Personalizada</h3>
+                            <p>Asesoría especializada para hospitales, clínicas, laboratorios y centros estéticos. Entendemos las necesidades únicas de cada cliente.</p>
+                        </div>
+                        <div class="wide-badges">
+                            <span class="mini-badge"><i class="fas fa-hospital"></i> Hospitales</span>
+                            <span class="mini-badge"><i class="fas fa-clinic-medical"></i> Clínicas</span>
+                            <span class="mini-badge"><i class="fas fa-flask"></i> Laboratorios</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Card -->
+                    <div class="bento-visual">
+                        <div class="visual-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                        <div class="visual-center">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                    </div>
+
+                    <!-- Small Cards -->
+                    <div class="bento-small small-1">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Entrega Rápida 24-48h</span>
+                    </div>
+
+                    <div class="bento-small small-2">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificación Internacional</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact-section">
+            <div class="contact-container">
+                <div class="section-header">
+                    <span class="section-label">Contacto</span>
+                    <h2 class="section-title">Solicita tu Cotización</h2>
+                    <p class="section-subtitle">
+                        Estamos listos para atender tus necesidades de insumos médicos y equipamiento
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info-cards">
+                        <div class="info-card fade-in-view">
+                            <div class="info-card-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h4>Llámanos</h4>
+                                <p>+506 1234 5678</p>
+                                <p>+506 8765 4321</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card fade-in-view">
+                            <div class="info-card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h4>Escríbenos</h4>
+                                <p>ventas@arglomedica.com</p>
+                                <p>info@arglomedica.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card fade-in-view">
+                            <div class="info-card-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h4>WhatsApp</h4>
+                                <p>+506 1234 5678</p>
+                                <p>Respuesta inmediata</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card fade-in-view">
+                            <div class="info-card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h4>Horario</h4>
+                                <p>Lunes - Viernes</p>
+                                <p>8:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper fade-in-view">
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label>Nombre Completo *</label>
+                                <input type="text" placeholder="Ej: Dr. Juan Pérez" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" placeholder="correo@ejemplo.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Teléfono *</label>
+                                <input type="tel" placeholder="+506 1234 5678" required>
+                            </div>
+
+                         <!-- <div class="form-group">
+                                <label>Tipo de Cliente</label>
+                                <select>
+                                    <option>Hospital/Clínica</option>
+                                    <option>Consultorio Dental</option>
+                                    <option>Laboratorio</option>
+                                    <option>Centro Estético</option>
+                                    <option>Empresa</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>    -->
+
+                            <div class="form-group">
+                                <label>Productos de Interés</label>
+                                <textarea placeholder="Cuéntanos qué productos necesitas (guantes, mascarillas, gel ultrasonido, etc.)" required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-button">
+                                <span>Enviar Solicitud</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-background">
+            <div class="hero-grid"></div>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="logo-symbol">
+                        <div class="symbol-circle blue"></div>
+                        <div class="symbol-circle yellow"></div>
+                        <div class="symbol-circle red"></div>
+                    </div>
+                    <span>ARGLO MÉDICA</span>
+                </div>
+                <p>
+                    Distribuidora de insumos médicos y equipos de bioseguridad. 
+                    Más de 88 productos especializados para hospitales, clínicas, 
+                    laboratorios y centros estéticos en Costa Rica.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Categorías</h4>
+                <ul class="footer-links">
+                    <li><a href="#productos">Guantes Médicos</a></li>
+                    <li><a href="#productos">Mascarillas</a></li>
+                    <li><a href="#productos">Ropa Desechable</a></li>
+                    <li><a href="#productos">Material de Curación</a></li>
+                    <li><a href="#productos">Desinfectantes</a></li>
+                    <li><a href="#productos">Mobiliario Médico</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Empresa</h4>
+                <ul class="footer-links">
+                    <li><a href="#nosotros">Quiénes Somos</a></li>
+                    <li><a href="#productos">Catálogo</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Cotizaciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+50612345678"><i class="fas fa-phone"></i> +506 1234 5678</a></li>
+                    <li><a href="mailto:ventas@arglomedica.com"><i class="fas fa-envelope"></i> ventas@arglomedica.com</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Lun-Vie: 8AM-5PM</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Arglo Médica. Todos los derechos reservados. | Distribuidora de Insumos Médicos</p>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
