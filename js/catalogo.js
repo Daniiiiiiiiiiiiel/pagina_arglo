@@ -39,7 +39,6 @@ class AppState {
             }
         } catch (error) {
             console.warn('Error cargando datos guardados:', error);
-            // Reiniciar a valores por defecto
             this.cartItems = [];
             this.wishlistItems = [];
             this.updateCartCount();
@@ -91,6 +90,67 @@ class AppState {
 
 // Instancia global del estado
 const appState = new AppState();
+
+// ==================== SISTEMA DE PAGINACIÓN ====================
+class ProductPagination {
+    constructor() {
+        this.currentPage = 0;
+        this.itemsPerPage = 20;
+        this.allProducts = [];
+        this.totalPages = 0;
+    }
+
+    setProducts(products, keepCurrentState = false) {
+        // ✅ SOLO reiniciar si no hay productos o si se fuerza el reset
+        if (!keepCurrentState || this.allProducts.length === 0) {
+            this.allProducts = products.filter(p => p.id !== appState.currentProductId);
+            this.totalPages = Math.ceil(this.allProducts.length / this.itemsPerPage);
+            this.currentPage = 0;
+        }
+    }
+
+    getCurrentPageProducts() {
+        const startIndex = this.currentPage * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        return this.allProducts.slice(startIndex, endIndex);
+    }
+
+    nextPage() {
+        if (this.currentPage < this.totalPages - 1) {
+            this.currentPage++;
+            return true;
+        }
+        return false;
+    }
+
+    prevPage() {
+        if (this.currentPage > 0) {
+            this.currentPage--;
+            return true;
+        }
+        return false;
+    }
+
+    hasNextPage() {
+        return this.currentPage < this.totalPages - 1;
+    }
+
+    hasPrevPage() {
+        return this.currentPage > 0;
+    }
+
+    getPageInfo() {
+        return {
+            current: this.currentPage + 1,
+            total: this.totalPages,
+            showing: this.getCurrentPageProducts().length,
+            totalProducts: this.allProducts.length
+        };
+    }
+}
+
+// Instancia global de paginación
+const productPagination = new ProductPagination();
 
 // ==================== ELEMENTOS DOM ====================
 const DOM = {
@@ -187,11 +247,11 @@ function renderStars(rating, container) {
 
 // Renderizar thumbnails
 function renderThumbnails(images) {
-    DOM.thumbnailsContainer.innerHTML = images.map((img, index) => `
-        <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
-            <img src="${img.replace('w=800', 'w=200')}" alt="Vista ${index + 1}">
-        </div>
-    `).join('');
+    // DOM.thumbnailsContainer.innerHTML = images.map((img, index) => `
+    //     <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
+    //         <img src="${img.replace('w=800', 'w=200')}" alt="Vista ${index + 1}">
+    //     </div>
+    // `).join('');
     
     initThumbnailEvents();
 }
@@ -229,7 +289,7 @@ function renderTabsContent(product) {
         </p>
     `;
     
-    // Reviews (ejemplo estático, puedes hacerlo dinámico)
+    // Reviews (ejemplo estático)
     DOM.reviewsContent.innerHTML = `
         <div style="padding: 1.5rem; background: var(--off-white); border-radius: 14px; border-left: 4px solid var(--logo-yellow);">
             <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.8rem;">
@@ -246,34 +306,337 @@ function renderTabsContent(product) {
     `;
 }
 
-// Renderizar productos relacionados
-function renderRelatedProducts() {
+// ==================== PRODUCTOS RELACIONADOS CON PAGINACIÓN ====================
+
+// Renderizar productos relacionados con paginación
+function renderRelatedProducts(keepCurrentState = false) {
     const allProducts = Object.values(productsData);
-    const relatedProducts = allProducts.filter(p => p.id !== appState.currentProductId);
     
-    DOM.relatedProducts.innerHTML = relatedProducts.map(product => `
-        <div class="product-card" data-product-id="${product.id}">
-            ${product.oldPrice ? '<div class="sale-badge">SALE!</div>' : ''}
-            <div class="card-image">
-                <img src="${product.images[0]}" alt="${product.title}" loading="lazy">
-            </div>
-            <div class="card-content">
-                <div class="card-categories">${product.categories}</div>
-                <h3 class="card-title">${product.title}</h3>
-                <div class="card-rating">
-                    ${Array(5).fill(0).map((_, i) => 
-                        `<i class="${i < product.rating ? 'fas' : 'far'} fa-star"></i>`
-                    ).join('')}
+    // ✅ Pasar el parámetro para mantener el estado actual
+    productPagination.setProducts(allProducts, keepCurrentState);
+    
+    renderCurrentPageProducts();
+}
+
+// Renderizar productos de la página actual
+function renderCurrentPageProducts() {
+    const currentProducts = productPagination.getCurrentPageProducts();
+    const pageInfo = productPagination.getPageInfo();
+    
+    // Renderizar productos con animación de fade
+    DOM.relatedProducts.style.opacity = '0';
+    DOM.relatedProducts.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        DOM.relatedProducts.innerHTML = currentProducts.map(product => `
+            <div class="product-card" data-product-id="${product.id}">
+                ${product.oldPrice ? '<div class="sale-badge">SALE!</div>' : ''}
+                
+                <!-- Botones de acción flotantes -->
+                <div class="card-actions">
+                    <button class="card-action-btn" data-action="wishlist" data-product-id="${product.id}" title="Añadir a favoritos">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="card-action-btn" data-action="quick-view" data-product-id="${product.id}" title="Vista rápida">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
-                <div class="card-price">
-                    <span class="current-price">$${product.price}</span>
-                    ${product.oldPrice ? `<span class="old-price">$${product.oldPrice}</span>` : ''}
+                
+                <div class="card-image">
+                    <img src="${product.images[0]}" alt="${product.title}" loading="lazy">
+                </div>
+                
+                <div class="card-content">
+                    <div class="card-categories">${product.categories}</div>
+                    <h3 class="card-title">${product.title}</h3>
+                    <div class="card-rating">
+                        ${Array(5).fill(0).map((_, i) => 
+                            `<i class="${i < product.rating ? 'fas' : 'far'} fa-star"></i>`
+                        ).join('')}
+                        <span class="review-text">(${product.reviews})</span>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <div class="card-price">
+                            <span class="current-price">$${product.price}</span>
+                            ${product.oldPrice ? `<span class="old-price">$${product.oldPrice}</span>` : ''}
+                        </div>
+                        <button class="card-add-btn" data-action="add-cart" data-product-id="${product.id}" title="Añadir al carrito">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
+        `).join('');
+        
+        // Animar aparición
+        setTimeout(() => {
+            DOM.relatedProducts.style.transition = 'all 0.5s ease';
+            DOM.relatedProducts.style.opacity = '1';
+            DOM.relatedProducts.style.transform = 'translateY(0)';
+        }, 50);
+        
+        // Renderizar controles de paginación
+        renderPaginationControls(pageInfo);
+        
+        // Inicializar eventos
+        initProductCardEvents();
+        
+        // Scroll suave al inicio de productos
+        const relatedSection = document.querySelector('.related-section');
+        if (relatedSection) {
+            relatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 300);
+}
+
+// Renderizar controles de paginación
+function renderPaginationControls(pageInfo) {
+    let paginationContainer = document.getElementById('pagination-controls');
+    
+    if (!paginationContainer) {
+        paginationContainer = document.createElement('div');
+        paginationContainer.id = 'pagination-controls';
+        paginationContainer.className = 'pagination-controls';
+        
+        const relatedSection = document.querySelector('.related-section');
+        relatedSection.appendChild(paginationContainer);
+    }
+    
+    paginationContainer.innerHTML = `
+        <div class="pagination-info">
+            <p>Mostrando <strong>${pageInfo.showing}</strong> de <strong>${pageInfo.totalProducts}</strong> productos</p>
+            <p class="page-number">Página <strong>${pageInfo.current}</strong> de <strong>${pageInfo.total}</strong></p>
         </div>
-    `).join('');
+        
+        <div class="pagination-buttons">
+            <button 
+                id="prevPageBtn" 
+                class="pagination-btn ${!productPagination.hasPrevPage() ? 'disabled' : ''}"
+                ${!productPagination.hasPrevPage() ? 'disabled' : ''}
+            >
+                <i class="fas fa-chevron-left"></i>
+                <span>Anterior</span>
+            </button>
+            
+            <div class="pagination-dots">
+                ${Array.from({ length: Math.min(pageInfo.total, 10) }, (_, i) => {
+                    let pageIndex;
+                    if (pageInfo.total <= 10) {
+                        pageIndex = i;
+                    } else {
+                        const currentPage = pageInfo.current - 1;
+                        if (currentPage < 5) {
+                            pageIndex = i;
+                        } else if (currentPage > pageInfo.total - 6) {
+                            pageIndex = pageInfo.total - 10 + i;
+                        } else {
+                            pageIndex = currentPage - 4 + i;
+                        }
+                    }
+                    return `<span class="pagination-dot ${pageIndex === pageInfo.current - 1 ? 'active' : ''}" data-page="${pageIndex}"></span>`;
+                }).join('')}
+            </div>
+            
+            <button 
+                id="nextPageBtn" 
+                class="pagination-btn ${!productPagination.hasNextPage() ? 'disabled' : ''}"
+                ${!productPagination.hasNextPage() ? 'disabled' : ''}
+            >
+                <span>Siguiente</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    `;
     
-    initProductCardEvents();
+    addPaginationStyles();
+    initPaginationEvents();
+}
+
+// Agregar estilos de paginación
+function addPaginationStyles() {
+    if (document.getElementById('pagination-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'pagination-styles';
+    style.textContent = `
+        .pagination-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(26, 75, 140, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+        
+        .pagination-info {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .pagination-info p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .pagination-info strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        .page-number {
+            font-size: 1.1rem !important;
+        }
+        
+        .pagination-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .pagination-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 75, 140, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .pagination-btn:hover:not(.disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(26, 75, 140, 0.4);
+        }
+        
+        .pagination-btn:active:not(.disabled) {
+            transform: translateY(-1px);
+        }
+        
+        .pagination-btn.disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            opacity: 0.5;
+            box-shadow: none;
+        }
+        
+        .pagination-btn i {
+            font-size: 0.9rem;
+        }
+        
+        .pagination-dots {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+        
+        .pagination-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            border: 2px solid var(--primary-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-dot:hover {
+            transform: scale(1.3);
+            background: var(--accent-blue);
+        }
+        
+        .pagination-dot.active {
+            background: var(--primary-blue);
+            transform: scale(1.4);
+            box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .pagination-controls {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            .pagination-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .pagination-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .pagination-dots {
+                order: -1;
+            }
+            
+            .pagination-info p {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .pagination-dot {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .pagination-dots {
+                gap: 0.4rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
+
+// Inicializar eventos de paginación
+function initPaginationEvents() {
+    const prevBtn = document.getElementById('prevPageBtn');
+    const nextBtn = document.getElementById('nextPageBtn');
+    const dots = document.querySelectorAll('.pagination-dot');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (productPagination.prevPage()) {
+                renderCurrentPageProducts();
+            }
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (productPagination.nextPage()) {
+                renderCurrentPageProducts();
+            }
+        });
+    }
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const page = parseInt(dot.dataset.page);
+            productPagination.currentPage = page;
+            renderCurrentPageProducts();
+        });
+    });
 }
 
 // Cargar producto principal
@@ -309,8 +672,8 @@ function loadProduct(productId) {
     // Actualizar tabs
     renderTabsContent(product);
     
-    // Actualizar productos relacionados
-    renderRelatedProducts();
+    // ✅ MANTENER productos relacionados pero con estado preservado
+    renderRelatedProducts(true);
     
     // Verificar si está en wishlist
     updateWishlistButton();
@@ -346,8 +709,15 @@ function initProductCardEvents() {
     const productCards = document.querySelectorAll('.product-card');
     
     productCards.forEach(card => {
-        card.addEventListener('click', () => {
+        // Click en la tarjeta (excepto en botones de acción)
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.card-action-btn') || e.target.closest('.card-add-btn')) {
+                return;
+            }
+            
             const productId = parseInt(card.dataset.productId);
+            
+            // ✅ Usar loadProduct normal - ahora mantiene el estado de los productos
             loadProduct(productId);
         });
         
@@ -369,6 +739,65 @@ function initProductCardEvents() {
         }, { threshold: 0.1 });
         
         observer.observe(card);
+    });
+    
+    // Eventos para botones de acción
+    document.querySelectorAll('.card-action-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const action = btn.dataset.action;
+            const productId = parseInt(btn.dataset.productId);
+            const product = productsData[productId];
+            
+            if (action === 'wishlist') {
+                const existingItem = appState.wishlistItems.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    showNotification('Este producto ya está en favoritos');
+                } else {
+                    appState.wishlistItems.push({
+                        id: product.id,
+                        title: product.title,
+                        price: product.price,
+                        color: 'Default',
+                        image: product.images[0]
+                    });
+                    appState.updateWishlistCount();
+                    appState.saveWishlist();
+                    updateWishlistBadge();
+                    showNotification('Producto añadido a favoritos');
+                    
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    setTimeout(() => {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                    }, 2000);
+                }
+            } else if (action === 'quick-view') {
+                loadProduct(productId);
+            }
+        });
+    });
+    
+    // Eventos para botón de añadir al carrito
+    document.querySelectorAll('.card-add-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productId = parseInt(btn.dataset.productId);
+            const product = productsData[productId];
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            btn.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                addToCart(product, 1, 'Default');
+                showNotification('Producto añadido al carrito');
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+                btn.style.pointerEvents = 'auto';
+            }, 500);
+        });
     });
 }
 
@@ -420,7 +849,7 @@ function updateCartView() {
                 </div>
                 <div class="cart-item-details">
                     <div class="cart-item-title">${item.title}</div>
-                    <div class="cart-item-price">$${item.price} x ${item.quantity}</div>
+                    <div class="cart-item-price">${item.price} x ${item.quantity}</div>
                     <div style="font-size: 0.8rem; color: var(--text-light);">Color: ${item.color}</div>
                 </div>
                 <div class="cart-item-actions">
@@ -435,9 +864,8 @@ function updateCartView() {
         `;
     }).join('');
     
-    DOM.cartTotal.textContent = `$${total.toFixed(2)}`;
+    DOM.cartTotal.textContent = `${total.toFixed(2)}`;
     
-    // Eventos de botones del carrito
     attachCartItemEvents();
 }
 
@@ -557,7 +985,7 @@ function updateWishlistView() {
             </div>
             <div class="wishlist-item-details">
                 <div class="wishlist-item-title">${item.title}</div>
-                <div class="wishlist-item-price">$${item.price}</div>
+                <div class="wishlist-item-price">${item.price}</div>
                 <div style="font-size: 0.8rem; color: var(--text-light);">Color: ${item.color}</div>
             </div>
             <div class="wishlist-item-actions">
@@ -654,7 +1082,6 @@ DOM.colorOptions.forEach((option, index) => {
         const color = option.getAttribute('data-color');
         DOM.colorName.textContent = color;
         
-        // Animación del contenedor
         DOM.mainImageContainer.style.transition = 'all 0.6s ease';
         DOM.mainImageContainer.style.transform = 'scale(0.97)';
         DOM.mainImageContainer.style.opacity = '0.8';
@@ -713,7 +1140,6 @@ DOM.addToCartBtn.addEventListener('click', () => {
     const product = productsData[appState.currentProductId];
     const color = document.querySelector('.color-option.active').getAttribute('data-color');
     
-    // Animación del botón
     const originalText = DOM.addToCartBtn.innerHTML;
     DOM.addToCartBtn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> ADDING...</span>';
     DOM.addToCartBtn.style.pointerEvents = 'none';
@@ -808,6 +1234,25 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Atajos de teclado para paginación
+document.addEventListener('keydown', (e) => {
+    if (DOM.imageModal?.classList.contains('active') || 
+        DOM.cartSidebar?.classList.contains('active') || 
+        DOM.wishlistSidebar?.classList.contains('active')) {
+        return;
+    }
+    
+    if ((e.key === 'ArrowRight' || e.key.toLowerCase() === 'n') && productPagination.hasNextPage()) {
+        e.preventDefault();
+        document.getElementById('nextPageBtn')?.click();
+    }
+    
+    if ((e.key === 'ArrowLeft' || e.key.toLowerCase() === 'p') && productPagination.hasPrevPage()) {
+        e.preventDefault();
+        document.getElementById('prevPageBtn')?.click();
+    }
+});
+
 // Compartir en redes sociales
 document.querySelectorAll('.share-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -861,10 +1306,8 @@ function setupStorageSync() {
 
 // ==================== INICIALIZACIÓN ====================
 function init() {
-    // Verificar disponibilidad de localStorage
     if (!appState.isLocalStorageAvailable()) {
         console.warn('localStorage no disponible en este navegador');
-        // Podrías mostrar un mensaje al usuario si lo deseas
         const notification = document.createElement('div');
         notification.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; background: #ff6b6b; color: white; padding: 10px; text-align: center; z-index: 10000;';
         notification.textContent = '⚠️ Tu navegador no soporta almacenamiento local. Los datos no se guardarán.';
@@ -872,16 +1315,9 @@ function init() {
         setTimeout(() => notification.remove(), 5000);
     }
     
-    // Cargar estado guardado
     appState.loadState();
-    
-    // Configurar sincronización entre pestañas
     setupStorageSync();
-    
-    // Cargar producto inicial
     loadProduct(appState.currentProductId);
-    
-    // Actualizar vistas
     updateCartView();
     updateWishlistView();
     updateCartBadge();
@@ -893,14 +1329,13 @@ function init() {
     console.log('❤️ Sección de favoritos implementada');
     console.log('💾 localStorage activado y funcionando');
     console.log('🔄 Sincronización entre pestañas configurada');
-    console.log('🎨 Diseño compacto del producto principal');
-    console.log('🔄 Click en productos relacionados para cambiar vista principal');
+    console.log('📄 Sistema de paginación: 20 productos por página');
+    console.log('⌨️ Atajos de teclado: ← → o P/N para navegar páginas');
+    console.log('🎯 Botones de acción flotantes en tarjetas');
     
-    // Exponer función de reset para debugging (opcional)
     window.resetAppStorage = () => appState.resetStorage();
 }
 
-// Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
