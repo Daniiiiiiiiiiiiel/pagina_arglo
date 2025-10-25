@@ -8,6 +8,7 @@ class AppState {
         this.wishlistItems = [];
         this.cartCount = 0;
         this.wishlistCount = 0;
+        this.searchActive = false;
     }
 
     // Verificar disponibilidad de localStorage
@@ -156,6 +157,7 @@ const productPagination = new ProductPagination();
 const DOM = {
     // Header
     mainHeader: document.getElementById('mainHeader'),
+    searchBtn: document.getElementById('searchBtn'),
     cartBtn: document.getElementById('cartBtn'),
     wishlistBtn: document.getElementById('wishlistBtn'),
     cartCountBadge: document.getElementById('cartCount'),
@@ -216,6 +218,445 @@ const DOM = {
     notification: document.getElementById('notification'),
     scrollToTop: document.getElementById('scrollToTop')
 };
+
+// ==================== SISTEMA DE BÚSQUEDA ====================
+
+// Crear modal de búsqueda
+function createSearchModal() {
+    const searchModal = document.createElement('div');
+    searchModal.id = 'searchModal';
+    searchModal.className = 'search-modal';
+    searchModal.innerHTML = `
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <div class="search-input-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Buscar productos..."
+                        autocomplete="off"
+                    >
+                    <button class="search-clear" id="searchClear" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <button class="search-close" id="searchClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <div class="search-placeholder">
+                    <i class="fas fa-search"></i>
+                    <p>Escribe para buscar productos...</p>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(searchModal);
+    addSearchStyles();
+}
+
+// Agregar estilos de búsqueda
+function addSearchStyles() {
+    if (document.getElementById('search-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'search-styles';
+    style.textContent = `
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .search-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .search-modal-content {
+            max-width: 900px;
+            margin: 80px auto 0;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+        }
+        
+        .search-modal.active .search-modal-content {
+            transform: translateY(0);
+        }
+        
+        .search-modal-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--off-white);
+        }
+        
+        .search-input-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 3.5rem 1rem 3.5rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: var(--off-white);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(26, 75, 140, 0.1);
+        }
+        
+        .search-clear {
+            position: absolute;
+            right: 1rem;
+            background: var(--text-light);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-clear:hover {
+            background: var(--logo-red);
+            transform: rotate(90deg);
+        }
+        
+        .search-close {
+            background: var(--off-white);
+            border: none;
+            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+        }
+        
+        .search-close:hover {
+            background: var(--logo-red);
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .search-results {
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        
+        .search-placeholder {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+        
+        .search-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        
+        .search-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .search-result-item {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .search-result-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-blue);
+        }
+        
+        .search-result-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .search-result-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .search-result-price {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .search-result-category {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+        
+        .search-no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+        
+        .search-no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        
+        @media (max-width: 768px) {
+            .search-modal-content {
+                margin: 20px;
+                border-radius: 15px;
+            }
+            
+            .search-results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .search-result-image {
+                height: 120px;
+            }
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
+
+// Buscar productos
+function searchProducts(query) {
+    if (!query || query.trim().length < 2) {
+        return [];
+    }
+    
+    const searchTerm = query.toLowerCase().trim();
+    const allProducts = Object.values(productsData);
+    
+    return allProducts.filter(product => {
+        const titleMatch = product.title.toLowerCase().includes(searchTerm);
+        const categoryMatch = product.categories.toLowerCase().includes(searchTerm);
+        const tagsMatch = product.tags.toLowerCase().includes(searchTerm);
+        const descriptionMatch = product.description.toLowerCase().includes(searchTerm);
+        
+        return titleMatch || categoryMatch || tagsMatch || descriptionMatch;
+    });
+}
+
+// Renderizar resultados de búsqueda
+function renderSearchResults(results) {
+    const searchResults = document.getElementById('searchResults');
+    
+    if (results.length === 0) {
+        searchResults.innerHTML = `
+            <div class="search-no-results">
+                <i class="fas fa-search-minus"></i>
+                <p><strong>No se encontraron productos</strong></p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Intenta con otros términos de búsqueda</p>
+            </div>
+        `;
+        return;
+    }
+    
+    searchResults.innerHTML = `
+        <div class="search-results-grid">
+            ${results.map(product => `
+                <div class="search-result-item" data-product-id="${product.id}">
+                    <img src="${product.images[0]}" alt="${product.title}" class="search-result-image">
+                    <div class="search-result-category">${product.categories.split(',')[0]}</div>
+                    <div class="search-result-title">${product.title}</div>
+                    <div class="search-result-price">$${product.price}</div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    // Agregar eventos a los resultados
+    document.querySelectorAll('.search-result-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const productId = parseInt(item.dataset.productId);
+            closeSearchModal();
+            loadProduct(productId, true);
+            
+            // Scroll al producto
+            const productDetail = document.querySelector('.product-detail');
+            if (productDetail) {
+                const offset = 100;
+                const elementPosition = productDetail.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Abrir modal de búsqueda
+function openSearchModal() {
+    let searchModal = document.getElementById('searchModal');
+    if (!searchModal) {
+        createSearchModal();
+        searchModal = document.getElementById('searchModal');
+        initSearchEvents();
+    }
+    
+    searchModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    appState.searchActive = true;
+    
+    setTimeout(() => {
+        document.getElementById('searchInput').focus();
+    }, 100);
+}
+
+// Cerrar modal de búsqueda
+function closeSearchModal() {
+    const searchModal = document.getElementById('searchModal');
+    if (searchModal) {
+        searchModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        appState.searchActive = false;
+        
+        // Limpiar búsqueda
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const searchClear = document.getElementById('searchClear');
+        
+        if (searchInput) searchInput.value = '';
+        if (searchClear) searchClear.style.display = 'none';
+        if (searchResults) {
+            searchResults.innerHTML = `
+                <div class="search-placeholder">
+                    <i class="fas fa-search"></i>
+                    <p>Escribe para buscar productos...</p>
+                </div>
+            `;
+        }
+    }
+}
+
+// Inicializar eventos de búsqueda
+function initSearchEvents() {
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    const searchClose = document.getElementById('searchClose');
+    const searchModal = document.getElementById('searchModal');
+    
+    let searchTimeout;
+    
+    // Input de búsqueda con debounce
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value;
+        
+        if (query.length > 0) {
+            searchClear.style.display = 'flex';
+        } else {
+            searchClear.style.display = 'none';
+        }
+        
+        clearTimeout(searchTimeout);
+        
+        if (query.trim().length < 2) {
+            document.getElementById('searchResults').innerHTML = `
+                <div class="search-placeholder">
+                    <i class="fas fa-search"></i>
+                    <p>Escribe al menos 2 caracteres...</p>
+                </div>
+            `;
+            return;
+        }
+        
+        searchTimeout = setTimeout(() => {
+            const results = searchProducts(query);
+            renderSearchResults(results);
+        }, 300);
+    });
+    
+    // Limpiar búsqueda
+    searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchClear.style.display = 'none';
+        searchInput.focus();
+        document.getElementById('searchResults').innerHTML = `
+            <div class="search-placeholder">
+                <i class="fas fa-search"></i>
+                <p>Escribe para buscar productos...</p>
+            </div>
+        `;
+    });
+    
+    // Cerrar modal
+    searchClose.addEventListener('click', closeSearchModal);
+    
+    // Cerrar al hacer click fuera
+    searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+            closeSearchModal();
+        }
+    });
+}
 
 // ==================== FUNCIONES DE RENDERIZADO ====================
 
@@ -640,7 +1081,7 @@ function initPaginationEvents() {
 }
 
 // Cargar producto principal
-function loadProduct(productId) {
+function loadProduct(productId, keepRelatedProducts = false) {
     const product = productsData[productId];
     if (!product) return;
     
@@ -652,9 +1093,9 @@ function loadProduct(productId) {
     
     // Actualizar precio
     if (product.oldPrice) {
-        DOM.productPrice.innerHTML = `$${product.price} <span style="font-size: 1.5rem; color: var(--text-light); text-decoration: line-through; margin-left: 0.5rem;">$${product.oldPrice}</span>`;
+        DOM.productPrice.innerHTML = `${product.price} <span style="font-size: 1.5rem; color: var(--text-light); text-decoration: line-through; margin-left: 0.5rem;">${product.oldPrice}</span>`;
     } else {
-        DOM.productPrice.textContent = `$${product.price}`;
+        DOM.productPrice.textContent = `${product.price}`;
     }
     
     // Actualizar rating
@@ -672,14 +1113,13 @@ function loadProduct(productId) {
     // Actualizar tabs
     renderTabsContent(product);
     
-    // ✅ MANTENER productos relacionados pero con estado preservado
-    renderRelatedProducts(true);
+    // ✅ Solo recargar productos relacionados si es necesario
+    if (!keepRelatedProducts) {
+        renderRelatedProducts(true);
+    }
     
     // Verificar si está en wishlist
     updateWishlistButton();
-    
-    // Scroll al inicio
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ==================== EVENTOS DE THUMBNAILS ====================
@@ -717,8 +1157,21 @@ function initProductCardEvents() {
             
             const productId = parseInt(card.dataset.productId);
             
-            // ✅ Usar loadProduct normal - ahora mantiene el estado de los productos
-            loadProduct(productId);
+            // ✅ Cargar producto SIN recargar productos relacionados ni hacer scroll arriba
+            loadProduct(productId, true);
+            
+            // Scroll suave solo al área del producto
+            const productDetail = document.querySelector('.product-detail');
+            if (productDetail) {
+                const offset = 100;
+                const elementPosition = productDetail.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
         
         // Animación de entrada
@@ -776,7 +1229,7 @@ function initProductCardEvents() {
                     }, 2000);
                 }
             } else if (action === 'quick-view') {
-                loadProduct(productId);
+                loadProduct(productId, true);
             }
         });
     });
@@ -1073,6 +1526,9 @@ DOM.scrollToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Botón de búsqueda
+DOM.searchBtn.addEventListener('click', openSearchModal);
+
 // Color selector
 DOM.colorOptions.forEach((option, index) => {
     option.addEventListener('click', () => {
@@ -1211,6 +1667,7 @@ DOM.imageModal.addEventListener('click', (e) => {
 
 // Atajos de teclado
 document.addEventListener('keydown', (e) => {
+    // Escapar de modales
     if (e.key === 'Escape') {
         if (DOM.imageModal.classList.contains('active')) {
             closeModal();
@@ -1221,16 +1678,30 @@ document.addEventListener('keydown', (e) => {
         if (DOM.wishlistSidebar.classList.contains('active')) {
             DOM.wishlistSidebar.classList.remove('active');
         }
+        if (appState.searchActive) {
+            closeSearchModal();
+        }
     }
     
-    if ((e.key === '+' || e.key === '=') && !e.ctrlKey) {
+    // Abrir búsqueda con Ctrl+K o Cmd+K
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        DOM.qtyPlus.click();
+        openSearchModal();
     }
     
-    if ((e.key === '-' || e.key === '_') && !e.ctrlKey) {
-        e.preventDefault();
-        DOM.qtyMinus.click();
+    // Solo si no hay modales abiertos
+    if (!appState.searchActive && !DOM.imageModal.classList.contains('active') && 
+        !DOM.cartSidebar.classList.contains('active') && !DOM.wishlistSidebar.classList.contains('active')) {
+        
+        if ((e.key === '+' || e.key === '=') && !e.ctrlKey) {
+            e.preventDefault();
+            DOM.qtyPlus.click();
+        }
+        
+        if ((e.key === '-' || e.key === '_') && !e.ctrlKey) {
+            e.preventDefault();
+            DOM.qtyMinus.click();
+        }
     }
 });
 
@@ -1238,7 +1709,8 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keydown', (e) => {
     if (DOM.imageModal?.classList.contains('active') || 
         DOM.cartSidebar?.classList.contains('active') || 
-        DOM.wishlistSidebar?.classList.contains('active')) {
+        DOM.wishlistSidebar?.classList.contains('active') ||
+        appState.searchActive) {
         return;
     }
     
@@ -1330,8 +1802,13 @@ function init() {
     console.log('💾 localStorage activado y funcionando');
     console.log('🔄 Sincronización entre pestañas configurada');
     console.log('📄 Sistema de paginación: 20 productos por página');
-    console.log('⌨️ Atajos de teclado: ← → o P/N para navegar páginas');
+    console.log('⌨️ Atajos de teclado:');
+    console.log('   - ← → o P/N para navegar páginas');
+    console.log('   - Ctrl+K o Cmd+K para abrir búsqueda');
+    console.log('   - ESC para cerrar modales');
+    console.log('🔍 Sistema de búsqueda implementado');
     console.log('🎯 Botones de acción flotantes en tarjetas');
+    console.log('✨ Click en productos NO recarga la página');
     
     window.resetAppStorage = () => appState.resetStorage();
 }

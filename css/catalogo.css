@@ -122,7 +122,17 @@ body {
     gap: 3px;
     position: relative;
 }
+.logo-image {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
 
+.logo-container:hover .logo-image {
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 4px 12px rgba(26, 75, 140, 0.3));
+}
 .symbol-circle {
     width: 10px;
     height: 10px;
@@ -1690,7 +1700,7 @@ body {
     html {
         font-size: 14px;
     }
-    
+
     .header-container {
         padding: 1rem 2rem;
     }
@@ -1720,7 +1730,12 @@ body {
     html {
         font-size: 13px;
     }
-
+    .logo-container span{
+        display: none;
+    }
+        .logo-image{
+        height: 35px;
+    }
     .custom-cursor,
     .cursor-dot {
         display: none !important;
@@ -1854,7 +1869,12 @@ body {
     html {
         font-size: 12px;
     }
-    
+      .logo-container span{
+        display: none;
+    }  
+        .logo-image{
+        height: 35px;
+    }
     .header-container {
         padding: 0.8rem 1rem;
     }
