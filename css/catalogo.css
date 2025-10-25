@@ -1730,6 +1730,9 @@ body {
     html {
         font-size: 13px;
     }
+    .card-action-btn{
+        display: none;
+    }
     .logo-container span{
         display: none;
     }
@@ -1868,6 +1871,9 @@ body {
 @media (max-width: 576px) {
     html {
         font-size: 12px;
+    }
+        .card-action-btn{
+        display: none;
     }
       .logo-container span{
         display: none;

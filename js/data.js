@@ -6,7 +6,7 @@ export const productsData = {
         description: 'Permite realizar una punción en la piel para obtener sangre, también usado en las estéticas para sacar espinillas y puntos negros. Caja con 100 unidades.',
         rating: 4,
         reviews: 89,
-        images: [],
+        images: ['../img/img1/producto1.png'],
         categories: 'Insumos Médicos, Desechables',
         tags: 'Lancetas, Estética, Punción'
     },
@@ -17,7 +17,7 @@ export const productsData = {
         description: 'Gel que contribuye a la lubricación durante el ultrasonido u otros procedimientos. También es usado en la depilación laser, radiofrecuencia o ultrasonidos. No daña el transductor, se extiende fácil y uniformemente, no irrita la piel. Cantidad 5 litros.',
         rating: 4,
         reviews: 124,
-        images: [],
+        images: ['../img/img1/producto2.png'],
         categories: 'Insumos Médicos, Estética',
         tags: 'Ultrasonido, Gel, Lubricante'
     },
@@ -28,7 +28,7 @@ export const productsData = {
         description: 'Cinta suave y amable con la piel, de papel que se usa para curar las heridas y asegurar los tubos médicos y apósitos. Tamaño: 2,5 x 9,1 mts.',
         rating: 5,
         reviews: 203,
-        images: [],
+        images: ['../img/img1/producto3.png'],
         categories: 'Curación, Insumos Médicos',
         tags: 'Micropore, 3M, Cinta Médica'
     },
@@ -39,7 +39,7 @@ export const productsData = {
         description: 'Papel grado médico, indicado para el proceso de esterilización, diferentes tamaños disponibles. Caja con 200 unidades.',
         rating: 4,
         reviews: 67,
-        images: [],
+        images: ['../img/img1/producto4.png'],
         categories: 'Esterilización, Insumos Médicos',
         tags: 'Esterilización, Bolsas, Médico'
     },
@@ -50,7 +50,7 @@ export const productsData = {
         description: 'Rollo de bolsas para esterilización de diferentes instrumentos, papel grados médico, cada rollo contiene 200 metros, hay de diferentes tamaños.',
         rating: 4,
         reviews: 45,
-        images: [],
+        images: ['../img/img1/producto5.png'],
         categories: 'Esterilización, Insumos Médicos',
         tags: 'Esterilización, Rollo, Papel Médico'
     },
@@ -61,7 +61,7 @@ export const productsData = {
         description: 'Film adhesivo que se emplea para no dejar residuos de ningún tipo sea la superficie que sea. Desechable, fácil de aplicar y quitar, no deja ningún residuo.',
         rating: 4,
         reviews: 78,
-        images: [],
+        images: ['../img/img1/producto6.png'],
         categories: 'Protección, Insumos Médicos',
         tags: 'Barrera, Adhesiva, Protección'
     },
@@ -72,7 +72,7 @@ export const productsData = {
         description: 'Ideal para preparación de la piel antiséptica y otros procedimientos invasivos menores. Almohadilla impregnada con povidona yodada al 10%. Caja con 100 unidades.',
         rating: 5,
         reviews: 156,
-        images: [],
+        images: ['../img/img1/producto7.png'],
         categories: 'Antisépticos, Curación',
         tags: 'Yodo, Antiséptico, Pads'
     },
@@ -83,7 +83,7 @@ export const productsData = {
         description: 'Toallitas impregnadas en alcohol de 70%, para desinfectar heridas, cortes o áreas pequeñas antes de realizar un procedimiento. Caja con 100 unidades.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img1/producto8.png'],
         categories: 'Desinfección, Curación',
         tags: 'Alcohol, Desinfectante, Pads'
     },
@@ -94,7 +94,7 @@ export const productsData = {
         description: 'Conocido como eyector de saliva o suctor. Su función es succionar el exceso de saliva, agua o sangre, se dobla fácilmente, no tiene memoria al momento de doblarse, longitud de 15cm. Paquete con 100 unidades.',
         rating: 4,
         reviews: 92,
-        images: [],
+        images: ['../img/img1/producto9.png'],
         categories: 'Odontología, Insumos Médicos',
         tags: 'Suctor, Saliva, Odontología'
     },
@@ -105,7 +105,7 @@ export const productsData = {
         description: 'Protegen el calzado, evitando la transmisión de gérmenes y disminuyen la cantidad de suciedad. Hecho de tela no tejida y con antideslizante. Paquete con 100 unidades.',
         rating: 4,
         reviews: 134,
-        images: [],
+        images: ['../img/img1/producto10.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Cubre Zapatos, Protección, Hospital'
     },
@@ -116,7 +116,7 @@ export const productsData = {
         description: 'Bata de un solo uso fabricada con tela no tejida SMS, sin mangas y con cierre trasero de cintas para atar al cuello y a la cintura. Paquete con 10 unidades. Talla: Única.',
         rating: 4,
         reviews: 167,
-        images: [],
+        images: ['../img/img1/producto11.png'],
         categories: 'Ropa Médica, Protección',
         tags: 'Bata, Desechable, Médico'
     },
@@ -127,7 +127,7 @@ export const productsData = {
         description: 'Bata de un solo uso fabricada con tela no tejida SMS, mangas larga, con puño de elástico o de algodón y con cierre trasero de cintas para atar al cuello y a la cintura. Paquete con 10 unidades. Talla: Única.',
         rating: 5,
         reviews: 198,
-        images: [],
+        images: ['../img/img1/producto12.png'],
         categories: 'Ropa Médica, Protección',
         tags: 'Bata, Manga Larga, Protección'
     },
@@ -138,7 +138,7 @@ export const productsData = {
         description: 'Superficie suave, resistente a líquidos, no estéril y de un solo uso, hecha de polipropileno (no tejida), diseñada para su uso en mesas de masaje, camillas y cobertor en salones de belleza. Paquete con 10 unidades.',
         rating: 4,
         reviews: 112,
-        images: [],
+        images: ['../img/img1/producto13.png'],
         categories: 'Estética, Insumos',
         tags: 'Sábana, Estética, Masaje'
     },
@@ -149,7 +149,7 @@ export const productsData = {
         description: 'Superficie suave, tiene elástico en los bordes, resistente a líquidos, no estéril y de un solo uso, hecha de polipropileno (no tejida), diseñada para su uso en mesas de masaje, camillas y cobertor en salones de belleza. Paquete con 10 unidades.',
         rating: 4,
         reviews: 145,
-        images: [],
+        images: ['../img/img1/producto14.png'],
         categories: 'Estética, Insumos Médicos',
         tags: 'Cubre Camilla, Estética, Protección'
     },
@@ -160,7 +160,7 @@ export const productsData = {
         description: 'Se usa para cubrir el vello facial y evitar que el pelo suelto caiga en un espacio de trabajo, retiene la caída del vello facial durante la manipulación de alimentos u otros artículos. Se usa en laboratorios, industria alimentaria, labores de limpieza. Paquete con 100 unidades.',
         rating: 4,
         reviews: 87,
-        images: [],
+        images: ['../img/img1/producto15.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Cubre Barba, Protección, Alimentos'
     },
@@ -171,7 +171,7 @@ export const productsData = {
         description: 'Utilizada para hacer manicure como paño para cualquier derrame, para pedicure como separador de dedos de los pies, también para tinte y cortar el pelo en la parte trasera de la cabeza, cobertor de cabecera, protegiendo de todo tipo de contaminantes, y los odontólogos como baberos. Paquete de 125 unidades.',
         rating: 4,
         reviews: 176,
-        images: [],
+        images: ['../img/img1/producto16.png'],
         categories: 'Estética, Odontología',
         tags: 'Babero, Servitoallas, Estética'
     },
@@ -182,7 +182,7 @@ export const productsData = {
         description: 'Aisla el pelo y cubre totalmente la cabeza en tareas con mayor riesgo de contaminación o infección. Mantiene la higiene y la seguridad. Paquete con 100 unidades.',
         rating: 4,
         reviews: 98,
-        images: [],
+        images: ['../img/img1/producto17.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Capucha, Protección, Higiene'
     },
@@ -193,7 +193,7 @@ export const productsData = {
         description: 'Para evitar la caída de cabello, viene en forma de gusanito o acordeón, varios colores disponibles. Paquete de 100 unidades.',
         rating: 4,
         reviews: 123,
-        images: [],
+        images: ['../img/img1/producto18.png'],
         categories: 'Protección Personal, Estética',
         tags: 'Gorro, Acordeón, Protección'
     },
@@ -204,7 +204,7 @@ export const productsData = {
         description: 'Para evitar la caída del cabello, ideal para hoteles, restaurantes, cafeterías, y tareas de limpieza. Paquete con 100 unidades.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img1/producto19.png'],
         categories: 'Protección Personal, Alimentos',
         tags: 'Gorro Malla, Protección, Alimentos'
     },
@@ -215,7 +215,7 @@ export const productsData = {
         description: 'Aceite a base de uva y extractos naturales, no contiene aceite mineral, es decir proveniente del petróleo. Tamaños: 250ml, litro o galón.',
         rating: 5,
         reviews: 234,
-        images: [],
+        images: ['../img/img1/producto20.png'],
         categories: 'Estética, Masajes',
         tags: 'Aceite, Masaje, Natural'
     },
@@ -226,7 +226,7 @@ export const productsData = {
         description: 'Sirve para aplicar cualquier tipo de sustancia, limpia, desinfecta y absorbe, no estéril, de 6 pulgadas. Paquete con 100 unidades.',
         rating: 4,
         reviews: 87,
-        images: [],
+        images: ['../img/img1/producto21.png'],
         categories: 'Insumos Médicos, Desechables',
         tags: 'Aplicadores, Largos, Desechables'
     },
