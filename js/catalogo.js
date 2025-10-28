@@ -102,7 +102,6 @@ class ProductPagination {
     }
 
     setProducts(products, keepCurrentState = false) {
-        // ✅ SOLO reiniciar si no hay productos o si se fuerza el reset
         if (!keepCurrentState || this.allProducts.length === 0) {
             this.allProducts = products.filter(p => p.id !== appState.currentProductId);
             this.totalPages = Math.ceil(this.allProducts.length / this.itemsPerPage);
@@ -218,6 +217,54 @@ const DOM = {
     notification: document.getElementById('notification'),
     scrollToTop: document.getElementById('scrollToTop')
 };
+
+// ==================== WHATSAPP INTEGRATION ====================
+
+function sendCartToWhatsApp() {
+    if (appState.cartItems.length === 0) {
+        showNotification('Tu carrito está vacío');
+        return;
+    }
+    
+    const numero = '50684751967';
+    
+    // Construir mensaje profesional
+    let mensaje = '🌟 *SOLICITUD DE COTIZACIÓN* 🌟\n\n';
+    mensaje += 'Buen día, estoy interesado en solicitar una cotización para los siguientes productos:\n\n';
+    mensaje += '━━━━━━━━━━━━━━━━━━\n';
+    mensaje += '📋 *DETALLE DEL PEDIDO*\n';
+    mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
+    
+    let total = 0;
+    
+    appState.cartItems.forEach((item, index) => {
+        const itemTotal = parseFloat(item.price) * item.quantity;
+        total += itemTotal;
+        
+        mensaje += `*Producto ${index + 1}:*\n`;
+        mensaje += `📦 ${item.title}\n`;
+        mensaje += `• Color: ${item.color}\n`;
+        mensaje += `• Precio unitario: $${item.price}\n`;
+        mensaje += `• Cantidad: ${item.quantity}\n`;
+        mensaje += `• Subtotal: $${itemTotal.toFixed(2)}\n\n`;
+    });
+    
+    mensaje += '━━━━━━━━━━━━━━━━━━\n';
+    mensaje += `💰 *VALOR TOTAL: $${total.toFixed(2)}*\n`;
+    mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
+    mensaje += 'Por favor, agradecería me confirme:\n';
+    mensaje += '✅ Disponibilidad de los productos\n';
+    mensaje += '✅ Opciones de pago disponibles\n';
+    mensaje += '✅ Tiempos de entrega\n';
+    mensaje += '✅ Costos de envío si aplican\n\n';
+    mensaje += 'Quedo atento a su respuesta. ¡Gracias!';
+    
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    const url = `https://wa.me/${numero}?text=${mensajeCodificado}`;
+    
+    window.open(url, '_blank');
+    showNotification('Redirigiendo a WhatsApp...');
+}
 
 // ==================== SISTEMA DE BÚSQUEDA ====================
 
@@ -530,14 +577,12 @@ function renderSearchResults(results) {
         </div>
     `;
     
-    // Agregar eventos a los resultados
     document.querySelectorAll('.search-result-item').forEach(item => {
         item.addEventListener('click', () => {
             const productId = parseInt(item.dataset.productId);
             closeSearchModal();
             loadProduct(productId, true);
             
-            // Scroll al producto
             const productDetail = document.querySelector('.product-detail');
             if (productDetail) {
                 const offset = 100;
@@ -552,6 +597,7 @@ function renderSearchResults(results) {
         });
     });
 }
+// ==================== CONTINUACIÓN DEL CÓDIGO ====================
 
 // Abrir modal de búsqueda
 function openSearchModal() {
@@ -579,7 +625,6 @@ function closeSearchModal() {
         document.body.style.overflow = 'auto';
         appState.searchActive = false;
         
-        // Limpiar búsqueda
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
         const searchClear = document.getElementById('searchClear');
@@ -606,7 +651,6 @@ function initSearchEvents() {
     
     let searchTimeout;
     
-    // Input de búsqueda con debounce
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value;
         
@@ -634,7 +678,6 @@ function initSearchEvents() {
         }, 300);
     });
     
-    // Limpiar búsqueda
     searchClear.addEventListener('click', () => {
         searchInput.value = '';
         searchClear.style.display = 'none';
@@ -647,10 +690,8 @@ function initSearchEvents() {
         `;
     });
     
-    // Cerrar modal
     searchClose.addEventListener('click', closeSearchModal);
     
-    // Cerrar al hacer click fuera
     searchModal.addEventListener('click', (e) => {
         if (e.target === searchModal) {
             closeSearchModal();
@@ -660,7 +701,6 @@ function initSearchEvents() {
 
 // ==================== FUNCIONES DE RENDERIZADO ====================
 
-// Renderizar breadcrumb
 function renderBreadcrumb(product) {
     const categories = product.categories.split(', ');
     
@@ -676,7 +716,6 @@ function renderBreadcrumb(product) {
     `;
 }
 
-// Renderizar estrellas de rating
 function renderStars(rating, container) {
     container.innerHTML = '';
     for (let i = 0; i < 5; i++) {
@@ -686,13 +725,10 @@ function renderStars(rating, container) {
     }
 }
 
-// Renderizar thumbnails
 function renderThumbnails() {
-    
     initThumbnailEvents();
 }
 
-// Renderizar meta información
 function renderProductMeta(product) {
     DOM.productMeta.innerHTML = `
         <div class="meta-item">
@@ -710,9 +746,7 @@ function renderProductMeta(product) {
     `;
 }
 
-// Renderizar contenido de tabs
 function renderTabsContent(product) {
-    // Descripción detallada
     DOM.descriptionContent.innerHTML = `
         <p style="margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-light);">
             ${product.description}
@@ -725,7 +759,6 @@ function renderTabsContent(product) {
         </p>
     `;
     
-    // Reviews (ejemplo estático)
     DOM.reviewsContent.innerHTML = `
         <div style="padding: 1.5rem; background: var(--off-white); border-radius: 14px; border-left: 4px solid var(--logo-yellow);">
             <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.8rem;">
@@ -744,22 +777,16 @@ function renderTabsContent(product) {
 
 // ==================== PRODUCTOS RELACIONADOS CON PAGINACIÓN ====================
 
-// Renderizar productos relacionados con paginación
 function renderRelatedProducts(keepCurrentState = false) {
     const allProducts = Object.values(productsData);
-    
-    // ✅ Pasar el parámetro para mantener el estado actual
     productPagination.setProducts(allProducts, keepCurrentState);
-    
     renderCurrentPageProducts();
 }
 
-// Renderizar productos de la página actual
 function renderCurrentPageProducts() {
     const currentProducts = productPagination.getCurrentPageProducts();
     const pageInfo = productPagination.getPageInfo();
     
-    // Renderizar productos con animación de fade
     DOM.relatedProducts.style.opacity = '0';
     DOM.relatedProducts.style.transform = 'translateY(20px)';
     
@@ -768,7 +795,6 @@ function renderCurrentPageProducts() {
             <div class="product-card" data-product-id="${product.id}">
                 ${product.oldPrice ? '<div class="sale-badge">SALE!</div>' : ''}
                 
-                <!-- Botones de acción flotantes -->
                 <div class="card-actions">
                     <button class="card-action-btn" data-action="wishlist" data-product-id="${product.id}" title="Añadir a favoritos">
                         <i class="far fa-heart"></i>
@@ -805,20 +831,15 @@ function renderCurrentPageProducts() {
             </div>
         `).join('');
         
-        // Animar aparición
         setTimeout(() => {
             DOM.relatedProducts.style.transition = 'all 0.5s ease';
             DOM.relatedProducts.style.opacity = '1';
             DOM.relatedProducts.style.transform = 'translateY(0)';
         }, 50);
         
-        // Renderizar controles de paginación
         renderPaginationControls(pageInfo);
-        
-        // Inicializar eventos
         initProductCardEvents();
         
-        // Scroll suave al inicio de productos
         const relatedSection = document.querySelector('.related-section');
         if (relatedSection) {
             relatedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1082,38 +1103,29 @@ function loadProduct(productId, keepRelatedProducts = false) {
     
     appState.currentProductId = productId;
     
-    // Actualizar información básica
     DOM.productTitle.textContent = product.title;
     DOM.productDescription.textContent = product.description;
     
-    // Actualizar precio
     if (product.oldPrice) {
         DOM.productPrice.innerHTML = `${product.price} <span style="font-size: 1.5rem; color: var(--text-light); text-decoration: line-through; margin-left: 0.5rem;">${product.oldPrice}</span>`;
     } else {
         DOM.productPrice.textContent = `${product.price}`;
     }
     
-    // Actualizar rating
     renderStars(product.rating, DOM.productStars);
     DOM.reviewCount.textContent = `(${product.reviews} customer reviews)`;
     
-    // Actualizar imágenes
     DOM.mainImage.src = product.images[0];
     renderThumbnails(product.images);
     
-    // Actualizar breadcrumb y meta
     renderBreadcrumb(product);
     renderProductMeta(product);
-    
-    // Actualizar tabs
     renderTabsContent(product);
     
-    // ✅ Solo recargar productos relacionados si es necesario
     if (!keepRelatedProducts) {
         renderRelatedProducts(true);
     }
     
-    // Verificar si está en wishlist
     updateWishlistButton();
 }
 
@@ -1144,18 +1156,14 @@ function initProductCardEvents() {
     const productCards = document.querySelectorAll('.product-card');
     
     productCards.forEach(card => {
-        // Click en la tarjeta (excepto en botones de acción)
         card.addEventListener('click', (e) => {
             if (e.target.closest('.card-action-btn') || e.target.closest('.card-add-btn')) {
                 return;
             }
             
             const productId = parseInt(card.dataset.productId);
-            
-            // ✅ Cargar producto SIN recargar productos relacionados ni hacer scroll arriba
             loadProduct(productId, true);
             
-            // Scroll suave solo al área del producto
             const productDetail = document.querySelector('.product-detail');
             if (productDetail) {
                 const offset = 100;
@@ -1169,7 +1177,6 @@ function initProductCardEvents() {
             }
         });
         
-        // Animación de entrada
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
         
@@ -1189,7 +1196,6 @@ function initProductCardEvents() {
         observer.observe(card);
     });
     
-    // Eventos para botones de acción
     document.querySelectorAll('.card-action-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -1201,17 +1207,11 @@ function initProductCardEvents() {
                 toggleWishlistItem(productId, product, btn);
             } else if (action === 'quick-view') {
                 loadProduct(productId, true);
-                
-                // Scroll hacia arriba para ver el producto principal
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
     });
     
-    // Eventos para botón de añadir al carrito
     document.querySelectorAll('.card-add-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -1236,7 +1236,6 @@ function toggleWishlistItem(productId, product, btn = null) {
     const existingItemIndex = appState.wishlistItems.findIndex(item => item.id === productId);
     
     if (existingItemIndex !== -1) {
-        // Remover de favoritos
         appState.wishlistItems.splice(existingItemIndex, 1);
         appState.updateWishlistCount();
         appState.saveWishlist();
@@ -1251,7 +1250,6 @@ function toggleWishlistItem(productId, product, btn = null) {
         
         showNotification('Producto removido de favoritos');
     } else {
-        // Añadir a favoritos
         appState.wishlistItems.push({
             id: product.id,
             title: product.title,
@@ -1272,20 +1270,17 @@ function toggleWishlistItem(productId, product, btn = null) {
         
         showNotification('Producto añadido a favoritos');
         
-        // Abrir automáticamente el sidebar de favoritos
         setTimeout(() => {
             DOM.wishlistSidebar.classList.add('active');
             DOM.cartSidebar.classList.remove('active');
         }, 800);
     }
     
-    // Actualizar botón de wishlist del producto principal si es necesario
     updateWishlistButton();
 }
 
 // ==================== CARRITO DE COMPRAS ====================
 
-// Añadir al carrito
 function addToCart(product, quantity, color) {
     const existingItemIndex = appState.cartItems.findIndex(item => 
         item.id === product.id && item.color === color
@@ -1310,7 +1305,6 @@ function addToCart(product, quantity, color) {
     updateCartBadge();
 }
 
-// Actualizar vista del carrito
 function updateCartView() {
     if (appState.cartItems.length === 0) {
         DOM.cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">Tu carrito está vacío</p>';
@@ -1351,7 +1345,6 @@ function updateCartView() {
     attachCartItemEvents();
 }
 
-// Eventos de items del carrito
 function attachCartItemEvents() {
     document.querySelectorAll('.cart-qty-btn.minus').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1389,7 +1382,6 @@ function attachCartItemEvents() {
     });
 }
 
-// Actualizar badge del carrito
 function updateCartBadge() {
     DOM.cartCountBadge.textContent = appState.cartCount;
     DOM.cartCountBadge.style.transform = 'scale(1.3)';
@@ -1400,7 +1392,6 @@ function updateCartBadge() {
 
 // ==================== WISHLIST MEJORADO ====================
 
-// Toggle wishlist para producto principal
 function toggleWishlist() {
     const product = productsData[appState.currentProductId];
     const color = document.querySelector('.color-option.active').getAttribute('data-color');
@@ -1410,11 +1401,9 @@ function toggleWishlist() {
     );
     
     if (existingItemIndex !== -1) {
-        // Remover de favoritos
         appState.wishlistItems.splice(existingItemIndex, 1);
         showNotification('Producto removido de favoritos');
     } else {
-        // Añadir a favoritos
         appState.wishlistItems.push({
             id: product.id,
             title: product.title,
@@ -1424,7 +1413,6 @@ function toggleWishlist() {
         });
         showNotification('Producto añadido a favoritos');
         
-        // Abrir automáticamente el sidebar de favoritos
         setTimeout(() => {
             DOM.wishlistSidebar.classList.add('active');
             DOM.cartSidebar.classList.remove('active');
@@ -1438,7 +1426,6 @@ function toggleWishlist() {
     updateWishlistButton();
 }
 
-// Actualizar botón de wishlist
 function updateWishlistButton() {
     const product = productsData[appState.currentProductId];
     const color = document.querySelector('.color-option.active').getAttribute('data-color');
@@ -1463,7 +1450,6 @@ function updateWishlistButton() {
     }
 }
 
-// Actualizar vista del wishlist - FUNCIÓN MEJORADA
 function updateWishlistView() {
     if (appState.wishlistItems.length === 0) {
         DOM.wishlistItemsContainer.innerHTML = `
@@ -1483,7 +1469,7 @@ function updateWishlistView() {
             </div>
             <div class="wishlist-item-details">
                 <div class="wishlist-item-title">${item.title}</div>
-                <div class="wishlist-item-price">$${item.price}</div>
+                <div class="wishlist-item-price">${item.price}</div>
                 <div class="wishlist-item-color">Color: ${item.color}</div>
             </div>
             <div class="wishlist-item-actions">
@@ -1497,13 +1483,10 @@ function updateWishlistView() {
         </div>
     `).join('');
     
-    // Agregar estilos para la vista vacía
     addWishlistStyles();
-    
     attachWishlistItemEvents();
 }
 
-// Agregar estilos para el wishlist
 function addWishlistStyles() {
     if (document.getElementById('wishlist-styles')) return;
     
@@ -1511,7 +1494,6 @@ function addWishlistStyles() {
     style.id = 'wishlist-styles';
     style.textContent = `
         .empty-wishlist {
-            text-align: center;
             padding: 3rem 2rem;
             color: var(--text-light);
         }
@@ -1635,7 +1617,6 @@ function addWishlistStyles() {
     document.head.appendChild(style);
 }
 
-// Eventos de items del wishlist - FUNCIÓN MEJORADA
 function attachWishlistItemEvents() {
     document.querySelectorAll('.wishlist-item-add').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -1648,7 +1629,6 @@ function attachWishlistItemEvents() {
                 addToCart(product, 1, item.color);
                 showNotification('Producto añadido al carrito desde favoritos');
                 
-                // Animación del botón
                 btn.innerHTML = '<i class="fas fa-check"></i>';
                 btn.style.background = 'var(--success-green)';
                 setTimeout(() => {
@@ -1663,9 +1643,7 @@ function attachWishlistItemEvents() {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const index = parseInt(btn.dataset.index);
-            const item = appState.wishlistItems[index];
             
-            // Animación de eliminación
             const wishlistItem = btn.closest('.wishlist-item');
             wishlistItem.style.transform = 'translateX(100%)';
             wishlistItem.style.opacity = '0';
@@ -1682,7 +1660,6 @@ function attachWishlistItemEvents() {
         });
     });
     
-    // Click en el item del wishlist para cargar el producto
     document.querySelectorAll('.wishlist-item').forEach(item => {
         item.addEventListener('click', (e) => {
             if (e.target.closest('.wishlist-item-actions')) {
@@ -1692,7 +1669,6 @@ function attachWishlistItemEvents() {
             const productId = parseInt(item.dataset.productId);
             loadProduct(productId, true);
             
-            // Cerrar sidebar y hacer scroll al producto
             DOM.wishlistSidebar.classList.remove('active');
             
             setTimeout(() => {
@@ -1712,7 +1688,6 @@ function attachWishlistItemEvents() {
     });
 }
 
-// Actualizar badge del wishlist
 function updateWishlistBadge() {
     DOM.wishlistCountBadge.textContent = appState.wishlistCount;
     DOM.wishlistCountBadge.style.transform = 'scale(1.3)';
@@ -1746,7 +1721,6 @@ function closeModal() {
 
 // ==================== EVENTOS GENERALES ====================
 
-// Header scroll
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         DOM.mainHeader.classList.add('scrolled');
@@ -1757,10 +1731,10 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Scroll to top
 DOM.scrollToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+// ==================== CONTINUACIÓN FINAL DEL CÓDIGO ====================
 
 // Botón de búsqueda
 DOM.searchBtn.addEventListener('click', openSearchModal);
@@ -1879,6 +1853,11 @@ DOM.addAllToCart.addEventListener('click', () => {
     });
     showNotification('Todos los productos se han añadido al carrito');
     DOM.wishlistSidebar.classList.remove('active');
+});
+
+// ==================== EVENTO CHECKOUT CON WHATSAPP ====================
+DOM.checkoutBtn.addEventListener('click', () => {
+    sendCartToWhatsApp();
 });
 
 // Tabs
@@ -2045,6 +2024,7 @@ function init() {
     console.log('🔍 Sistema de búsqueda implementado');
     console.log('🎯 Botones de acción flotantes en tarjetas');
     console.log('✨ Click en productos NO recarga la página');
+    console.log('📱 WhatsApp integrado - Envía tu carrito directamente');
     
     window.resetAppStorage = () => appState.resetStorage();
 }

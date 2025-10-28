@@ -1956,3 +1956,9 @@ body {
         max-width: 35lvh;
     }
 }
+
+.empty-wishlist {
+    font-size: 1.6lvh;
+    text-align: center;
+    opacity: 0.7;
+}

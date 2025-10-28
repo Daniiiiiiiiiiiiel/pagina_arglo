@@ -237,7 +237,7 @@ export const productsData = {
         description: 'Sirve para aplicar cualquier tipo de sustancia, limpia, desinfecta y absorbe, no estéril, de 3 pulgadas. Paquete con 100 unidades.',
         rating: 4,
         reviews: 76,
-        images: [],
+        images: ['../img/img1/producto22.png'],
         categories: 'Insumos Médicos, Desechables',
         tags: 'Aplicadores, Cortos, Desechables'
     },
@@ -248,7 +248,7 @@ export const productsData = {
         description: 'Venda elástica autoadherente, se fija sobre si misma, se usa para lesiones, esguinces y para proteger apósitos y dispositivos. Tamaño 5cm x 4.5m.',
         rating: 5,
         reviews: 145,
-        images: [],
+        images: ['../img/img1/producto23.png'],
         categories: 'Curación, Ortopedia',
         tags: 'Venda, Coban, Elástica'
     },
@@ -259,7 +259,7 @@ export const productsData = {
         description: '100% algodonada, extra absorbente, bajo en pelusa, libre de látex, no tejida, de un solo uso, no estéril, paquete de 200 unidades. Diferentes tamaños disponibles: 2x2, 3x3, 4x4.',
         rating: 4,
         reviews: 167,
-        images: [],
+        images: ['../img/img1/producto24.png'],
         categories: 'Curación, Insumos Médicos',
         tags: 'Gasa, No Tejida, Absorbente'
     },
@@ -270,7 +270,7 @@ export const productsData = {
         description: 'Desinfectante de alto nivel de uso directo, formulada para la eliminación de todo tipo de microorganismos, patógenos.',
         rating: 5,
         reviews: 89,
-        images: [],
+        images: ['../img/img1/producto25.png'],
         categories: 'Limpieza, Desinfección',
         tags: 'Esterilix, Desinfectante, Equipos'
     },
@@ -281,7 +281,7 @@ export const productsData = {
         description: 'Desinfectante ya diluido de aplicación directa con aspersión, para facilitar el uso ya que no requiere enjuague y es de fácil aplicación, especialmente formulada para la eliminación y prevención de contaminación biológica de microorganismos patógenos.',
         rating: 4,
         reviews: 112,
-        images: [],
+        images: ['../img/img1/producto26.png'],
         categories: 'Limpieza, Desinfección',
         tags: 'Esterilix, Superficie, Desinfectante'
     },
@@ -292,7 +292,7 @@ export const productsData = {
         description: 'Indicado para la desinfección en frío de instrumental, equipo medico o superficie.',
         rating: 4,
         reviews: 78,
-        images: [],
+        images: ['../img/img1/producto27.png'],
         categories: 'Limpieza, Desinfección',
         tags: 'Esterilix, X-7, Desinfección'
     },
@@ -303,7 +303,7 @@ export const productsData = {
         description: 'Limpiador desinfectante concentrado de uso profesional y de amplio espectro que combina tres principios activos: aldehídos, alcoholes y amonios cuaternarios de quinta generación. Rinde hasta 256 veces su presentación.',
         rating: 5,
         reviews: 134,
-        images: [],
+        images: ['../img/img1/producto28.png'],
         categories: 'Limpieza, Desinfección',
         tags: 'Cleaner, 256, Concentrado'
     },
@@ -314,7 +314,7 @@ export const productsData = {
         description: 'Detergente multienzimático líquido, diseñado para la limpieza de instrumental, equipo médico u odontológico. Contiene proteasas, amilasas y lipasas, es un detergente no iónico que ha sido formulado con antioxidantes para evitar oxidación de instrumental y equipos en los que se emplee.',
         rating: 4,
         reviews: 96,
-        images: [],
+        images: ['../img/img1/producto29.png'],
         categories: 'Limpieza, Enzimático',
         tags: 'Detercel, Enzimático, Detergente'
     },
@@ -325,7 +325,7 @@ export const productsData = {
         description: 'Neutralizan olores no deseados, como el tabaco, materia en descomposición y la humedad. Los elimina por completo, dejando aire fresco, limpio y natural.',
         rating: 4,
         reviews: 145,
-        images: [],
+        images: ['../img/img1/producto30.png'],
         categories: 'Limpieza, Ambientadores',
         tags: 'Neutralizador, Olor, Ambientador'
     },
@@ -336,7 +336,7 @@ export const productsData = {
         description: 'Puede ser usado como limpiador de manos. Como antiséptico quirúrgico para preparar la piel del paciente preoperatorio. Como limpiador de heridas cutáneas y limpiador de piel en general (acné, foliculitis de la barba y otras infecciones de la piel).',
         rating: 5,
         reviews: 223,
-        images: [],
+        images: ['../img/img1/producto31.png'],
         categories: 'Antisépticos, Higiene',
         tags: 'Cloridex, Antiséptico, Quirúrgico'
     },
@@ -347,7 +347,7 @@ export const productsData = {
         description: 'Es resultado de un proceso de purificación por el cual se eliminan una gran cantidad de impurezas características en el agua doméstica y se eliminan iones.',
         rating: 4,
         reviews: 178,
-        images: [],
+        images: ['../img/img1/producto32.png'],
         categories: 'Insumos Médicos, Laboratorio',
         tags: 'Agua, Destilada, Purificada'
     },
@@ -358,7 +358,7 @@ export const productsData = {
         description: 'Se utiliza para productos de limpieza y de cuidado personal como: Colorantes, blanqueadores, quita manchas, limpiador de baño, entre otros.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img1/producto33.png'],
         categories: 'Limpieza, Cuidado Personal',
         tags: 'Agua, Oxigenada, Blanqueador'
     },
@@ -369,7 +369,7 @@ export const productsData = {
         description: 'Incoloro, volátil, con olor característico. Es muy usado como disolventes, se usa en mezclas anticongelantes, como combustible, como antiséptico, y muchas funciones más.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img1/producto34.png'],
         categories: 'Antisépticos, Limpieza',
         tags: 'Alcohol, Líquido, Antiséptico'
     },
@@ -380,7 +380,7 @@ export const productsData = {
         description: 'La Crema Lavaplatos Multiacción es un producto diseñado para remover suciedad de vajillas y otros implementos utilizados comúnmente en el área de cocina, mediante el lavado manual. Contiene microabrasivos que facilitan la remoción de grasas a la vez que en su formulación se incluyen agentes humectantes para evitar resecar la piel.',
         rating: 4,
         reviews: 234,
-        images: [],
+        images: ['../img/img1/producto35.png'],
         categories: 'Limpieza, Cocina',
         tags: 'Lavaplatos, Multiacción, Limpieza'
     },
@@ -391,7 +391,7 @@ export const productsData = {
         description: 'Reconocido por su rápida actividad contra una amplia gama de virus, bacterias y virus, hongos, no requiere enjuague, fácil aplicación.',
         rating: 5,
         reviews: 267,
-        images: [],
+        images: ['../img/img1/producto36.png'],
         categories: 'Higiene, Antisépticos',
         tags: 'Alcohol, Gel, Desinfectante'
     },
@@ -402,7 +402,7 @@ export const productsData = {
         description: 'Reconocido por su rápida actividad contra una amplia gama de virus, bacterias y virus, hongos, no requiere enjuague, fácil aplicación.',
         rating: 5,
         reviews: 189,
-        images: [],
+        images: ['../img/img1/producto37.png'],
         categories: 'Higiene, Antisépticos',
         tags: 'Alcohol, Gel, Desinfectante'
     },
@@ -413,7 +413,7 @@ export const productsData = {
         description: 'El Jabón Líquido para Manos está diseñado para la limpieza y humectación de las manos, sin provocar resequedad después de su aplicación. Disponible en diferentes cromas y neutro.',
         rating: 4,
         reviews: 278,
-        images: [],
+        images: ['../img/img1/producto38.png'],
         categories: 'Higiene, Cuidado Personal',
         tags: 'Jabón, Líquido, Manos'
     },
@@ -424,7 +424,7 @@ export const productsData = {
         description: 'Es utilizado principalmente en procesos de esterilización y control de calidad. Su función básica es servir como indicador químico que verifica si ha sido expuesto a un proceso de esterilización (por ejemplo, vapor, óxido de etileno o plasma). Cambia de color al ser sometida a las condiciones adecuadas.',
         rating: 4,
         reviews: 67,
-        images: [],
+        images: ['../img/img1/producto39.png'],
         categories: 'Esterilización, Control Calidad',
         tags: 'Cinta, Testigo, Esterilización'
     },
@@ -435,7 +435,7 @@ export const productsData = {
         description: 'Tira de nariz ajustable, evita la entrada de aire contaminado, 5 capas, varios colores disponibles. Caja de 10 o 20 unidades.',
         rating: 5,
         reviews: 345,
-        images: [],
+        images: ['../img/img1/producto40.png'],
         categories: 'Protección Personal, Mascarillas',
         tags: 'KN95, Mascarilla, Protección'
     },
@@ -446,7 +446,7 @@ export const productsData = {
         description: 'Mascarilla cónica, con tira de nariz ajustable para evitar la entrada de aire contaminado, polvo, bacterias y virus.',
         rating: 5,
         reviews: 298,
-        images: [],
+        images: ['../img/img1/producto41.png'],
         categories: 'Protección Personal, Mascarillas',
         tags: 'N95, Mascarilla, Protección'
     },
