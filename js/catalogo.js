@@ -226,7 +226,7 @@ function sendCartToWhatsApp() {
         return;
     }
     
-    const numero = '50684751967';
+    const numero = '506';
     
     // Construir mensaje profesional
     let mensaje = '🌟 *SOLICITUD DE COTIZACIÓN* 🌟\n\n';
