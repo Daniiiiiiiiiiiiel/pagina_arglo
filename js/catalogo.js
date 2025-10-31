@@ -218,20 +218,649 @@ const DOM = {
     scrollToTop: document.getElementById('scrollToTop')
 };
 
-// ==================== WHATSAPP INTEGRATION ====================
+// ==================== MODAL DE FORMULARIO DE COMPRA ====================
 
-function sendCartToWhatsApp() {
-    if (appState.cartItems.length === 0) {
-        showNotification('Tu carrito está vacío');
+function createCheckoutModal() {
+    const checkoutModal = document.createElement('div');
+    checkoutModal.id = 'checkoutModal';
+    checkoutModal.className = 'checkout-modal';
+    checkoutModal.innerHTML = `
+        <div class="checkout-modal-content">
+            <div class="checkout-modal-header">
+                <h2>📋 Finalizar Compra</h2>
+                <button class="checkout-close" id="checkoutClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-section">
+                    <h3>👤 Información Personal</h3>
+                    
+                    <div class="form-group">
+                        <label for="customerName">Nombre Completo *</label>
+                        <input 
+                            type="text" 
+                            id="customerName" 
+                            name="customerName" 
+                            required 
+                            placeholder="Ej: Juan Pérez Rodríguez"
+                        >
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerId">Cédula o Identificación *</label>
+                        <input 
+                            type="text" 
+                            id="customerId" 
+                            name="customerId" 
+                            required 
+                            placeholder="Ej: 1-2345-6789"
+                        >
+                        <div class="error-message" id="idError"></div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>📞 Información de Contacto</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerEmail">Correo Electrónico *</label>
+                            <input 
+                                type="email" 
+                                id="customerEmail" 
+                                name="customerEmail" 
+                                required 
+                                placeholder="ejemplo@correo.com"
+                            >
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerPhone">Teléfono *</label>
+                            <input 
+                                type="tel" 
+                                id="customerPhone" 
+                                name="customerPhone" 
+                                required 
+                                placeholder="Ej: 8888-8888"
+                            >
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>🏠 Dirección de Entrega</h3>
+                    
+                    <div class="form-group">
+                        <label for="customerAddress">Dirección Completa *</label>
+                        <textarea 
+                            id="customerAddress" 
+                            name="customerAddress" 
+                            required 
+                            rows="3"
+                            placeholder="Provincia, cantón, distrito, dirección exacta, puntos de referencia..."
+                        ></textarea>
+                        <div class="error-message" id="addressError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerNotes">Notas Adicionales (Opcional)</label>
+                        <textarea 
+                            id="customerNotes" 
+                            name="customerNotes" 
+                            rows="2"
+                            placeholder="Instrucciones especiales para la entrega..."
+                        ></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>🛒 Resumen del Pedido</h3>
+                    <div id="checkoutSummary" class="checkout-summary"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="checkoutCancel">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary" id="checkoutSubmit">
+                        <i class="fab fa-whatsapp"></i>
+                        Enviar a WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(checkoutModal);
+    addCheckoutModalStyles();
+    initCheckoutModalEvents();
+}
+
+// Agregar estilos del modal de checkout
+function addCheckoutModalStyles() {
+    if (document.getElementById('checkout-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'checkout-styles';
+    style.textContent = `
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .checkout-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .checkout-modal-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+        }
+        
+        .checkout-modal.active .checkout-modal-content {
+            transform: translateY(0);
+        }
+        
+        .checkout-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 2px solid var(--off-white);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .checkout-modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .checkout-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .checkout-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .checkout-form {
+            padding: 2rem;
+        }
+        
+        .form-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--off-white);
+        }
+        
+        .form-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+        
+        .form-section h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--off-white);
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(26, 75, 140, 0.1);
+        }
+        
+        .form-group input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: var(--logo-red);
+        }
+        
+        .error-message {
+            color: var(--logo-red);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .checkout-summary {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid var(--light-blue);
+        }
+        
+        .checkout-summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .checkout-summary-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--off-white);
+        }
+        
+        .btn-secondary {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: var(--text-light);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: #6c757d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            flex: 2;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-modal-content {
+                margin: 0;
+                max-height: 100vh;
+            }
+            
+            .checkout-form {
+                padding: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .checkout-modal-header {
+                padding: 1.5rem;
+                border-radius: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .checkout-modal {
+                padding: 10px;
+            }
+            
+            .checkout-form {
+                padding: 1rem;
+            }
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
+
+// Inicializar eventos del modal de checkout
+function initCheckoutModalEvents() {
+    const checkoutModal = document.getElementById('checkoutModal');
+    const checkoutClose = document.getElementById('checkoutClose');
+    const checkoutCancel = document.getElementById('checkoutCancel');
+    const checkoutForm = document.getElementById('checkoutForm');
+    
+    checkoutClose.addEventListener('click', closeCheckoutModal);
+    checkoutCancel.addEventListener('click', closeCheckoutModal);
+    
+    checkoutModal.addEventListener('click', (e) => {
+        if (e.target === checkoutModal) {
+            closeCheckoutModal();
+        }
+    });
+    
+    checkoutForm.addEventListener('submit', handleCheckoutSubmit);
+    
+    // Validación en tiempo real
+    const inputs = checkoutForm.querySelectorAll('input[required], textarea[required]');
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearError);
+    });
+}
+
+// Validar campo individual
+function validateField(e) {
+    const field = e.target;
+    const errorElement = document.getElementById(field.id + 'Error');
+    
+    if (!field.value.trim()) {
+        showError(errorElement, 'Este campo es obligatorio');
+        return false;
+    }
+    
+    if (field.type === 'email' && !isValidEmail(field.value)) {
+        showError(errorElement, 'Por favor ingresa un email válido');
+        return false;
+    }
+    
+    if (field.id === 'customerPhone' && !isValidPhone(field.value)) {
+        showError(errorElement, 'Por favor ingresa un número de teléfono válido');
+        return false;
+    }
+    
+    hideError(errorElement);
+    return true;
+}
+
+// Mostrar error
+function showError(errorElement, message) {
+    errorElement.textContent = message;
+    errorElement.classList.add('show');
+}
+
+// Ocultar error
+function hideError(errorElement) {
+    errorElement.classList.remove('show');
+}
+
+// Limpiar error
+function clearError(e) {
+    const errorElement = document.getElementById(e.target.id + 'Error');
+    hideError(errorElement);
+}
+
+// Validar email
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Validar teléfono (formato flexible)
+function isValidPhone(phone) {
+    const phoneRegex = /^[\d\s\-()+]{8,}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+// Validar formulario completo
+function validateForm(formData) {
+    let isValid = true;
+    
+    if (!formData.get('customerName').trim()) {
+        showError(document.getElementById('nameError'), 'El nombre es obligatorio');
+        isValid = false;
+    }
+    
+    if (!formData.get('customerId').trim()) {
+        showError(document.getElementById('idError'), 'La cédula es obligatoria');
+        isValid = false;
+    }
+    
+    if (!formData.get('customerEmail').trim()) {
+        showError(document.getElementById('emailError'), 'El email es obligatorio');
+        isValid = false;
+    } else if (!isValidEmail(formData.get('customerEmail'))) {
+        showError(document.getElementById('emailError'), 'Por favor ingresa un email válido');
+        isValid = false;
+    }
+    
+    if (!formData.get('customerPhone').trim()) {
+        showError(document.getElementById('phoneError'), 'El teléfono es obligatorio');
+        isValid = false;
+    } else if (!isValidPhone(formData.get('customerPhone'))) {
+        showError(document.getElementById('phoneError'), 'Por favor ingresa un teléfono válido');
+        isValid = false;
+    }
+    
+    if (!formData.get('customerAddress').trim()) {
+        showError(document.getElementById('addressError'), 'La dirección es obligatoria');
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+// Manejar envío del formulario
+function handleCheckoutSubmit(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    
+    if (!validateForm(formData)) {
+        showNotification('Por favor completa todos los campos requeridos correctamente', 'error');
         return;
     }
     
-    const numero = '506';
+    const submitBtn = document.getElementById('checkoutSubmit');
+    const originalText = submitBtn.innerHTML;
     
-    // Construir mensaje profesional
-    let mensaje = '🌟 *SOLICITUD DE COTIZACIÓN* 🌟\n\n';
-    mensaje += 'Buen día, estoy interesado en solicitar una cotización para los siguientes productos:\n\n';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    submitBtn.disabled = true;
+    
+    // Simular procesamiento
+    setTimeout(() => {
+        sendOrderToWhatsApp(formData);
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        closeCheckoutModal();
+    }, 1500);
+}
+
+// Renderizar resumen del pedido
+function renderCheckoutSummary() {
+    const summaryContainer = document.getElementById('checkoutSummary');
+    
+    if (appState.cartItems.length === 0) {
+        summaryContainer.innerHTML = '<p>No hay productos en el carrito</p>';
+        return;
+    }
+    
+    let total = 0;
+    let summaryHTML = '';
+    
+    appState.cartItems.forEach((item, index) => {
+        const itemTotal = parseFloat(item.price) * item.quantity;
+        total += itemTotal;
+        
+        summaryHTML += `
+            <div class="checkout-summary-item">
+                <div>
+                    <strong>${item.title}</strong>
+                    <div style="font-size: 0.85rem; color: var(--text-light);">
+                        Color: ${item.color} | Cantidad: ${item.quantity}
+                    </div>
+                </div>
+                <div>$${itemTotal.toFixed(2)}</div>
+            </div>
+        `;
+    });
+    
+    summaryHTML += `
+        <div class="checkout-summary-item">
+            <div><strong>TOTAL</strong></div>
+            <div><strong>$${total.toFixed(2)}</strong></div>
+        </div>
+    `;
+    
+    summaryContainer.innerHTML = summaryHTML;
+}
+
+// Abrir modal de checkout
+function openCheckoutModal() {
+    if (appState.cartItems.length === 0) {
+        showNotification('Tu carrito está vacío', 'error');
+        return;
+    }
+    
+    let checkoutModal = document.getElementById('checkoutModal');
+    if (!checkoutModal) {
+        createCheckoutModal();
+        checkoutModal = document.getElementById('checkoutModal');
+    }
+    
+    renderCheckoutSummary();
+    checkoutModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Limpiar formulario
+    document.getElementById('checkoutForm').reset();
+    
+    // Enfocar primer campo
+    setTimeout(() => {
+        document.getElementById('customerName').focus();
+    }, 300);
+}
+
+// Cerrar modal de checkout
+function closeCheckoutModal() {
+    const checkoutModal = document.getElementById('checkoutModal');
+    if (checkoutModal) {
+        checkoutModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// ==================== WHATSAPP INTEGRATION MEJORADA ====================
+
+function sendOrderToWhatsApp(formData) {
+    if (appState.cartItems.length === 0) {
+        showNotification('Tu carrito está vacío', 'error');
+        return;
+    }
+    
+    const numero = '506'; // Número de Costa Rica
+    
+    // Construir mensaje profesional con datos del cliente
+    let mensaje = '🌟 *SOLICITUD DE COTIZACIÓN - ARGLO MÉDICA* 🌟\n\n';
+    
+    // Información del cliente
     mensaje += '━━━━━━━━━━━━━━━━━━\n';
+    mensaje += '👤 *INFORMACIÓN DEL CLIENTE*\n';
+    mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
+    
+    mensaje += `• *Nombre:* ${formData.get('customerName')}\n`;
+    mensaje += `• *Cédula:* ${formData.get('customerId')}\n`;
+    mensaje += `• *Email:* ${formData.get('customerEmail')}\n`;
+    mensaje += `• *Teléfono:* ${formData.get('customerPhone')}\n`;
+    mensaje += `• *Dirección:* ${formData.get('customerAddress')}\n`;
+    
+    if (formData.get('customerNotes')) {
+        mensaje += `• *Notas:* ${formData.get('customerNotes')}\n`;
+    }
+    
+    mensaje += '\n━━━━━━━━━━━━━━━━━━\n';
     mensaje += '📋 *DETALLE DEL PEDIDO*\n';
     mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
     
@@ -243,27 +872,39 @@ function sendCartToWhatsApp() {
         
         mensaje += `*Producto ${index + 1}:*\n`;
         mensaje += `📦 ${item.title}\n`;
-        mensaje += `• Color: ${item.color}\n`;
-        mensaje += `• Precio unitario: $${item.price}\n`;
-        mensaje += `• Cantidad: ${item.quantity}\n`;
-        mensaje += `• Subtotal: $${itemTotal.toFixed(2)}\n\n`;
+        mensaje += `   • Color: ${item.color}\n`;
+        mensaje += `   • Precio unitario: $${item.price}\n`;
+        mensaje += `   • Cantidad: ${item.quantity}\n`;
+        mensaje += `   • Subtotal: $${itemTotal.toFixed(2)}\n\n`;
     });
     
     mensaje += '━━━━━━━━━━━━━━━━━━\n';
     mensaje += `💰 *VALOR TOTAL: $${total.toFixed(2)}*\n`;
     mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
-    mensaje += 'Por favor, agradecería me confirme:\n';
-    mensaje += '✅ Disponibilidad de los productos\n';
+    
+    mensaje += '📋 *INFORMACIÓN SOLICITADA:*\n\n';
+    mensaje += 'Por favor, agradecería me confirme:\n\n';
+    mensaje += '✅ Disponibilidad de los productos\n';  
     mensaje += '✅ Opciones de pago disponibles\n';
     mensaje += '✅ Tiempos de entrega\n';
     mensaje += '✅ Costos de envío si aplican\n\n';
-    mensaje += 'Quedo atento a su respuesta. ¡Gracias!';
+    mensaje += 'Quedo atento a su respuesta. ¡Gracias!\n\n';
+    mensaje += '---\n';
+    mensaje += '*Arglo Médica* - Equipamiento médico profesional\n';
+
     
     const mensajeCodificado = encodeURIComponent(mensaje);
     const url = `https://wa.me/${numero}?text=${mensajeCodificado}`;
     
     window.open(url, '_blank');
-    showNotification('Redirigiendo a WhatsApp...');
+    showNotification('✅ Información enviada a WhatsApp', 'success');
+    
+    // Opcional: Limpiar carrito después del envío
+    // appState.cartItems = [];
+    // appState.updateCartCount();
+    // appState.saveCart();
+    // updateCartView();
+    // updateCartBadge();
 }
 
 // ==================== SISTEMA DE BÚSQUEDA ====================
@@ -597,7 +1238,6 @@ function renderSearchResults(results) {
         });
     });
 }
-// ==================== CONTINUACIÓN DEL CÓDIGO ====================
 
 // Abrir modal de búsqueda
 function openSearchModal() {
@@ -1223,7 +1863,7 @@ function initProductCardEvents() {
             
             setTimeout(() => {
                 addToCart(product, 1, 'Default');
-                showNotification('Producto añadido al carrito');
+                showNotification('Producto añadido al carrito', 'success');
                 btn.innerHTML = '<i class="fas fa-shopping-cart"></i>';
                 btn.style.pointerEvents = 'auto';
             }, 500);
@@ -1248,7 +1888,7 @@ function toggleWishlistItem(productId, product, btn = null) {
             icon.classList.add('far');
         }
         
-        showNotification('Producto removido de favoritos');
+        showNotification('Producto removido de favoritos', 'info');
     } else {
         appState.wishlistItems.push({
             id: product.id,
@@ -1268,7 +1908,7 @@ function toggleWishlistItem(productId, product, btn = null) {
             icon.classList.add('fas');
         }
         
-        showNotification('Producto añadido a favoritos');
+        showNotification('Producto añadido a favoritos', 'success');
         
         setTimeout(() => {
             DOM.wishlistSidebar.classList.add('active');
@@ -1402,7 +2042,7 @@ function toggleWishlist() {
     
     if (existingItemIndex !== -1) {
         appState.wishlistItems.splice(existingItemIndex, 1);
-        showNotification('Producto removido de favoritos');
+        showNotification('Producto removido de favoritos', 'info');
     } else {
         appState.wishlistItems.push({
             id: product.id,
@@ -1411,7 +2051,7 @@ function toggleWishlist() {
             color: color,
             image: product.images[0]
         });
-        showNotification('Producto añadido a favoritos');
+        showNotification('Producto añadido a favoritos', 'success');
         
         setTimeout(() => {
             DOM.wishlistSidebar.classList.add('active');
@@ -1627,7 +2267,7 @@ function attachWishlistItemEvents() {
             
             if (product) {
                 addToCart(product, 1, item.color);
-                showNotification('Producto añadido al carrito desde favoritos');
+                showNotification('Producto añadido al carrito desde favoritos', 'success');
                 
                 btn.innerHTML = '<i class="fas fa-check"></i>';
                 btn.style.background = 'var(--success-green)';
@@ -1655,7 +2295,7 @@ function attachWishlistItemEvents() {
                 updateWishlistView();
                 updateWishlistBadge();
                 updateWishlistButton();
-                showNotification('Producto removido de favoritos');
+                showNotification('Producto removido de favoritos', 'info');
             }, 300);
         });
     });
@@ -1696,12 +2336,25 @@ function updateWishlistBadge() {
     }, 300);
 }
 
-// ==================== NOTIFICACIONES ====================
-function showNotification(message = 'El artículo se ha añadido al carrito') {
+// ==================== NOTIFICACIONES MEJORADAS ====================
+function showNotification(message = 'El artículo se ha añadido al carrito', type = 'success') {
     const notificationText = DOM.notification.querySelector('.notification-text p');
     notificationText.textContent = message;
     
-    DOM.notification.classList.add('active');
+    // Reset classes
+    DOM.notification.className = 'notification active';
+    
+    // Add type class
+    if (type === 'error') {
+        DOM.notification.classList.add('error');
+    } else if (type === 'warning') {
+        DOM.notification.classList.add('warning');
+    } else if (type === 'info') {
+        DOM.notification.classList.add('info');
+    } else {
+        DOM.notification.classList.add('success');
+    }
+    
     setTimeout(() => {
         DOM.notification.classList.remove('active');
     }, 3000);
@@ -1734,7 +2387,6 @@ window.addEventListener('scroll', () => {
 DOM.scrollToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-// ==================== CONTINUACIÓN FINAL DEL CÓDIGO ====================
 
 // Botón de búsqueda
 DOM.searchBtn.addEventListener('click', openSearchModal);
@@ -1812,7 +2464,7 @@ DOM.addToCartBtn.addEventListener('click', () => {
     
     setTimeout(() => {
         addToCart(product, qty, color);
-        showNotification();
+        showNotification('Producto añadido al carrito', 'success');
         DOM.addToCartBtn.innerHTML = originalText;
         DOM.addToCartBtn.style.pointerEvents = 'auto';
     }, 800);
@@ -1851,13 +2503,13 @@ DOM.addAllToCart.addEventListener('click', () => {
         const product = productsData[item.id];
         addToCart(product, 1, item.color);
     });
-    showNotification('Todos los productos se han añadido al carrito');
+    showNotification('Todos los productos se han añadido al carrito', 'success');
     DOM.wishlistSidebar.classList.remove('active');
 });
 
-// ==================== EVENTO CHECKOUT CON WHATSAPP ====================
+// ==================== EVENTO CHECKOUT CON FORMULARIO ====================
 DOM.checkoutBtn.addEventListener('click', () => {
-    sendCartToWhatsApp();
+    openCheckoutModal();
 });
 
 // Tabs
@@ -1896,6 +2548,11 @@ document.addEventListener('keydown', (e) => {
         if (appState.searchActive) {
             closeSearchModal();
         }
+        
+        const checkoutModal = document.getElementById('checkoutModal');
+        if (checkoutModal && checkoutModal.classList.contains('active')) {
+            closeCheckoutModal();
+        }
     }
     
     // Abrir búsqueda con Ctrl+K o Cmd+K
@@ -1922,10 +2579,13 @@ document.addEventListener('keydown', (e) => {
 
 // Atajos de teclado para paginación
 document.addEventListener('keydown', (e) => {
+    const checkoutModal = document.getElementById('checkoutModal');
+    
     if (DOM.imageModal?.classList.contains('active') || 
         DOM.cartSidebar?.classList.contains('active') || 
         DOM.wishlistSidebar?.classList.contains('active') ||
-        appState.searchActive) {
+        appState.searchActive ||
+        (checkoutModal && checkoutModal.classList.contains('active'))) {
         return;
     }
     
@@ -2017,6 +2677,7 @@ function init() {
     console.log('💾 localStorage activado y funcionando');
     console.log('🔄 Sincronización entre pestañas configurada');
     console.log('📄 Sistema de paginación: 20 productos por página');
+    console.log('📋 Modal de checkout con formulario implementado');
     console.log('⌨️ Atajos de teclado:');
     console.log('   - ← → o P/N para navegar páginas');
     console.log('   - Ctrl+K o Cmd+K para abrir búsqueda');
@@ -2024,7 +2685,7 @@ function init() {
     console.log('🔍 Sistema de búsqueda implementado');
     console.log('🎯 Botones de acción flotantes en tarjetas');
     console.log('✨ Click en productos NO recarga la página');
-    console.log('📱 WhatsApp integrado - Envía tu carrito directamente');
+    console.log('📱 WhatsApp integrado - Envía tu carrito con datos del cliente');
     
     window.resetAppStorage = () => appState.resetStorage();
 }

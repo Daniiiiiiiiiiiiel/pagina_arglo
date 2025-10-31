@@ -457,7 +457,7 @@ export const productsData = {
         description: 'Esta mascarilla protectora cuenta con cuatro capas y con un clip nasal metálico para poder ajustarlo mejor, desechables. Paquete con 10 o 20 unidades.',
         rating: 4,
         reviews: 234,
-        images: [],
+        images: ['../img/img2/producto42.png'],
         categories: 'Protección Personal, Mascarillas',
         tags: 'KF94, Mascarilla, Coreana'
     },
@@ -468,7 +468,7 @@ export const productsData = {
         description: 'Tira de nariz ajustable, evita la entrada de aire contaminado, 3 capas, desechables, varios colores y estampados disponibles. Caja con 50 unidades.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto43.png'],
         categories: 'Protección Personal, Mascarillas',
         tags: 'Cubre Boca, Desechable, Protección'
     },
@@ -479,7 +479,7 @@ export const productsData = {
         description: 'En pasta para uso tópico, no irrita la piel, no produce mal olor, calma reacciones de la piel como picazón.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img2/producto44.png'],
         categories: 'Cuidado Personal, Dermatología',
         tags: 'Vaselina, Pasta, Piel'
     },
@@ -490,7 +490,7 @@ export const productsData = {
         description: 'Rollo plástico fino, transparente, resistente y estirable, con diferentes usos, envuelve y protege las camillas de la suciedad y polvo. Tamaños: 18 pulgadas y 6 pulgadas.',
         rating: 4,
         reviews: 98,
-        images: [],
+        images: ['../img/img2/producto45.png'],
         categories: 'Protección, Insumos',
         tags: 'Rollo, Plástico, Protección'
     },
@@ -501,7 +501,7 @@ export const productsData = {
         description: 'Vasos desechables de cartón, amigable con el ambiente, utilizados en clínicas dentales y para el enjuague bucal de los pacientes capacidad de 3oz. Paquete: 50 unidades y 100 unidades.',
         rating: 4,
         reviews: 145,
-        images: [],
+        images: ['../img/img2/producto46.png'],
         categories: 'Desechables, Odontología',
         tags: 'Vasos, Cartón, Desechables'
     },
@@ -512,7 +512,7 @@ export const productsData = {
         description: 'Vasos desechables utilizados en clínicas dentales y para el enjuague bucal de los pacientes, es de plásticos, capacidad de 3 oz. Paquete con 50 unidades y 100 unidades.',
         rating: 4,
         reviews: 167,
-        images: [],
+        images: ['../img/img2/producto47.png'],
         categories: 'Desechables, Odontología',
         tags: 'Vasos, Plásticos, Desechables'
     },
@@ -523,7 +523,7 @@ export const productsData = {
         description: 'Algodón enrollado, se puede cortar según requiera el usuario, no estéril, es blanco, absorbente y purificado. Tamaño: 500 gramos.',
         rating: 4,
         reviews: 134,
-        images: [],
+        images: ['../img/img2/producto48.png'],
         categories: 'Curación, Insumos Médicos',
         tags: 'Algodón, Rollo, Absorbente'
     },
@@ -534,7 +534,7 @@ export const productsData = {
         description: 'La torunda es una bola de algodón, lista para usar, alta absorción. También es conocido como algodón en bolitas.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto49.png'],
         categories: 'Curación, Insumos Médicos',
         tags: 'Algodón, Torunda, Bolitas'
     },
@@ -545,7 +545,7 @@ export const productsData = {
         description: 'Herramienta utilizada en odontología para diversas aplicaciones. Sirven para separar y aislar los tejidos, suave, flexible. Paquete con 500 y 1000 unidades.',
         rating: 4,
         reviews: 78,
-        images: [],
+        images: ['../img/img2/producto50.png'],
         categories: 'Odontología, Instrumental',
         tags: 'Rodillo, Dental, Odontología'
     },
@@ -556,7 +556,7 @@ export const productsData = {
         description: 'Son transparentes, ambidiestros, aptos para el contacto con alimentos. El uso de estos guantes permite evita la contaminación de productos que van a ser manipulados con las manos. Paquete con 100 unidades.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img2/producto51.png'],
         categories: 'Protección, Guantes',
         tags: 'Guantes, Plástico, Alimentos'
     },
@@ -567,7 +567,7 @@ export const productsData = {
         description: 'Gran adaptabilidad a la mano, mayor sensibilidad al tacto, ambidiestro, hecho de caucho natural, biodegradable gran protección ante químicos y fluidos corporales, puede causar reacciones alérgicas. Caja con 100 unidades.',
         rating: 4,
         reviews: 234,
-        images: [],
+        images: ['../img/img2/producto52.png'],
         categories: 'Protección, Guantes',
         tags: 'Latex, Bajos Polvo, Guantes'
     },
@@ -578,7 +578,7 @@ export const productsData = {
         description: 'Gran adaptabilidad a la mano, mayor sensibilidad al tacto, ambidiestro, hecho de caucho natural, biodegradable gran protección ante químicos y fluidos corporales, puede causar reacciones alérgicas. Caja con 100 unidades.',
         rating: 5,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto53.png'],
         categories: 'Protección, Guantes',
         tags: 'Latex, Sin Polvo, Guantes'
     },
@@ -589,7 +589,7 @@ export const productsData = {
         description: 'Ambidiestro, libre de polvo, mayor permeabilidad, libre de látex y es usualmente usado en el manejo de alimentos y para tareas de corta duración, menor adaptación. Caja con 100 unidades.',
         rating: 4,
         reviews: 167,
-        images: [],
+        images: ['../img/img2/producto54.png'],
         categories: 'Protección, Guantes',
         tags: 'Vinyl, Guantes, Alimentos'
     },
@@ -600,7 +600,7 @@ export const productsData = {
         description: 'Diseñado para protección personal y proporcionar seguridad adicional en entornos de trabajo con riesgos elevados para la salud de los trabajadores. Son utilizados en procedimientos con riesgo de contacto con agentes químicos, físicos y biológicos, y protegen contra cortes, punciones y contacto con sustancias peligrosas, son más largos y gruesos.',
         rating: 5,
         reviews: 89,
-        images: [],
+        images: ['../img/img2/producto55.png'],
         categories: 'Protección, Guantes',
         tags: 'Alto Riesgo, Protección, Químicos'
     },
@@ -611,7 +611,7 @@ export const productsData = {
         description: 'Agarre antideslizante, mayor resistencia y grosor, multiusos, sin polvo, no estéril, ambidiestro, gramaje: 8,5.',
         rating: 4,
         reviews: 134,
-        images: [],
+        images: ['../img/img2/producto56.png'],
         categories: 'Protección, Guantes',
         tags: 'Texturizados, Antideslizante, Guantes'
     },
@@ -622,7 +622,7 @@ export const productsData = {
         description: 'Ambidiestro, libre de polvo, mayor permeabilidad, libre de látex y es usualmente usado en el manejo de alimentos y para tareas de corta duración, menor adaptación, elaborado con 30% vinyl y 70% nitrilo, es mas resistente que el vinyl, pero menos resistente que el nitrilo. Caja con 100 unidades.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img2/producto57.png'],
         categories: 'Protección, Guantes',
         tags: 'Vinyl, Color, Guantes'
     },
@@ -633,7 +633,7 @@ export const productsData = {
         description: 'Hecho de caucho sintético, se adapta bien a la mano, no produce alergia, texturizado en la punta de los dedos, ambidiestro, libre de polvo, y libre de látex, gran variedad de colores. Caja con 100 unidades.',
         rating: 5,
         reviews: 278,
-        images: [],
+        images: ['../img/img2/producto58.png'],
         categories: 'Protección, Guantes',
         tags: 'Nitrilo, Guantes, Sin Látex'
     },
@@ -644,7 +644,7 @@ export const productsData = {
         description: 'Guantes multipropósito cuidan tus manos y uñas; son tan delgados que permitirán que no pierdas sensibilidad al lavar. Su superficie texturizada sobre la palma de la mano ayuda a evitar que se te resbalen los platos vasos y utensilios.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto59.png'],
         categories: 'Limpieza, Protección',
         tags: 'Afelpados, Lavado, Protección'
     },
@@ -655,7 +655,7 @@ export const productsData = {
         description: 'Guantes de látex estériles, mayor elasticidad, resistencia al desgarro, superficie micro texturizada un excelente agarre del instrumento y acabado antideslizante. Caja con 50 pares.',
         rating: 5,
         reviews: 145,
-        images: [],
+        images: ['../img/img2/producto60.png'],
         categories: 'Quirúrgico, Guantes',
         tags: 'Quirúrgicos, Estériles, Látex'
     },
@@ -666,7 +666,7 @@ export const productsData = {
         description: 'Para proteger las camillas y para ofrecer una mayor higiene durante la atención de los clientes. Tamaño: 54cm x 38mts.',
         rating: 4,
         reviews: 112,
-        images: [],
+        images: ['../img/img2/producto61.png'],
         categories: 'Estética, Insumos',
         tags: 'Papel, Camilla, Protección'
     },

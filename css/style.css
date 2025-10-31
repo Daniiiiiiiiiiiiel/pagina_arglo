@@ -566,14 +566,14 @@
         z-index: -1;
     }
 
-    .floating-device:hover::before {
+    /* .floating-device:hover::before {
         opacity: 0.25;
-    }
+    } */
 
-    .floating-device:hover {
+    /* .floating-device:hover {
         transform: translateZ(40px) scale(1.08);
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-    }
+    } */
 
     .device-1 {
         top: 10%;

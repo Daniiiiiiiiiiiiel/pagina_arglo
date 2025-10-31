@@ -1962,3 +1962,34 @@ body {
     text-align: center;
     opacity: 0.7;
 }
+/* ==================== OCULTAR BARRA DE SCROLL ==================== */
+/* Funciona en Chrome, Safari, Edge, Firefox, IE */
+
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari and Opera */
+}
+
+/* Aplicar a contenedores con scroll */
+.checkout-modal-content,
+.search-results,
+.cart-items-container,
+.wishlist-items-container,
+.search-modal-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+
+.checkout-modal-content::-webkit-scrollbar,
+.search-results::-webkit-scrollbar,
+.cart-items-container::-webkit-scrollbar,
+.wishlist-items-container::-webkit-scrollbar,
+.search-modal-content::-webkit-scrollbar {
+    display: none;
+}
