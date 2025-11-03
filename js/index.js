@@ -1,4 +1,4 @@
-    // Custom Cursor
+// Custom Cursor
 const cursor = document.querySelector('.custom-cursor');
 const cursorDot = document.querySelector('.cursor-dot');
 
@@ -216,28 +216,6 @@ if (nextBtn && prevBtn && carouselTrack) {
     }
 }
 
-// Form Submission
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const submitBtn = contactForm.querySelector('.submit-button');
-        const originalHTML = submitBtn.innerHTML;
-        
-        submitBtn.innerHTML = '<span>Enviando...</span><i class="fas fa-spinner fa-spin"></i>';
-        submitBtn.disabled = true;
-
-        setTimeout(() => {
-            submitBtn.innerHTML = '<span>¡Mensaje Enviado!</span><i class="fas fa-check"></i>';
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalHTML;
-                submitBtn.disabled = false;
-                contactForm.reset();
-            }, 2000);
-        }, 1500);
-    });
-}
 
 // Mobile Navigation
 const mobileToggle = document.querySelector('.mobile-nav-toggle');
@@ -380,15 +358,15 @@ if (carouselTrack) {
 let ticking = false;
 let lastKnownScrollPosition = 0;
 
-// const handleScroll = (scrollPos) => {
-//     if (window.innerWidth > 768) {
-//         const heroSection = document.querySelector('.hero-section');
-//         if (heroSection) {
-//             const opacity = Math.max(0, 1 - scrollPos / 600);
-//             heroSection.style.opacity = opacity;
-//         }
-//     }
-// };
+const handleScroll = (scrollPos) => {
+    if (window.innerWidth > 768) {
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            const opacity = Math.max(0, 1 - scrollPos / 600);
+            heroSection.style.opacity = opacity;
+        }
+    }
+};
 
 window.addEventListener('scroll', () => {
     lastKnownScrollPosition = window.scrollY;
@@ -491,8 +469,9 @@ document.querySelectorAll('.cta-button, .product-cta').forEach(button => {
 });
 
 // Track form submission
-if (contactForm) {
-    contactForm.addEventListener('submit', () => {
+const contactFormTracking = document.querySelector('.contact-form');
+if (contactFormTracking) {
+    contactFormTracking.addEventListener('submit', () => {
         trackEvent('Form', 'Submit', 'Contact Form');
     });
 }
@@ -509,4 +488,63 @@ window.addEventListener('afterprint', () => {
 // Initialize all features on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Arglo Médica - Website Loaded Successfully! 🎉');
+});
+
+// ============================================
+// FORMULARIO - COMPATIBLE CON EDGE
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('.contact-form');
+    
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Obtener valores
+        const nombre = contactForm.querySelector('input[type="text"]').value;
+        const emailUsuario = contactForm.querySelector('input[type="email"]').value;
+        const telefono = contactForm.querySelector('input[type="tel"]').value;
+        const productos = contactForm.querySelector('textarea').value;
+        
+        // Validar campos
+        if (!nombre || !emailUsuario || !telefono || !productos) {
+            alert('Por favor completa todos los campos');
+            return;
+        }
+        
+        const tuEmail = 'Arglosa@gmail.com';
+        
+        // Crear el mailto (Edge necesita codificación específica)
+        const subject = 'Solicitud ' + nombre;
+        const body = 
+            'Nombre: ' + nombre + '%0D%0A' +
+            'Email: ' + emailUsuario + '%0D%0A' +
+            'Telefono: ' + telefono + '%0D%0A%0D%0A' +
+            'Productos:%0D%0A' + productos;
+        
+        const mailtoLink = 'mailto:' + tuEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+        
+        // Método específico para Edge
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = mailtoLink;
+        document.body.appendChild(iframe);
+        
+        // Remover iframe después de un momento
+        setTimeout(function() {
+            document.body.removeChild(iframe);
+        }, 500);
+        
+        // Feedback al usuario
+        const submitButton = contactForm.querySelector('.submit-button');
+        const textoOriginal = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = '✓ Revisa tu programa de email (Outlook)';
+        
+        setTimeout(function() {
+            submitButton.disabled = false;
+            submitButton.textContent = textoOriginal;
+        }, 4000);
+    });
 });

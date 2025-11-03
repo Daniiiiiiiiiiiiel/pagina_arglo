@@ -1451,12 +1451,7 @@ function renderCurrentPageProducts() {
                 <div class="card-content">
                     <div class="card-categories">${product.categories}</div>
                     <h3 class="card-title">${product.title}</h3>
-                    <div class="card-rating">
-                        ${Array(5).fill(0).map((_, i) => 
-                            `<i class="${i < product.rating ? 'fas' : 'far'} fa-star"></i>`
-                        ).join('')}
-                        <span class="review-text">(${product.reviews})</span>
-                    </div>
+ 
                     
                     <div class="card-footer">
                         <div class="card-price">

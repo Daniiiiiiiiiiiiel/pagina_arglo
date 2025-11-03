@@ -677,7 +677,7 @@ export const productsData = {
         description: 'Se puedes mezclar, batir y aplicar productos como cremas, ceras y gel conductor, no estéril. Producto descartable hecho de madera 100% natural de superficie suave. Paquete con 100 unidades.',
         rating: 4,
         reviews: 134,
-        images: [],
+        images: ['../img/img2/producto62.png'],
         categories: 'Estética, Desechables',
         tags: 'Paletas, Madera, Aplicadores'
     },
@@ -688,7 +688,7 @@ export const productsData = {
         description: 'Ayuda a medir la cantidad de oxígeno que posee nuestra sangre, se adapta a los diferentes tamaños de dedos.',
         rating: 5,
         reviews: 267,
-        images: [],
+        images: ['../img/img2/producto63.png'],
         categories: 'Monitoreo, Médico',
         tags: 'Oxímetro, Saturación, Salud'
     },
@@ -699,7 +699,7 @@ export const productsData = {
         description: 'Control automatizado de medición de temperatura corporal con aerosol integrado que hace que la desinfección de las manos sea más conveniente y segura para todos los usuarios.',
         rating: 4,
         reviews: 78,
-        images: [],
+        images: ['../img/img2/producto64.png'],
         categories: 'Tecnología, Seguridad',
         tags: 'K9 Pro, Temperatura, Desinfección'
     },
@@ -710,7 +710,7 @@ export const productsData = {
         description: 'Rollo de toallas absorbentes y resistentes. Se recomienda para lugares que requieren de alta capacidad y valor. Es un producto de limpieza indispensable para proveer higiene en el secado de manos así como superficies.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto65.png'],
         categories: 'Limpieza, Higiene',
         tags: 'Papel, Toalla, Rollo'
     },
@@ -721,7 +721,7 @@ export const productsData = {
         description: 'Toallas interfolíadas, dispensadas una a una, evitando la contaminación cruzada, forma rectangular. Tamaño: 22,5cm x 23cm. Paquete con 200 unidades.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img2/producto66.png'],
         categories: 'Limpieza, Higiene',
         tags: 'Toallas, Papel, Manos'
     },
@@ -732,7 +732,7 @@ export const productsData = {
         description: 'Impermeable, plástica con sujeción, para usarse en procedimientos médicos con probabilidad de contacto con fluidos corporales o portadores de patógenos, espalda abierta. No estéril. Paquete con 10 unidades.',
         rating: 5,
         reviews: 134,
-        images: [],
+        images: ['../img/img2/producto67.png'],
         categories: 'Protección, Ropa Médica',
         tags: 'Bata, Impermeable, Protección'
     },
@@ -743,7 +743,7 @@ export const productsData = {
         description: 'Brazos abatibles y ajustable soporte de piernas ajustables, cabecera removible, pistón de aire para ajustar la altura.',
         rating: 5,
         reviews: 45,
-        images: [],
+        images: ['../img/img2/producto68.png'],
         categories: 'Equipamiento, Médico',
         tags: 'Camilla, Hidráulica, Ajustable'
     },
@@ -754,7 +754,7 @@ export const productsData = {
         description: 'Hecho de aluminio, hierro esmaltado y vinyl, altura ajustable, con respaldar, varios colores a elegir.',
         rating: 4,
         reviews: 67,
-        images: [],
+        images: ['../img/img2/producto69.png'],
         categories: 'Muebles, Estética',
         tags: 'Banco, Giratorio, Respaldo'
     },
@@ -765,7 +765,7 @@ export const productsData = {
         description: 'Camillas cómoda, resistente, fija, soporta un peso aproximado de 150 kilos, apta para realizar masajes, tatuajes, microblading, lashista, etc. 6 diferentes estilos y varios colores a elegir.',
         rating: 4,
         reviews: 89,
-        images: [],
+        images: ['../img/img2/producto70.png'],
         categories: 'Muebles, Estética',
         tags: 'Canilla, Fija, Masajes'
     },
@@ -776,7 +776,7 @@ export const productsData = {
         description: 'Hecho de aluminio, hierro esmaltado y vinyl, altura ajustable, sin respaldar, varios colores a elegir.',
         rating: 4,
         reviews: 56,
-        images: [],
+        images: ['../img/img2/producto71.png'],
         categories: 'Muebles, Estética',
         tags: 'Banco, Giratorio, Sin Respaldo'
     },
@@ -787,7 +787,7 @@ export const productsData = {
         description: 'Camillas cómoda, resistente, fácil de movilizar, soporta un peso aproximado de 150 kilos, apta para realizar masajes, tatuajes, microblading, lashista, etc. 6 diferentes estilos y varios colores a elegir.',
         rating: 5,
         reviews: 78,
-        images: [],
+        images: ['../img/img2/producto72.png'],
         categories: 'Muebles, Portátil',
         tags: 'Camilla, Maleta, Portátil'
     },
@@ -798,7 +798,7 @@ export const productsData = {
         description: 'Hecho de aluminio, hierro esmaltado y vinyl, altura ajustable, varios colores a elegir.',
         rating: 4,
         reviews: 34,
-        images: [],
+        images: ['../img/img2/producto73.png'],
         categories: 'Accesorios, Estética',
         tags: 'Apoya, Brazos, Ajustable'
     },
@@ -809,7 +809,7 @@ export const productsData = {
         description: 'Diseñado para proteger la cabeza y el cabello de los trabajadores de la salud de posibles contaminantes. Ofrece resistencia para proteger el cabello y el cuero cabelludo durante las cirugías. Paquete con 100 unidades.',
         rating: 4,
         reviews: 112,
-        images: [],
+        images: ['../img/img2/producto74.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Gorro, Cirugía, Protección'
     },
@@ -820,7 +820,7 @@ export const productsData = {
         description: 'Barrera simple para ayudar a evitar que las gotas respiratorias viajen en el aire y sobre otras personas, ligero y cómodo.',
         rating: 4,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto75.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Careta, Protectora, Facial'
     },
@@ -831,7 +831,7 @@ export const productsData = {
         description: 'Barrera simple para ayudar a evitar que las gotas respiratorias viajen en el aire y sobre otras personas, ligero y cómodo, hecha de material PET. Espacio para anteojos o gafas. Caja con 6 unidades.',
         rating: 5,
         reviews: 145,
-        images: [],
+        images: ['../img/img2/producto76.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Careta, Lentes, Protección'
     },
@@ -842,7 +842,7 @@ export const productsData = {
         description: 'Traje de protección, hecho de un material resistente el cual ayuda a proporcionar una barrera de protección contra salpicaduras de líquidos, polvos tóxicos y ciertos contaminantes biológicos.',
         rating: 4,
         reviews: 89,
-        images: [],
+        images: ['../img/img2/producto77.png'],
         categories: 'Protección, Ropa Médica',
         tags: 'Kimono, Protector, Barrera'
     },
@@ -853,7 +853,7 @@ export const productsData = {
         description: 'Dispensador de agua electrónico, botón touch para dispensar agua con doble motor para mas velocidad, ideal para tu garrafón de agua, muy practico, recargable, facil instalación.',
         rating: 4,
         reviews: 67,
-        images: [],
+        images: ['../img/img2/producto78.png'],
         categories: 'Equipamiento, Oficina',
         tags: 'Dispensador, Agua, Electrónico'
     },
@@ -864,7 +864,7 @@ export const productsData = {
         description: 'Diseñado para la dispensación controlada de toallas de papel, usado principalmente en baños, cocinas o áreas de trabajo donde se requiere higiene.',
         rating: 4,
         reviews: 78,
-        images: [],
+        images: ['../img/img2/producto79.png'],
         categories: 'Equipamiento, Higiene',
         tags: 'Dispensador, Toalla, Papel'
     },
@@ -875,7 +875,7 @@ export const productsData = {
         description: 'Diseñado para suministrar toalla de papel en rollo, ideal para el secado de manos en baños, cocinas o áreas industriales.',
         rating: 4,
         reviews: 56,
-        images: [],
+        images: ['../img/img2/producto80.png'],
         categories: 'Equipamiento, Higiene',
         tags: 'Dispensador, Rollo, Toalla'
     },
@@ -886,7 +886,7 @@ export const productsData = {
         description: 'Para la protección ocular en diversas actividades laborales, industriales, médicas o de laboratorio. Protección contra salpicaduras químicas, polvo o partículas.',
         rating: 4,
         reviews: 134,
-        images: [],
+        images: ['../img/img2/producto81.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Gafa, Seguridad, Ocular'
     },
@@ -897,7 +897,7 @@ export const productsData = {
         description: 'Patillas ajustables. Se usan para proteger los ojos de distintos peligros en el entorno. Protección contra impacto evitando partículas, astillas de madera, metal o fragmentos de vidrio golpeen los ojos, protección contra salpicaduras químicas y protección contra polvo y escombros.',
         rating: 5,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto82.png'],
         categories: 'Protección Personal, EPP',
         tags: 'Lentes, Seguridad, Protección'
     },
@@ -908,7 +908,7 @@ export const productsData = {
         description: 'Un basurero para residuos bioinfecciosos está diseñado para desechar materiales que puedan transmitir enfermedades (como gasas con sangre, agujas, guantes contaminados, etc.). Obligatorio en hospitales, clínicas, laboratorios y lugares donde se generen desechos biológicos.',
         rating: 4,
         reviews: 67,
-        images: [],
+        images: ['../img/img2/producto83.png'],
         categories: 'Equipamiento, Hospitalario',
         tags: 'Basurero, Rojo, Bioinfeccioso'
     },
@@ -919,7 +919,7 @@ export const productsData = {
         description: 'Para almacenamiento específico de elementos de uso quirúrgico o de curación como gasas, baja lenguas, algodón, aplicadores, agujas, jeringas, guantes.',
         rating: 4,
         reviews: 45,
-        images: [],
+        images: ['../img/img2/producto84.png'],
         categories: 'Equipamiento, Hospitalario',
         tags: 'Recipiente, Rojo, Quirúrgico'
     },
@@ -930,7 +930,7 @@ export const productsData = {
         description: 'Diseñadas para ofrecer la máxima precisión y comodidad en cada uso. Asegura una punción suave y reducir al mínimo el dolor en el paciente. Estéril y desechable.',
         rating: 5,
         reviews: 278,
-        images: [],
+        images: ['../img/img2/producto85.png'],
         categories: 'Insumos Médicos, Desechables',
         tags: 'Jeringas, Desechables, Estériles'
     },
@@ -941,7 +941,7 @@ export const productsData = {
         description: 'Diseñada para usarse directamente sobre heridas abiertas o durante procedimientos médicos y quirúrgicos; Permite limpiar, cubrir y proteger heridas, absorber fluidos y aplicar medicamentos sin riesgo de contaminación.',
         rating: 5,
         reviews: 189,
-        images: [],
+        images: ['../img/img2/producto86.png'],
         categories: 'Curación, Insumos Médicos',
         tags: 'Gasa, Estéril, Quirúrgica'
     },
@@ -952,7 +952,7 @@ export const productsData = {
         description: 'Tejido entrelazado que permite el paso de aire y la absorción de líquidos; se utiliza en la limpieza y protección de heridas, aplicación de medicamentos y absorción de fluidos.',
         rating: 4,
         reviews: 156,
-        images: [],
+        images: ['../img/img2/producto87.png'],
         categories: 'Curación, Insumos Médicos',
         tags: 'Gasa, Tejida, Absorbente'
     },
@@ -963,7 +963,7 @@ export const productsData = {
         description: 'Diseñadas para reducir la propagación de partículas de la persona que las usa. Existen diferentes modelos y diseños.',
         rating: 4,
         reviews: 167,
-        images: [],
+        images: ['../img/img2/producto88.png'],
         categories: 'Protección Personal, Mascarillas',
         tags: 'Mascarilla, Niños, Protección'
     }
