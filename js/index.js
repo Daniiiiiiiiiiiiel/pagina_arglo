@@ -519,7 +519,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const subject = 'Solicitud ' + nombre;
         const body = 
             'Nombre: ' + nombre + '%0D%0A' +
-            'Email: ' + emailUsuario + '%0D%0A' +
             'Telefono: ' + telefono + '%0D%0A%0D%0A' +
             'Productos:%0D%0A' + productos;
         

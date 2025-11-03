@@ -1,5 +1,22 @@
 import { productsData } from './data.js';
 
+// ==================== MAPEO DE COLORES CON ESTILOS ====================
+const colorStyles = {
+    'Blanco': { bg: '#ffffff', border: '2px solid #e5e5e5', name: 'Blanco' },
+    'Rosa': { bg: '#ff69b4', border: 'none', name: 'Rosa' },
+    'Negro': { bg: '#1a1a1a', border: 'none', name: 'Negro' },
+    'Verde': { bg: '#28a745', border: 'none', name: 'Verde' },
+    'Turquesa': { bg: '#17a2b8', border: 'none', name: 'Turquesa' },
+    'Morado': { bg: '#6f42c1', border: 'none', name: 'Morado' },
+    'Rojo': { bg: '#dc3545', border: 'none', name: 'Rojo' },
+    'Amarillo': { bg: '#ffc107', border: 'none', name: 'Amarillo' },
+    'Naranja': { bg: '#fd7e14', border: 'none', name: 'Naranja' },
+    'Azul': { bg: '#1a4b8c', border: 'none', name: 'Azul' },
+    'Gris': { bg: '#6c757d', border: 'none', name: 'Gris' },
+    'Celeste': { bg: '#5bc0de', border: 'none', name: 'Celeste' },
+    'Transparente': { bg: 'linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), linear-gradient(45deg, #ccc 25%, white 25%, white 75%, #ccc 75%, #ccc)', bgSize: '10px 10px', bgPosition: '0 0, 5px 5px', border: '2px solid #e5e5e5', name: 'Transparente' }
+};
+
 // ==================== ESTADO DE LA APLICACIÓN ====================
 class AppState {
     constructor() {
@@ -177,7 +194,7 @@ const DOM = {
     productMeta: document.getElementById('productMeta'),
     
     // Color y cantidad
-    colorOptions: document.querySelectorAll('.color-option'),
+    colorOptions: document.getElementById('colorOptions'),
     colorName: document.getElementById('colorName'),
     qtyInput: document.getElementById('qtyInput'),
     qtyMinus: document.getElementById('qtyMinus'),
@@ -217,6 +234,132 @@ const DOM = {
     notification: document.getElementById('notification'),
     scrollToTop: document.getElementById('scrollToTop')
 };
+
+// ==================== RENDERIZAR SELECTOR DE COLORES ====================
+function renderColorSelector(product) {
+    const colorOptionsContainer = document.getElementById('colorOptions');
+    const colorNameSpan = document.getElementById('colorName');
+    
+    if (!product.colors || product.colors.length === 0) {
+        // Si no hay colores definidos, usar blanco por defecto
+        colorOptionsContainer.innerHTML = `
+            <div class="color-option active" data-color="Blanco" style="background: #ffffff; border: 2px solid #e5e5e5;"></div>
+        `;
+        colorNameSpan.textContent = 'Blanco';
+        return;
+    }
+    
+    // Renderizar todos los colores disponibles
+    colorOptionsContainer.innerHTML = product.colors.map((color, index) => {
+        const style = colorStyles[color] || { bg: '#cccccc', border: 'none', name: color };
+        const isActive = index === 0 ? 'active' : '';
+        
+        let styleAttr = `background: ${style.bg};`;
+        if (style.bgSize) styleAttr += ` background-size: ${style.bgSize};`;
+        if (style.bgPosition) styleAttr += ` background-position: ${style.bgPosition};`;
+        if (style.border) styleAttr += ` border: ${style.border};`;
+        
+        return `<div class="color-option ${isActive}" data-color="${color}" style="${styleAttr}"></div>`;
+    }).join('');
+    
+    // Establecer el nombre del primer color
+    colorNameSpan.textContent = product.colors[0];
+    
+    // Reinicializar eventos de colores
+    initColorEvents();
+}
+
+// ==================== EVENTOS DE SELECTOR DE COLORES ====================
+function initColorEvents() {
+    const colorOptions = document.querySelectorAll('.color-option');
+    const colorNameSpan = document.getElementById('colorName');
+    const mainImageContainer = document.getElementById('mainImageContainer');
+    
+    colorOptions.forEach((option, index) => {
+        option.addEventListener('click', () => {
+            // Remover clase active de todos
+            colorOptions.forEach(opt => opt.classList.remove('active'));
+            
+            // Agregar clase active al seleccionado
+            option.classList.add('active');
+            
+            // Actualizar nombre del color
+            const color = option.getAttribute('data-color');
+            colorNameSpan.textContent = color;
+            
+            // Animación del contenedor de imagen
+            mainImageContainer.style.transition = 'all 0.6s ease';
+            mainImageContainer.style.transform = 'scale(0.97)';
+            mainImageContainer.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                // Cambiar el fondo según el color
+                const colorStyle = colorStyles[color];
+                if (colorStyle) {
+                    if (colorStyle.bg.includes('gradient') || colorStyle.bg.includes('linear-gradient')) {
+                        mainImageContainer.style.background = colorStyle.bg;
+                        if (colorStyle.bgSize) mainImageContainer.style.backgroundSize = colorStyle.bgSize;
+                        if (colorStyle.bgPosition) mainImageContainer.style.backgroundPosition = colorStyle.bgPosition;
+                    } else {
+                        // Crear un gradiente suave con el color seleccionado
+                        mainImageContainer.style.background = `linear-gradient(135deg, ${colorStyle.bg}15 0%, ${colorStyle.bg}05 100%)`;
+                    }
+                }
+                
+                mainImageContainer.style.transform = 'scale(1)';
+                mainImageContainer.style.opacity = '1';
+            }, 250);
+            
+            // Actualizar botón de wishlist
+            updateWishlistButton();
+        });
+    });
+}
+
+// ==================== FUNCIÓN PARA OBTENER COLOR SELECCIONADO ====================
+function getSelectedColor() {
+    const activeColorOption = document.querySelector('.color-option.active');
+    return activeColorOption ? activeColorOption.getAttribute('data-color') : 'Blanco';
+}
+
+// ==================== ESTILOS ADICIONALES PARA COLORES ====================
+function addColorSelectorStyles() {
+    if (document.getElementById('color-selector-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'color-selector-styles';
+    style.textContent = `
+        .color-option {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .color-option::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .color-option.active::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .color-option:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
 
 // ==================== MODAL DE FORMULARIO DE COMPRA ====================
 
@@ -1731,7 +1874,7 @@ function initPaginationEvents() {
     });
 }
 
-// Cargar producto principal
+// ==================== FUNCIÓN ACTUALIZADA loadProduct ====================
 function loadProduct(productId, keepRelatedProducts = false) {
     const product = productsData[productId];
     if (!product) return;
@@ -1752,6 +1895,9 @@ function loadProduct(productId, keepRelatedProducts = false) {
     
     DOM.mainImage.src = product.images[0];
     renderThumbnails(product.images);
+    
+    // IMPORTANTE: Renderizar selector de colores dinámicamente
+    renderColorSelector(product);
     
     renderBreadcrumb(product);
     renderProductMeta(product);
@@ -2029,7 +2175,7 @@ function updateCartBadge() {
 
 function toggleWishlist() {
     const product = productsData[appState.currentProductId];
-    const color = document.querySelector('.color-option.active').getAttribute('data-color');
+    const color = getSelectedColor();
     
     const existingItemIndex = appState.wishlistItems.findIndex(item => 
         item.id === product.id && item.color === color
@@ -2046,7 +2192,7 @@ function toggleWishlist() {
             color: color,
             image: product.images[0]
         });
-        showNotification('Producto añadido a favoritos', 'success');
+        showNotification(`Producto añadido a favoritos - Color: ${color}`, 'success');
         
         setTimeout(() => {
             DOM.wishlistSidebar.classList.add('active');
@@ -2063,7 +2209,7 @@ function toggleWishlist() {
 
 function updateWishlistButton() {
     const product = productsData[appState.currentProductId];
-    const color = document.querySelector('.color-option.active').getAttribute('data-color');
+    const color = getSelectedColor();
     
     const isInWishlist = appState.wishlistItems.some(item => 
         item.id === product.id && item.color === color
@@ -2386,35 +2532,6 @@ DOM.scrollToTop.addEventListener('click', () => {
 // Botón de búsqueda
 DOM.searchBtn.addEventListener('click', openSearchModal);
 
-// Color selector
-DOM.colorOptions.forEach((option, index) => {
-    option.addEventListener('click', () => {
-        DOM.colorOptions.forEach(opt => opt.classList.remove('active'));
-        option.classList.add('active');
-        
-        const color = option.getAttribute('data-color');
-        DOM.colorName.textContent = color;
-        
-        DOM.mainImageContainer.style.transition = 'all 0.6s ease';
-        DOM.mainImageContainer.style.transform = 'scale(0.97)';
-        DOM.mainImageContainer.style.opacity = '0.8';
-        
-        setTimeout(() => {
-            const gradients = [
-                'linear-gradient(135deg, #e6f0fa 0%, rgba(255, 193, 7, 0.05) 100%)',
-                'linear-gradient(135deg, #2c3e50 0%, rgba(52, 73, 94, 0.3) 100%)',
-                'linear-gradient(135deg, #1a4b8c 0%, rgba(74, 144, 226, 0.3) 100%)',
-                'linear-gradient(135deg, #7f8c8d 0%, rgba(149, 165, 166, 0.3) 100%)'
-            ];
-            DOM.mainImageContainer.style.background = gradients[index];
-            DOM.mainImageContainer.style.transform = 'scale(1)';
-            DOM.mainImageContainer.style.opacity = '1';
-        }, 250);
-        
-        updateWishlistButton();
-    });
-});
-
 // Controles de cantidad
 DOM.qtyMinus.addEventListener('click', () => {
     let value = parseInt(DOM.qtyInput.value);
@@ -2447,11 +2564,11 @@ function animateQuantity() {
     }, 150);
 }
 
-// Añadir al carrito
+// ==================== MODIFICAR addToCart PARA USAR COLOR DINÁMICO ====================
 DOM.addToCartBtn.addEventListener('click', () => {
     const qty = parseInt(DOM.qtyInput.value);
     const product = productsData[appState.currentProductId];
-    const color = document.querySelector('.color-option.active').getAttribute('data-color');
+    const color = getSelectedColor(); // Usar la función para obtener el color seleccionado
     
     const originalText = DOM.addToCartBtn.innerHTML;
     DOM.addToCartBtn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> ADDING...</span>';
@@ -2459,7 +2576,7 @@ DOM.addToCartBtn.addEventListener('click', () => {
     
     setTimeout(() => {
         addToCart(product, qty, color);
-        showNotification('Producto añadido al carrito', 'success');
+        showNotification(`Producto añadido al carrito - Color: ${color}`, 'success');
         DOM.addToCartBtn.innerHTML = originalText;
         DOM.addToCartBtn.style.pointerEvents = 'auto';
     }, 800);
@@ -2665,6 +2782,9 @@ function init() {
     updateCartBadge();
     updateWishlistBadge();
     
+    // Agregar estilos de colores al inicializar
+    addColorSelectorStyles();
+    
     console.log('✅ Arglo Médica - Sistema de Productos Optimizado');
     console.log('📦 Productos cargados:', Object.keys(productsData).length);
     console.log('🛒 Carrito de compras implementado');
@@ -2673,6 +2793,7 @@ function init() {
     console.log('🔄 Sincronización entre pestañas configurada');
     console.log('📄 Sistema de paginación: 20 productos por página');
     console.log('📋 Modal de checkout con formulario implementado');
+    console.log('🎨 Sistema de colores dinámico implementado');
     console.log('⌨️ Atajos de teclado:');
     console.log('   - ← → o P/N para navegar páginas');
     console.log('   - Ctrl+K o Cmd+K para abrir búsqueda');

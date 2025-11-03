@@ -8,7 +8,8 @@ export const productsData = {
         reviews: 89,
         images: ['../img/img1/producto1.png'],
         categories: 'Insumos Médicos, Desechables',
-        tags: 'Lancetas, Estética, Punción'
+        tags: 'Lancetas, Estética, Punción',
+        colors: ['Blanco']
     },
     1: {
         id: 1,
@@ -19,7 +20,8 @@ export const productsData = {
         reviews: 124,
         images: ['../img/img1/producto2.png'],
         categories: 'Insumos Médicos, Estética',
-        tags: 'Ultrasonido, Gel, Lubricante'
+        tags: 'Ultrasonido, Gel, Lubricante',
+        colors: ['Blanco']
     },
     2: {
         id: 2,
@@ -30,7 +32,8 @@ export const productsData = {
         reviews: 203,
         images: ['../img/img1/producto3.png'],
         categories: 'Curación, Insumos Médicos',
-        tags: 'Micropore, 3M, Cinta Médica'
+        tags: 'Micropore, 3M, Cinta Médica',
+        colors: ['Blanco']
     },
     3: {
         id: 3,
@@ -41,7 +44,8 @@ export const productsData = {
         reviews: 67,
         images: ['../img/img1/producto4.png'],
         categories: 'Esterilización, Insumos Médicos',
-        tags: 'Esterilización, Bolsas, Médico'
+        tags: 'Esterilización, Bolsas, Médico',
+        colors: ['Blanco']
     },
     4: {
         id: 4,
@@ -52,7 +56,8 @@ export const productsData = {
         reviews: 45,
         images: ['../img/img1/producto5.png'],
         categories: 'Esterilización, Insumos Médicos',
-        tags: 'Esterilización, Rollo, Papel Médico'
+        tags: 'Esterilización, Rollo, Papel Médico',
+        colors: ['Blanco']
     },
     5: {
         id: 5,
@@ -63,7 +68,8 @@ export const productsData = {
         reviews: 78,
         images: ['../img/img1/producto6.png'],
         categories: 'Protección, Insumos Médicos',
-        tags: 'Barrera, Adhesiva, Protección'
+        tags: 'Barrera, Adhesiva, Protección',
+        colors: ['Azul', 'Transparente']
     },
     6: {
         id: 6,
@@ -74,7 +80,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img1/producto7.png'],
         categories: 'Antisépticos, Curación',
-        tags: 'Yodo, Antiséptico, Pads'
+        tags: 'Yodo, Antiséptico, Pads',
+        colors: ['Blanco']
     },
     7: {
         id: 7,
@@ -85,7 +92,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img1/producto8.png'],
         categories: 'Desinfección, Curación',
-        tags: 'Alcohol, Desinfectante, Pads'
+        tags: 'Alcohol, Desinfectante, Pads',
+        colors: ['Blanco']
     },
     8: {
         id: 8,
@@ -96,7 +104,8 @@ export const productsData = {
         reviews: 92,
         images: ['../img/img1/producto9.png'],
         categories: 'Odontología, Insumos Médicos',
-        tags: 'Suctor, Saliva, Odontología'
+        tags: 'Suctor, Saliva, Odontología',
+        colors: ['Blanco']
     },
     9: {
         id: 9,
@@ -107,7 +116,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img1/producto10.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Cubre Zapatos, Protección, Hospital'
+        tags: 'Cubre Zapatos, Protección, Hospital',
+        colors: ['Blanco']
     },
     10: {
         id: 10,
@@ -118,7 +128,8 @@ export const productsData = {
         reviews: 167,
         images: ['../img/img1/producto11.png'],
         categories: 'Ropa Médica, Protección',
-        tags: 'Bata, Desechable, Médico'
+        tags: 'Bata, Desechable, Médico',
+        colors: ['Azul', 'Negro']
     },
     11: {
         id: 11,
@@ -129,7 +140,8 @@ export const productsData = {
         reviews: 198,
         images: ['../img/img1/producto12.png'],
         categories: 'Ropa Médica, Protección',
-        tags: 'Bata, Manga Larga, Protección'
+        tags: 'Bata, Manga Larga, Protección',
+        colors: ['Azul', 'Negro']
     },
     12: {
         id: 12,
@@ -140,7 +152,8 @@ export const productsData = {
         reviews: 112,
         images: ['../img/img1/producto13.png'],
         categories: 'Estética, Insumos',
-        tags: 'Sábana, Estética, Masaje'
+        tags: 'Sábana, Estética, Masaje',
+        colors: ['Azul', 'Negro']
     },
     13: {
         id: 13,
@@ -151,7 +164,8 @@ export const productsData = {
         reviews: 145,
         images: ['../img/img1/producto14.png'],
         categories: 'Estética, Insumos Médicos',
-        tags: 'Cubre Camilla, Estética, Protección'
+        tags: 'Cubre Camilla, Estética, Protección',
+        colors: ['Azul', 'Negro']
     },
     14: {
         id: 14,
@@ -162,7 +176,8 @@ export const productsData = {
         reviews: 87,
         images: ['../img/img1/producto15.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Cubre Barba, Protección, Alimentos'
+        tags: 'Cubre Barba, Protección, Alimentos',
+        colors: ['Blanco']
     },
     15: {
         id: 15,
@@ -171,9 +186,10 @@ export const productsData = {
         description: 'Utilizada para hacer manicure como paño para cualquier derrame, para pedicure como separador de dedos de los pies, también para tinte y cortar el pelo en la parte trasera de la cabeza, cobertor de cabecera, protegiendo de todo tipo de contaminantes, y los odontólogos como baberos. Paquete de 125 unidades.',
         rating: 4,
         reviews: 176,
-        images: ['../img/img1/producto16.png'],
+        images: ['../img/img1/producto17.png'],
         categories: 'Estética, Odontología',
-        tags: 'Babero, Servitoallas, Estética'
+        tags: 'Babero, Servitoallas, Estética',
+        colors: ['Rosa', 'Blanco', 'Negro', 'Verde', 'Turquesa', 'Morado', 'Rojo', 'Amarillo', 'Naranja', 'Azul']
     },
     16: {
         id: 16,
@@ -182,9 +198,10 @@ export const productsData = {
         description: 'Aisla el pelo y cubre totalmente la cabeza en tareas con mayor riesgo de contaminación o infección. Mantiene la higiene y la seguridad. Paquete con 100 unidades.',
         rating: 4,
         reviews: 98,
-        images: ['../img/img1/producto17.png'],
+        images: ['../img/img1/producto16.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Capucha, Protección, Higiene'
+        tags: 'Capucha, Protección, Higiene',
+        colors: ['Blanco']
     },
     17: {
         id: 17,
@@ -195,7 +212,8 @@ export const productsData = {
         reviews: 123,
         images: ['../img/img1/producto18.png'],
         categories: 'Protección Personal, Estética',
-        tags: 'Gorro, Acordeón, Protección'
+        tags: 'Gorro, Acordeón, Protección',
+        colors: ['Rosa', 'Celeste', 'Negro']
     },
     18: {
         id: 18,
@@ -206,7 +224,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img1/producto19.png'],
         categories: 'Protección Personal, Alimentos',
-        tags: 'Gorro Malla, Protección, Alimentos'
+        tags: 'Gorro Malla, Protección, Alimentos',
+        colors: ['Blanco', 'Negro']
     },
     19: {
         id: 19,
@@ -217,7 +236,8 @@ export const productsData = {
         reviews: 234,
         images: ['../img/img1/producto20.png'],
         categories: 'Estética, Masajes',
-        tags: 'Aceite, Masaje, Natural'
+        tags: 'Aceite, Masaje, Natural',
+        colors: ['Blanco']
     },
     20: {
         id: 20,
@@ -228,7 +248,8 @@ export const productsData = {
         reviews: 87,
         images: ['../img/img1/producto21.png'],
         categories: 'Insumos Médicos, Desechables',
-        tags: 'Aplicadores, Largos, Desechables'
+        tags: 'Aplicadores, Largos, Desechables',
+        colors: ['Blanco']
     },
     21: {
         id: 21,
@@ -239,7 +260,8 @@ export const productsData = {
         reviews: 76,
         images: ['../img/img1/producto22.png'],
         categories: 'Insumos Médicos, Desechables',
-        tags: 'Aplicadores, Cortos, Desechables'
+        tags: 'Aplicadores, Cortos, Desechables',
+        colors: ['Blanco']
     },
     22: {
         id: 22,
@@ -250,7 +272,8 @@ export const productsData = {
         reviews: 145,
         images: ['../img/img1/producto23.png'],
         categories: 'Curación, Ortopedia',
-        tags: 'Venda, Coban, Elástica'
+        tags: 'Venda, Coban, Elástica',
+        colors: ['Negro', 'Morado', 'Azul', 'Rojo']
     },
     23: {
         id: 23,
@@ -261,7 +284,8 @@ export const productsData = {
         reviews: 167,
         images: ['../img/img1/producto24.png'],
         categories: 'Curación, Insumos Médicos',
-        tags: 'Gasa, No Tejida, Absorbente'
+        tags: 'Gasa, No Tejida, Absorbente',
+        colors: ['Blanco']
     },
     24: {
         id: 24,
@@ -272,7 +296,8 @@ export const productsData = {
         reviews: 89,
         images: ['../img/img1/producto25.png'],
         categories: 'Limpieza, Desinfección',
-        tags: 'Esterilix, Desinfectante, Equipos'
+        tags: 'Esterilix, Desinfectante, Equipos',
+        colors: ['Blanco']
     },
     25: {
         id: 25,
@@ -283,7 +308,8 @@ export const productsData = {
         reviews: 112,
         images: ['../img/img1/producto26.png'],
         categories: 'Limpieza, Desinfección',
-        tags: 'Esterilix, Superficie, Desinfectante'
+        tags: 'Esterilix, Superficie, Desinfectante',
+        colors: ['Blanco']
     },
     26: {
         id: 26,
@@ -294,7 +320,8 @@ export const productsData = {
         reviews: 78,
         images: ['../img/img1/producto27.png'],
         categories: 'Limpieza, Desinfección',
-        tags: 'Esterilix, X-7, Desinfección'
+        tags: 'Esterilix, X-7, Desinfección',
+        colors: ['Blanco']
     },
     27: {
         id: 27,
@@ -305,7 +332,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img1/producto28.png'],
         categories: 'Limpieza, Desinfección',
-        tags: 'Cleaner, 256, Concentrado'
+        tags: 'Cleaner, 256, Concentrado',
+        colors: ['Blanco']
     },
     28: {
         id: 28,
@@ -316,7 +344,8 @@ export const productsData = {
         reviews: 96,
         images: ['../img/img1/producto29.png'],
         categories: 'Limpieza, Enzimático',
-        tags: 'Detercel, Enzimático, Detergente'
+        tags: 'Detercel, Enzimático, Detergente',
+        colors: ['Blanco']
     },
     29: {
         id: 29,
@@ -327,7 +356,8 @@ export const productsData = {
         reviews: 145,
         images: ['../img/img1/producto30.png'],
         categories: 'Limpieza, Ambientadores',
-        tags: 'Neutralizador, Olor, Ambientador'
+        tags: 'Neutralizador, Olor, Ambientador',
+        colors: ['Blanco']
     },
     30: {
         id: 30,
@@ -338,7 +368,8 @@ export const productsData = {
         reviews: 223,
         images: ['../img/img1/producto31.png'],
         categories: 'Antisépticos, Higiene',
-        tags: 'Cloridex, Antiséptico, Quirúrgico'
+        tags: 'Cloridex, Antiséptico, Quirúrgico',
+        colors: ['Blanco']
     },
     31: {
         id: 31,
@@ -349,7 +380,8 @@ export const productsData = {
         reviews: 178,
         images: ['../img/img1/producto32.png'],
         categories: 'Insumos Médicos, Laboratorio',
-        tags: 'Agua, Destilada, Purificada'
+        tags: 'Agua, Destilada, Purificada',
+        colors: ['Blanco']
     },
     32: {
         id: 32,
@@ -360,7 +392,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img1/producto33.png'],
         categories: 'Limpieza, Cuidado Personal',
-        tags: 'Agua, Oxigenada, Blanqueador'
+        tags: 'Agua, Oxigenada, Blanqueador',
+        colors: ['Blanco']
     },
     33: {
         id: 33,
@@ -371,7 +404,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img1/producto34.png'],
         categories: 'Antisépticos, Limpieza',
-        tags: 'Alcohol, Líquido, Antiséptico'
+        tags: 'Alcohol, Líquido, Antiséptico',
+        colors: ['Blanco']
     },
     34: {
         id: 34,
@@ -382,7 +416,8 @@ export const productsData = {
         reviews: 234,
         images: ['../img/img1/producto35.png'],
         categories: 'Limpieza, Cocina',
-        tags: 'Lavaplatos, Multiacción, Limpieza'
+        tags: 'Lavaplatos, Multiacción, Limpieza',
+        colors: ['Blanco']
     },
     35: {
         id: 35,
@@ -393,7 +428,8 @@ export const productsData = {
         reviews: 267,
         images: ['../img/img1/producto36.png'],
         categories: 'Higiene, Antisépticos',
-        tags: 'Alcohol, Gel, Desinfectante'
+        tags: 'Alcohol, Gel, Desinfectante',
+        colors: ['Blanco']
     },
     36: {
         id: 36,
@@ -404,7 +440,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img1/producto37.png'],
         categories: 'Higiene, Antisépticos',
-        tags: 'Alcohol, Gel, Desinfectante'
+        tags: 'Alcohol, Gel, Desinfectante',
+        colors: ['Blanco']
     },
     37: {
         id: 37,
@@ -415,7 +452,8 @@ export const productsData = {
         reviews: 278,
         images: ['../img/img1/producto38.png'],
         categories: 'Higiene, Cuidado Personal',
-        tags: 'Jabón, Líquido, Manos'
+        tags: 'Jabón, Líquido, Manos',
+        colors: ['Blanco']
     },
     38: {
         id: 38,
@@ -426,7 +464,8 @@ export const productsData = {
         reviews: 67,
         images: ['../img/img1/producto39.png'],
         categories: 'Esterilización, Control Calidad',
-        tags: 'Cinta, Testigo, Esterilización'
+        tags: 'Cinta, Testigo, Esterilización',
+        colors: ['Blanco']
     },
     39: {
         id: 39,
@@ -437,7 +476,8 @@ export const productsData = {
         reviews: 345,
         images: ['../img/img1/producto40.png'],
         categories: 'Protección Personal, Mascarillas',
-        tags: 'KN95, Mascarilla, Protección'
+        tags: 'KN95, Mascarilla, Protección',
+        colors: ['Blanco', 'Rosa', 'Negro', 'Verde', 'Azul', 'Naranja', 'Amarillo', 'Rojo', 'Gris', 'Morado']
     },
     40: {
         id: 40,
@@ -448,9 +488,10 @@ export const productsData = {
         reviews: 298,
         images: ['../img/img1/producto41.png'],
         categories: 'Protección Personal, Mascarillas',
-        tags: 'N95, Mascarilla, Protección'
+        tags: 'N95, Mascarilla, Protección',
+        colors: ['Blanco']
     },
-    41: {
+ 41: {
         id: 41,
         title: 'Mascarilla KF94',
         price: 13.75,
@@ -459,7 +500,8 @@ export const productsData = {
         reviews: 234,
         images: ['../img/img2/producto42.png'],
         categories: 'Protección Personal, Mascarillas',
-        tags: 'KF94, Mascarilla, Coreana'
+        tags: 'KF94, Mascarilla, Coreana',
+        colors: ['Blanco', 'Rosa', 'Negro', 'Verde', 'Azul', 'Naranja', 'Amarillo', 'Rojo', 'Gris', 'Morado']
     },
     42: {
         id: 42,
@@ -470,7 +512,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto43.png'],
         categories: 'Protección Personal, Mascarillas',
-        tags: 'Cubre Boca, Desechable, Protección'
+        tags: 'Cubre Boca, Desechable, Protección',
+        colors: ['Blanco', 'Rosa', 'Negro', 'Verde', 'Morado', 'Celeste']
     },
     43: {
         id: 43,
@@ -481,7 +524,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img2/producto44.png'],
         categories: 'Cuidado Personal, Dermatología',
-        tags: 'Vaselina, Pasta, Piel'
+        tags: 'Vaselina, Pasta, Piel',
+        colors: ['Blanco']
     },
     44: {
         id: 44,
@@ -492,7 +536,8 @@ export const productsData = {
         reviews: 98,
         images: ['../img/img2/producto45.png'],
         categories: 'Protección, Insumos',
-        tags: 'Rollo, Plástico, Protección'
+        tags: 'Rollo, Plástico, Protección',
+        colors: ['Blanco']
     },
     45: {
         id: 45,
@@ -503,7 +548,8 @@ export const productsData = {
         reviews: 145,
         images: ['../img/img2/producto46.png'],
         categories: 'Desechables, Odontología',
-        tags: 'Vasos, Cartón, Desechables'
+        tags: 'Vasos, Cartón, Desechables',
+        colors: ['Blanco']
     },
     46: {
         id: 46,
@@ -514,7 +560,8 @@ export const productsData = {
         reviews: 167,
         images: ['../img/img2/producto47.png'],
         categories: 'Desechables, Odontología',
-        tags: 'Vasos, Plásticos, Desechables'
+        tags: 'Vasos, Plásticos, Desechables',
+        colors: ['Blanco','Negro', 'Azul', 'Rosa', 'Morado', 'Celeste']
     },
     47: {
         id: 47,
@@ -525,7 +572,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img2/producto48.png'],
         categories: 'Curación, Insumos Médicos',
-        tags: 'Algodón, Rollo, Absorbente'
+        tags: 'Algodón, Rollo, Absorbente',
+        colors: ['Blanco']
     },
     48: {
         id: 48,
@@ -536,7 +584,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto49.png'],
         categories: 'Curación, Insumos Médicos',
-        tags: 'Algodón, Torunda, Bolitas'
+        tags: 'Algodón, Torunda, Bolitas',
+        colors: ['Blanco']
     },
     49: {
         id: 49,
@@ -547,7 +596,8 @@ export const productsData = {
         reviews: 78,
         images: ['../img/img2/producto50.png'],
         categories: 'Odontología, Instrumental',
-        tags: 'Rodillo, Dental, Odontología'
+        tags: 'Rodillo, Dental, Odontología',
+        colors: ['Blanco']
     },
     50: {
         id: 50,
@@ -558,7 +608,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img2/producto51.png'],
         categories: 'Protección, Guantes',
-        tags: 'Guantes, Plástico, Alimentos'
+        tags: 'Guantes, Plástico, Alimentos',
+        colors: ['Blanco']
     },
     51: {
         id: 51,
@@ -569,7 +620,8 @@ export const productsData = {
         reviews: 234,
         images: ['../img/img2/producto52.png'],
         categories: 'Protección, Guantes',
-        tags: 'Latex, Bajos Polvo, Guantes'
+        tags: 'Latex, Bajos Polvo, Guantes',
+        colors: ['Blanco', 'Rosa', 'Negro', 'Naranja', 'Morado', 'Celeste']
     },
     52: {
         id: 52,
@@ -580,7 +632,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto53.png'],
         categories: 'Protección, Guantes',
-        tags: 'Latex, Sin Polvo, Guantes'
+        tags: 'Latex, Sin Polvo, Guantes',
+        colors: ['Blanco']
     },
     53: {
         id: 53,
@@ -591,7 +644,8 @@ export const productsData = {
         reviews: 167,
         images: ['../img/img2/producto54.png'],
         categories: 'Protección, Guantes',
-        tags: 'Vinyl, Guantes, Alimentos'
+        tags: 'Vinyl, Guantes, Alimentos',
+        colors: ['Blanco']
     },
     54: {
         id: 54,
@@ -602,7 +656,8 @@ export const productsData = {
         reviews: 89,
         images: ['../img/img2/producto55.png'],
         categories: 'Protección, Guantes',
-        tags: 'Alto Riesgo, Protección, Químicos'
+        tags: 'Alto Riesgo, Protección, Químicos',
+        colors: ['Verde', 'Celeste']
     },
     55: {
         id: 55,
@@ -613,7 +668,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img2/producto56.png'],
         categories: 'Protección, Guantes',
-        tags: 'Texturizados, Antideslizante, Guantes'
+        tags: 'Texturizados, Antideslizante, Guantes',
+        colors: ['Negro']
     },
     56: {
         id: 56,
@@ -624,7 +680,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img2/producto57.png'],
         categories: 'Protección, Guantes',
-        tags: 'Vinyl, Color, Guantes'
+        tags: 'Vinyl, Color, Guantes',
+        colors: ['Negro', 'Rosa', 'Morado','Celeste']
     },
     57: {
         id: 57,
@@ -635,7 +692,8 @@ export const productsData = {
         reviews: 278,
         images: ['../img/img2/producto58.png'],
         categories: 'Protección, Guantes',
-        tags: 'Nitrilo, Guantes, Sin Látex'
+        tags: 'Nitrilo, Guantes, Sin Látex',
+        colors: ['Negro', 'Rosa', 'Celeste', 'Morado', 'Blanco']
     },
     58: {
         id: 58,
@@ -646,7 +704,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto59.png'],
         categories: 'Limpieza, Protección',
-        tags: 'Afelpados, Lavado, Protección'
+        tags: 'Afelpados, Lavado, Protección',
+        colors: ['Blanco']
     },
     59: {
         id: 59,
@@ -657,7 +716,8 @@ export const productsData = {
         reviews: 145,
         images: ['../img/img2/producto60.png'],
         categories: 'Quirúrgico, Guantes',
-        tags: 'Quirúrgicos, Estériles, Látex'
+        tags: 'Quirúrgicos, Estériles, Látex',
+        colors: ['Blanco']
     },
     60: {
         id: 60,
@@ -668,7 +728,8 @@ export const productsData = {
         reviews: 112,
         images: ['../img/img2/producto61.png'],
         categories: 'Estética, Insumos',
-        tags: 'Papel, Camilla, Protección'
+        tags: 'Papel, Camilla, Protección',
+        colors: ['Blanco']
     },
     61: {
         id: 61,
@@ -679,7 +740,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img2/producto62.png'],
         categories: 'Estética, Desechables',
-        tags: 'Paletas, Madera, Aplicadores'
+        tags: 'Paletas, Madera, Aplicadores',
+        colors: ['Blanco']
     },
     62: {
         id: 62,
@@ -690,7 +752,8 @@ export const productsData = {
         reviews: 267,
         images: ['../img/img2/producto63.png'],
         categories: 'Monitoreo, Médico',
-        tags: 'Oxímetro, Saturación, Salud'
+        tags: 'Oxímetro, Saturación, Salud',
+        colors: ['Blanco']
     },
     63: {
         id: 63,
@@ -701,7 +764,8 @@ export const productsData = {
         reviews: 78,
         images: ['../img/img2/producto64.png'],
         categories: 'Tecnología, Seguridad',
-        tags: 'K9 Pro, Temperatura, Desinfección'
+        tags: 'K9 Pro, Temperatura, Desinfección',
+        colors: ['Blanco']
     },
     64: {
         id: 64,
@@ -712,7 +776,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto65.png'],
         categories: 'Limpieza, Higiene',
-        tags: 'Papel, Toalla, Rollo'
+        tags: 'Papel, Toalla, Rollo',
+        colors: ['Blanco']
     },
     65: {
         id: 65,
@@ -723,7 +788,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img2/producto66.png'],
         categories: 'Limpieza, Higiene',
-        tags: 'Toallas, Papel, Manos'
+        tags: 'Toallas, Papel, Manos',
+        colors: ['Blanco']
     },
     66: {
         id: 66,
@@ -734,7 +800,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img2/producto67.png'],
         categories: 'Protección, Ropa Médica',
-        tags: 'Bata, Impermeable, Protección'
+        tags: 'Bata, Impermeable, Protección',
+        colors: ['Celeste']
     },
     67: {
         id: 67,
@@ -745,7 +812,8 @@ export const productsData = {
         reviews: 45,
         images: ['../img/img2/producto68.png'],
         categories: 'Equipamiento, Médico',
-        tags: 'Camilla, Hidráulica, Ajustable'
+        tags: 'Camilla, Hidráulica, Ajustable',
+        colors: ['Blanco']
     },
     68: {
         id: 68,
@@ -756,7 +824,8 @@ export const productsData = {
         reviews: 67,
         images: ['../img/img2/producto69.png'],
         categories: 'Muebles, Estética',
-        tags: 'Banco, Giratorio, Respaldo'
+        tags: 'Banco, Giratorio, Respaldo',
+        colors: ['Blanco']
     },
     69: {
         id: 69,
@@ -767,7 +836,8 @@ export const productsData = {
         reviews: 89,
         images: ['../img/img2/producto70.png'],
         categories: 'Muebles, Estética',
-        tags: 'Canilla, Fija, Masajes'
+        tags: 'Canilla, Fija, Masajes',
+        colors: ['Blanco']
     },
     70: {
         id: 70,
@@ -778,7 +848,8 @@ export const productsData = {
         reviews: 56,
         images: ['../img/img2/producto71.png'],
         categories: 'Muebles, Estética',
-        tags: 'Banco, Giratorio, Sin Respaldo'
+        tags: 'Banco, Giratorio, Sin Respaldo',
+        colors: ['Blanco']
     },
     71: {
         id: 71,
@@ -789,7 +860,8 @@ export const productsData = {
         reviews: 78,
         images: ['../img/img2/producto72.png'],
         categories: 'Muebles, Portátil',
-        tags: 'Camilla, Maleta, Portátil'
+        tags: 'Camilla, Maleta, Portátil',
+        colors: ['Blanco']
     },
     72: {
         id: 72,
@@ -800,7 +872,8 @@ export const productsData = {
         reviews: 34,
         images: ['../img/img2/producto73.png'],
         categories: 'Accesorios, Estética',
-        tags: 'Apoya, Brazos, Ajustable'
+        tags: 'Apoya, Brazos, Ajustable',
+        colors: ['Blanco']
     },
     73: {
         id: 73,
@@ -811,7 +884,8 @@ export const productsData = {
         reviews: 112,
         images: ['../img/img2/producto74.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Gorro, Cirugía, Protección'
+        tags: 'Gorro, Cirugía, Protección',
+        colors: ['Blanco']
     },
     74: {
         id: 74,
@@ -822,7 +896,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto75.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Careta, Protectora, Facial'
+        tags: 'Careta, Protectora, Facial',
+        colors: ['Blanco']
     },
     75: {
         id: 75,
@@ -833,7 +908,8 @@ export const productsData = {
         reviews: 145,
         images: ['../img/img2/producto76.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Careta, Lentes, Protección'
+        tags: 'Careta, Lentes, Protección',
+        colors: ['Blanco']
     },
     76: {
         id: 76,
@@ -844,7 +920,8 @@ export const productsData = {
         reviews: 89,
         images: ['../img/img2/producto77.png'],
         categories: 'Protección, Ropa Médica',
-        tags: 'Kimono, Protector, Barrera'
+        tags: 'Kimono, Protector, Barrera',
+        colors: ['Blanco']
     },
     77: {
         id: 77,
@@ -855,7 +932,8 @@ export const productsData = {
         reviews: 67,
         images: ['../img/img2/producto78.png'],
         categories: 'Equipamiento, Oficina',
-        tags: 'Dispensador, Agua, Electrónico'
+        tags: 'Dispensador, Agua, Electrónico',
+        colors: ['Blanco']
     },
     78: {
         id: 78,
@@ -866,7 +944,8 @@ export const productsData = {
         reviews: 78,
         images: ['../img/img2/producto79.png'],
         categories: 'Equipamiento, Higiene',
-        tags: 'Dispensador, Toalla, Papel'
+        tags: 'Dispensador, Toalla, Papel',
+        colors: ['Blanco']
     },
     79: {
         id: 79,
@@ -877,7 +956,8 @@ export const productsData = {
         reviews: 56,
         images: ['../img/img2/producto80.png'],
         categories: 'Equipamiento, Higiene',
-        tags: 'Dispensador, Rollo, Toalla'
+        tags: 'Dispensador, Rollo, Toalla',
+        colors: ['Blanco']
     },
     80: {
         id: 80,
@@ -888,7 +968,8 @@ export const productsData = {
         reviews: 134,
         images: ['../img/img2/producto81.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Gafa, Seguridad, Ocular'
+        tags: 'Gafa, Seguridad, Ocular',
+        colors: ['Blanco']
     },
     81: {
         id: 81,
@@ -899,7 +980,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto82.png'],
         categories: 'Protección Personal, EPP',
-        tags: 'Lentes, Seguridad, Protección'
+        tags: 'Lentes, Seguridad, Protección',
+        colors: ['Blanco']
     },
     82: {
         id: 82,
@@ -910,7 +992,8 @@ export const productsData = {
         reviews: 67,
         images: ['../img/img2/producto83.png'],
         categories: 'Equipamiento, Hospitalario',
-        tags: 'Basurero, Rojo, Bioinfeccioso'
+        tags: 'Basurero, Rojo, Bioinfeccioso',
+        colors: ['Blanco']
     },
     83: {
         id: 83,
@@ -921,7 +1004,8 @@ export const productsData = {
         reviews: 45,
         images: ['../img/img2/producto84.png'],
         categories: 'Equipamiento, Hospitalario',
-        tags: 'Recipiente, Rojo, Quirúrgico'
+        tags: 'Recipiente, Rojo, Quirúrgico',
+        colors: ['Blanco']
     },
     84: {
         id: 84,
@@ -932,7 +1016,8 @@ export const productsData = {
         reviews: 278,
         images: ['../img/img2/producto85.png'],
         categories: 'Insumos Médicos, Desechables',
-        tags: 'Jeringas, Desechables, Estériles'
+        tags: 'Jeringas, Desechables, Estériles',
+        colors: ['Blanco']
     },
     85: {
         id: 85,
@@ -943,7 +1028,8 @@ export const productsData = {
         reviews: 189,
         images: ['../img/img2/producto86.png'],
         categories: 'Curación, Insumos Médicos',
-        tags: 'Gasa, Estéril, Quirúrgica'
+        tags: 'Gasa, Estéril, Quirúrgica',
+        colors: ['Blanco']
     },
     86: {
         id: 86,
@@ -954,7 +1040,8 @@ export const productsData = {
         reviews: 156,
         images: ['../img/img2/producto87.png'],
         categories: 'Curación, Insumos Médicos',
-        tags: 'Gasa, Tejida, Absorbente'
+        tags: 'Gasa, Tejida, Absorbente',
+        colors: ['Blanco']
     },
     87: {
         id: 87,
@@ -965,6 +1052,7 @@ export const productsData = {
         reviews: 167,
         images: ['../img/img2/producto88.png'],
         categories: 'Protección Personal, Mascarillas',
-        tags: 'Mascarilla, Niños, Protección'
+        tags: 'Mascarilla, Niños, Protección',
+        colors: ['Blanco']
     }
 };
