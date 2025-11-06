@@ -1058,7 +1058,7 @@ function sendOrderToWhatsApp(formData) {
                         </p>
                         <p style="margin: 12px 0; display: flex; align-items: center;">
                             <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">2</span>
-                            <span>Pega el mensaje (Ctrl+V)</span>
+                            <span>Pega el mensaje (Ctrl+V si estás en PC)</span>
                         </p>
                         <p style="margin: 12px 0; display: flex; align-items: center;">
                             <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">3</span>
