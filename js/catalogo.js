@@ -1006,23 +1006,166 @@ function sendOrderToWhatsApp(formData) {
     mensaje += '\nTOTAL: $' + total.toFixed(2) + '\n\n';
     mensaje += 'Por favor confirmar disponibilidad y costo de envio. Gracias.';
 
-    // Copiar mensaje al portapapeles y abrir WhatsApp
-    navigator.clipboard.writeText(mensaje).then(() => {
-        const url = `https://wa.me/${numero}`;
-        window.open(url, '_blank');
-        showNotification('Mensaje copiado. Pega el mensaje en WhatsApp.', 'success');
-    }).catch(() => {
-        // Fallback si no funciona clipboard
-        const url = `https://wa.me/${numero}`;
-        window.open(url, '_blank');
-        showNotification('Abre WhatsApp y pega tu pedido', 'success');
+    // Crear popup/modal minimalista
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+    `;
+    
+    modal.innerHTML = `
+        <div style="
+            background: white;
+            padding: 0;
+            border-radius: 12px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+        ">
+            <div style="
+                background: #f8f9fa;
+                padding: 24px 20px;
+                border-bottom: 1px solid #e9ecef;
+            ">
+                <h3 style="margin: 0 0 8px 0; font-size: 1.4em; font-weight: 600; color: #2b2d42;">Listo para enviar</h3>
+                <p style="margin: 0; color: #6c757d; font-size: 0.95em;">Tu pedido ha sido preparado</p>
+            </div>
+            
+            <div style="padding: 28px 30px;">
+                <div style="
+                    background: #f8f9fa;
+                    padding: 20px;
+                    border-radius: 8px;
+                    margin-bottom: 24px;
+                    border: 1px solid #e9ecef;
+                ">
+                    <p style="margin: 0 0 16px 0; font-weight: 600; color: #2b2d42; font-size: 1.1em;">Sigue estos pasos:</p>
+                    <div style="text-align: left; color: #495057;">
+                        <p style="margin: 12px 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">1</span>
+                            <span>Se abrirá WhatsApp</span>
+                        </p>
+                        <p style="margin: 12px 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">2</span>
+                            <span>Pega el mensaje (Ctrl+V)</span>
+                        </p>
+                        <p style="margin: 12px 0; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">3</span>
+                            <span>Envía tu cotización</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <button id="continuarBtn" style="
+                    background: #28a745;
+                    color: white;
+                    border: none;
+                    padding: 14px 30px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 1em;
+                    font-weight: 600;
+                    width: 100%;
+                    transition: all 0.2s ease;
+                ">Continuar a WhatsApp</button>
+                
+                <p style="
+                    margin: 16px 0 0 0;
+                    font-size: 0.85em;
+                    color: #6c757d;
+                ">El mensaje se ha copiado automáticamente</p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Efecto hover para el botón
+    const button = document.getElementById('continuarBtn');
+    button.addEventListener('mouseenter', function() {
+        this.style.background = '#218838';
+        this.style.transform = 'translateY(-1px)';
     });
     
-    appState.cartItems = [];
-    appState.updateCartCount();
-    appState.saveCart();
-    updateCartView();
-    updateCartBadge();
+    button.addEventListener('mouseleave', function() {
+        this.style.background = '#28a745';
+        this.style.transform = 'translateY(0)';
+    });
+    
+    // Copiar mensaje al portapapeles
+    navigator.clipboard.writeText(mensaje).then(() => {
+        console.log('Mensaje copiado al portapapeles');
+    }).catch(() => {
+        // Si falla el clipboard, mostrar área de texto
+        const stepsDiv = modal.querySelector('div[style*="background: #f8f9fa"]');
+        stepsDiv.innerHTML = `
+            <p style="margin: 0 0 16px 0; font-weight: 600; color: #2b2d42; font-size: 1.1em;">Copia el siguiente mensaje:</p>
+            <textarea 
+                style="
+                    width: 100%; 
+                    height: 120px; 
+                    margin: 10px 0; 
+                    padding: 12px;
+                    border: 1px solid #ced4da;
+                    border-radius: 6px;
+                    font-family: inherit;
+                    resize: none;
+                    background: #fff;
+                    font-size: 0.9em;
+                "
+                readonly
+            >${mensaje}</textarea>
+            <p style="margin: 8px 0 0 0; font-size: 0.85em; color: #6c757d;">Selecciona y copia el texto arriba</p>
+        `;
+    });
+    
+    // Evento del botón
+    button.addEventListener('click', function() {
+        // Abrir WhatsApp
+        const url = `https://wa.me/${numero}`;
+        window.open(url, '_blank');
+        
+        // Cerrar modal con animación
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.2s ease';
+        setTimeout(() => {
+            if (document.body.contains(modal)) {
+                document.body.removeChild(modal);
+            }
+        }, 200);
+        
+        // Limpiar carrito
+        appState.cartItems = [];
+        appState.updateCartCount();
+        appState.saveCart();
+        updateCartView();
+        updateCartBadge();
+        
+        showNotification('Redirigiendo a WhatsApp...', 'success');
+    });
+    
+    // Cerrar modal haciendo click fuera
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            }, 200);
+        }
+    });
 }
 
 // ==================== SISTEMA DE BÚSQUEDA ====================
