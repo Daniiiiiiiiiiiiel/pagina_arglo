@@ -925,7 +925,7 @@ function renderCheckoutSummary() {
                         Color: ${item.color} | Cantidad: ${item.quantity}
                     </div>
                 </div>
-                <div>$${itemTotal.toFixed(2)}</div>
+                <div>₡  ${itemTotal.toFixed(2)}</div>
             </div>
         `;
     });
@@ -933,7 +933,7 @@ function renderCheckoutSummary() {
     summaryHTML += `
         <div class="checkout-summary-item">
             <div><strong>TOTAL</strong></div>
-            <div><strong>$${total.toFixed(2)}</strong></div>
+            <div><strong>₡${total.toFixed(2)}</strong></div>
         </div>
     `;
     
@@ -983,71 +983,46 @@ function sendOrderToWhatsApp(formData) {
         return;
     }
     
-    const numero = '506'; // Número de Costa Rica
+    const numero = '50684321030';
     
-    // Construir mensaje profesional con datos del cliente
-    let mensaje = '🌟 *SOLICITUD DE COTIZACIÓN - ARGLO MÉDICA* 🌟\n\n';
+    let mensaje = 'SOLICITUD DE COTIZACION - ARGLO MEDICA\n\n';
     
     // Información del cliente
-    mensaje += '━━━━━━━━━━━━━━━━━━\n';
-    mensaje += '👤 *INFORMACIÓN DEL CLIENTE*\n';
-    mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
+    mensaje += 'CLIENTE:\n';
+    mensaje += 'Nombre: ' + formData.get('customerName') + '\n';
+    mensaje += 'Telefono: ' + formData.get('customerPhone') + '\n';
+    mensaje += 'Direccion: ' + formData.get('customerAddress') + '\n\n';
     
-    mensaje += `• *Nombre:* ${formData.get('customerName')}\n`;
-    mensaje += `• *Cédula:* ${formData.get('customerId')}\n`;
-    mensaje += `• *Email:* ${formData.get('customerEmail')}\n`;
-    mensaje += `• *Teléfono:* ${formData.get('customerPhone')}\n`;
-    mensaje += `• *Dirección:* ${formData.get('customerAddress')}\n`;
-    
-    if (formData.get('customerNotes')) {
-        mensaje += `• *Notas:* ${formData.get('customerNotes')}\n`;
-    }
-    
-    mensaje += '\n━━━━━━━━━━━━━━━━━━\n';
-    mensaje += '📋 *DETALLE DEL PEDIDO*\n';
-    mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
+    // Detalles del pedido
+    mensaje += 'PRODUCTOS:\n';
     
     let total = 0;
-    
-    appState.cartItems.forEach((item, index) => {
+    appState.cartItems.forEach((item) => {
         const itemTotal = parseFloat(item.price) * item.quantity;
         total += itemTotal;
-        
-        mensaje += `*Producto ${index + 1}:*\n`;
-        mensaje += `📦 ${item.title}\n`;
-        mensaje += `   • Color: ${item.color}\n`;
-        mensaje += `   • Precio unitario: $${item.price}\n`;
-        mensaje += `   • Cantidad: ${item.quantity}\n`;
-        mensaje += `   • Subtotal: $${itemTotal.toFixed(2)}\n\n`;
+        mensaje += '- ' + item.title + ' (' + item.color + ') - ' + item.quantity + ' x $' + item.price + ' = $' + itemTotal.toFixed(2) + '\n';
     });
     
-    mensaje += '━━━━━━━━━━━━━━━━━━\n';
-    mensaje += `💰 *VALOR TOTAL: $${total.toFixed(2)}*\n`;
-    mensaje += '━━━━━━━━━━━━━━━━━━\n\n';
-    
-    mensaje += '📋 *INFORMACIÓN SOLICITADA:*\n\n';
-    mensaje += 'Por favor, agradecería me confirme:\n\n';
-    mensaje += '✅ Disponibilidad de los productos\n';  
-    mensaje += '✅ Opciones de pago disponibles\n';
-    mensaje += '✅ Tiempos de entrega\n';
-    mensaje += '✅ Costos de envío si aplican\n\n';
-    mensaje += 'Quedo atento a su respuesta. ¡Gracias!\n\n';
-    mensaje += '---\n';
-    mensaje += '*Arglo Médica* - Equipamiento médico profesional\n';
+    mensaje += '\nTOTAL: $' + total.toFixed(2) + '\n\n';
+    mensaje += 'Por favor confirmar disponibilidad y costo de envio. Gracias.';
 
+    // Copiar mensaje al portapapeles y abrir WhatsApp
+    navigator.clipboard.writeText(mensaje).then(() => {
+        const url = `https://wa.me/${numero}`;
+        window.open(url, '_blank');
+        showNotification('Mensaje copiado. Pega el mensaje en WhatsApp.', 'success');
+    }).catch(() => {
+        // Fallback si no funciona clipboard
+        const url = `https://wa.me/${numero}`;
+        window.open(url, '_blank');
+        showNotification('Abre WhatsApp y pega tu pedido', 'success');
+    });
     
-    const mensajeCodificado = encodeURIComponent(mensaje);
-    const url = `https://wa.me/${numero}?text=${mensajeCodificado}`;
-    
-    window.open(url, '_blank');
-    showNotification('✅ Información enviada a WhatsApp', 'success');
-    
-    // Opcional: Limpiar carrito después del envío
-    // appState.cartItems = [];
-    // appState.updateCartCount();
-    // appState.saveCart();
-    // updateCartView();
-    // updateCartBadge();
+    appState.cartItems = [];
+    appState.updateCartCount();
+    appState.saveCart();
+    updateCartView();
+    updateCartBadge();
 }
 
 // ==================== SISTEMA DE BÚSQUEDA ====================
@@ -1488,10 +1463,6 @@ function renderBreadcrumb(product) {
     const categories = product.categories.split(', ');
     
     DOM.breadcrumb.innerHTML = `
-        <a href="../index.html">Home</a>
-        <span>/</span>
-        <a href="#">Shop</a>
-        <span>/</span>
         <a href="#">${categories[0]}</a>
         <span>/</span>
         ${categories[1] ? `<a href="#">${categories[1]}</a><span>/</span>` : ''}
@@ -1538,8 +1509,7 @@ function renderTabsContent(product) {
             Este producto ha sido diseñado específicamente para profesionales de la salud y trabajadores en entornos de alto riesgo, cumpliendo con las certificaciones internacionales más exigentes.
         </p>
         <p style="line-height: 1.8; color: var(--text-light);">
-            <strong style="color: var(--primary-blue);">Características técnicas:</strong> Material de alta calidad, diseño ergonómico, certificaciones internacionales, empaque individual estéril.
-        </p>
+            <strong style="color: var(--primary-blue);">Características Técnicas:</strong>${product.characteristics}</p>
     `;
     
     DOM.reviewsContent.innerHTML = `
@@ -1552,7 +1522,7 @@ function renderTabsContent(product) {
             </div>
             <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.8rem;">Recientemente</p>
             <p style="line-height: 1.7; color: var(--text-dark);">
-                Excelente calidad de producto. Lo uso diariamente en mi trabajo y ofrece una protección superior. El ajuste es perfecto y es muy cómodo incluso después de horas de uso.
+                ${product.review}
             </p>
         </div>
     `;
@@ -1598,7 +1568,7 @@ function renderCurrentPageProducts() {
                     
                     <div class="card-footer">
                         <div class="card-price">
-                            <span class="current-price">$${product.price}</span>
+                            <span class="current-price">₡${product.price}</span>
                             ${product.oldPrice ? `<span class="old-price">$${product.oldPrice}</span>` : ''}
                         </div>
                         <button class="card-add-btn" data-action="add-cart" data-product-id="${product.id}" title="Añadir al carrito">
@@ -1887,11 +1857,11 @@ function loadProduct(productId, keepRelatedProducts = false) {
     if (product.oldPrice) {
         DOM.productPrice.innerHTML = `${product.price} <span style="font-size: 1.5rem; color: var(--text-light); text-decoration: line-through; margin-left: 0.5rem;">${product.oldPrice}</span>`;
     } else {
-        DOM.productPrice.textContent = `${product.price}`;
+        DOM.productPrice.textContent = `₡${product.price}`;
     }
     
     renderStars(product.rating, DOM.productStars);
-    DOM.reviewCount.textContent = `(${product.reviews} customer reviews)`;
+    // DOM.reviewCount.textContent = `(${product.reviews} customer reviews)`;
     
     DOM.mainImage.src = product.images[0];
     renderThumbnails(product.images);
@@ -2089,7 +2059,7 @@ function addToCart(product, quantity, color) {
 function updateCartView() {
     if (appState.cartItems.length === 0) {
         DOM.cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">Tu carrito está vacío</p>';
-        DOM.cartTotal.textContent = '$0.00';
+        DOM.cartTotal.textContent = '₡0.00';
         return;
     }
     
@@ -2121,7 +2091,7 @@ function updateCartView() {
         `;
     }).join('');
     
-    DOM.cartTotal.textContent = `${total.toFixed(2)}`;
+    DOM.cartTotal.textContent = `₡${total.toFixed(2)}`;
     
     attachCartItemEvents();
 }

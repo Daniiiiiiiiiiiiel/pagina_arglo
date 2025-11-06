@@ -471,7 +471,7 @@ body {
 }
 
 .color-option::after {
-    content: '✓';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1096,18 +1096,158 @@ body {
     background: var(--light-blue);
 }
 
+/* DESCRIPCIÓN DEL PRODUCTO - DISEÑO LIMPIO Y MODERNO */
 .tab-content {
     display: none;
-    padding: 2.5rem;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    border: 2px solid rgba(26, 75, 140, 0.08);
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
 }
 
 .tab-content.active {
     display: block;
     animation: fadeIn 0.4s ease;
+}
+
+.tab-content h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Contenedor con diseño en columnas */
+#descriptionContent {
+    background: linear-gradient(to bottom right, var(--white) 0%, var(--off-white) 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    border-left: 6px solid var(--accent-blue);
+    box-shadow: 0 8px 30px rgba(26, 75, 140, 0.1);
+    position: relative;
+}
+
+#descriptionContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+#descriptionContent p {
+    color: var(--text-dark);
+    line-height: 1.9;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+#descriptionContent p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+}
+
+#descriptionContent p:last-child {
+    margin-bottom: 0;
+}
+
+#descriptionContent strong {
+    color: var(--primary-blue);
+    font-weight: 700;
+    background: linear-gradient(to right, transparent 0%, var(--light-blue) 100%);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+#descriptionContent ul,
+#descriptionContent ol {
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+}
+
+#descriptionContent li {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+#descriptionContent ul li::marker {
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+}
+
+#descriptionContent h4 {
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-blue);
+}
+
+#descriptionContent h5 {
+    color: var(--secondary-blue);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.8rem;
+}
+
+#descriptionContent a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+#descriptionContent a:hover {
+    border-bottom-color: var(--accent-blue);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #descriptionContent {
+        padding: 2rem;
+    }
+    
+    .tab-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    #descriptionContent p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #descriptionContent {
+        padding: 1.5rem;
+        border-left-width: 4px;
+    }
+    
+    .tab-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    #descriptionContent p {
+        font-size: 0.95rem;
+        padding-left: 1rem;
+    }
 }
 
 @keyframes fadeIn {
@@ -1121,15 +1261,7 @@ body {
     }
 }
 
-.tab-content h3 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 1.2rem;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+
 
 /* RELATED PRODUCTS */
 .related-section {
