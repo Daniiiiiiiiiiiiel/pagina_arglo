@@ -473,17 +473,7 @@ function createCheckoutModal() {
                         <div class="error-message" id="nameError"></div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="customerId">Cédula o Identificación *</label>
-                        <input 
-                            type="text" 
-                            id="customerId" 
-                            name="customerId" 
-                            required 
-                            placeholder="Ej: 1-2345-6789"
-                        >
-                        <div class="error-message" id="idError"></div>
-                    </div>
+                    
                 </div>
                 
                 <div class="form-section">
@@ -531,15 +521,6 @@ function createCheckoutModal() {
                         <div class="error-message" id="addressError"></div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="customerNotes">Notas Adicionales (Opcional)</label>
-                        <textarea 
-                            id="customerNotes" 
-                            name="customerNotes" 
-                            rows="2"
-                            placeholder="Instrucciones especiales para la entrega..."
-                        ></textarea>
-                    </div>
                 </div>
                 
                 <div class="form-section">
@@ -1064,14 +1045,14 @@ function sendOrderToWhatsApp(formData) {
         return;
     }
     
-    // FORMATO CORRECTO: eliminar el 0 al inicio y agregar código de país
-    const numero = '50684321030'; // Este número ya está en formato correcto
+    const numero = '50684321030';
     
     let mensaje = 'SOLICITUD DE COTIZACION - ARGLO MEDICA\n\n';
     
     // Información del cliente
     mensaje += 'CLIENTE:\n\n';
     mensaje += 'Nombre: ' + (formData.get('customerName') || 'No proporcionado') + '\n';
+    mensaje += 'Direccion: ' + (formData.get('customerEmail') || 'No proporcionada') + '\n\n';
     mensaje += 'Telefono: ' + (formData.get('customerPhone') || 'No proporcionado') + '\n';
     mensaje += 'Direccion: ' + (formData.get('customerAddress') || 'No proporcionada') + '\n\n';
     
@@ -1088,21 +1069,33 @@ function sendOrderToWhatsApp(formData) {
     mensaje += '\nTOTAL: ₡' + total.toFixed(2) + '\n\n';
     mensaje += 'Por favor confirmar disponibilidad y costo de envio. Gracias.';
 
-    // Codificar el mensaje
     const mensajeCodificado = encodeURIComponent(mensaje);
+    const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
+    // Crear URLs para ambos casos
+    const urlMovil = `https://api.whatsapp.com/send?phone=${numero}&text=${mensajeCodificado}`;
+    const urlDesktop = `https://web.whatsapp.com/send?phone=${numero}&text=${mensajeCodificado}`;
     
-    // Opción 2: Formato con código de país explícito
-    const url1 = `https://web.whatsapp.com/send?phone=${numero}&text=${mensajeCodificado}`;
+    // Usar la URL apropiada
+    const urlFinal = esMovil ? urlMovil : urlDesktop;
     
- 
+    console.log('Dispositivo:', esMovil ? 'Móvil' : 'Desktop');
+    console.log('URL WhatsApp:', urlFinal);
     
-    console.log('URLs generadas:');
-    console.log('Opción 1:', url1);
-
+    // Abrir en nueva ventana
+    const ventanaWhatsApp = window.open(urlFinal, '_blank');
     
-    // Probar con la opción 1 primero
-    window.open(url1, '_blank');
+    // Verificar si se abrió correctamente (solo en móvil)
+    if (esMovil) {
+        setTimeout(() => {
+            if (ventanaWhatsApp && (ventanaWhatsApp.closed || ventanaWhatsApp.innerHeight === 0)) {
+                // Fallback: intentar con wa.me
+                const urlFallback = `https://wa.me/${numero}?text=${mensajeCodificado}`;
+                window.open(urlFallback, '_blank');
+                console.log('Usando fallback wa.me');
+            }
+        }, 1000);
+    }
     
     // Limpiar carrito
     appState.cartItems = [];
@@ -2544,7 +2537,7 @@ function updateWishlistBadge() {
     }, 300);
 }
 
-// ==================== NOTIFICACIONES MEJORADAS ====================
+
 // ==================== NOTIFICACIONES MEJORADAS ====================
 function showNotification(message = 'El artículo se ha añadido al carrito', type = 'success') {
     const notificationText = DOM.notification.querySelector('.notification-text');
