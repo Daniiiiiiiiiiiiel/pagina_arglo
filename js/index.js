@@ -1,21 +1,56 @@
 // Custom Cursor
-const cursor = document.querySelector('.custom-cursor');
-const cursorDot = document.querySelector('.cursor-dot');
+function initCustomCursor() {
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    if (!cursor || !cursorDot) return;
 
-if (window.innerWidth > 768) {
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
-    });
+    if (window.innerWidth > 768) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
 
-    const hoverElements = document.querySelectorAll('a, button, .product-card, .service-card, .floating-device');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
+        // Función para agregar eventos a los elementos
+        function addHoverEvents() {
+            const hoverElements = document.querySelectorAll('a, button, .service-card, .dev');
+            
+            hoverElements.forEach(el => {
+                // Remover eventos previos para evitar duplicados
+                el.removeEventListener('mouseenter', addHover);
+                el.removeEventListener('mouseleave', removeHover);
+                
+                // Agregar nuevos eventos
+                el.addEventListener('mouseenter', addHover);
+                el.addEventListener('mouseleave', removeHover);
+            });
+        }
+
+        function addHover() {
+            cursor.classList.add('hover');
+            cursorDot.classList.add('hover');
+        }
+
+        function removeHover() {
+            cursor.classList.remove('hover');
+            cursorDot.classList.remove('hover');
+        }
+
+        // Inicializar una vez
+        addHoverEvents();
+        
+        // Re-inicializar después de un breve tiempo por si el DOM se actualiza
+        setTimeout(addHoverEvents, 100);
+    }
 }
+
+// Ejecutar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', initCustomCursor);
+
+// También ejecutar cuando la página termine de cargar
+window.addEventListener('load', initCustomCursor);
 
 // Header Scroll Effect
 const header = document.querySelector('.main-header');

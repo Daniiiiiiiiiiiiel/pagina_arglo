@@ -17,6 +17,87 @@ const colorStyles = {
     'Transparente': { bg: 'linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), linear-gradient(45deg, #ccc 25%, white 25%, white 75%, #ccc 75%, #ccc)', bgSize: '10px 10px', bgPosition: '0 0, 5px 5px', border: '2px solid #e5e5e5', name: 'Transparente' }
 };
 
+// Custom Cursor - Versión corregida
+function initCustomCursor() {
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    
+    if (!cursor || !cursorDot) {
+        console.log('Elementos del cursor no encontrados');
+        return;
+    }
+
+    // Solo activar en pantallas grandes
+    if (window.innerWidth > 768) {
+        console.log('Inicializando cursor personalizado...');
+
+        // Mover cursor
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        // Función para manejar hover
+        function handleMouseEnter() {
+            cursor.classList.add('hover');
+            cursorDot.classList.add('hover');
+        }
+
+        function handleMouseLeave() {
+            cursor.classList.remove('hover');
+            cursorDot.classList.remove('hover');
+        }
+
+        // Agregar eventos a todos los elementos hover
+        function addHoverEvents() {
+            const hoverElements = document.querySelectorAll(
+                'a, button, .product-card, .service-card, .floating-device, .dev, .color-option'
+            );
+            
+            console.log(`Encontrados ${hoverElements.length} elementos para hover`);
+
+            hoverElements.forEach(el => {
+                // Remover eventos previos
+                el.removeEventListener('mouseenter', handleMouseEnter);
+                el.removeEventListener('mouseleave', handleMouseLeave);
+                
+                // Agregar nuevos eventos
+                el.addEventListener('mouseenter', handleMouseEnter);
+                el.addEventListener('mouseleave', handleMouseLeave);
+                
+            });
+
+            // Específicamente para debug de elementos .dev
+            const devElements = document.querySelectorAll('.dev');
+            console.log(`Elementos con clase .dev: ${devElements.length}`);
+            
+        }
+
+        // Inicializar eventos
+        addHoverEvents();
+        
+        // Re-inicializar después de que la página cargue completamente
+        window.addEventListener('load', addHoverEvents);
+        
+        // Re-inicializar después de un breve delay por si el DOM se actualiza
+        setTimeout(addHoverEvents, 500);
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', initCustomCursor);
+
+// También inicializar cuando la página termine de cargar
+window.addEventListener('load', initCustomCursor);
+
+// Re-inicializar en cambios de tamaño de pantalla
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        initCustomCursor();
+    }
+});
 // ==================== ESTADO DE LA APLICACIÓN ====================
 class AppState {
     constructor() {
@@ -983,15 +1064,16 @@ function sendOrderToWhatsApp(formData) {
         return;
     }
     
-    const numero = '50684321030';
+    // FORMATO CORRECTO: eliminar el 0 al inicio y agregar código de país
+    const numero = '50684321030'; // Este número ya está en formato correcto
     
     let mensaje = 'SOLICITUD DE COTIZACION - ARGLO MEDICA\n\n';
     
     // Información del cliente
-    mensaje += 'CLIENTE:\n';
-    mensaje += 'Nombre: ' + formData.get('customerName') + '\n';
-    mensaje += 'Telefono: ' + formData.get('customerPhone') + '\n';
-    mensaje += 'Direccion: ' + formData.get('customerAddress') + '\n\n';
+    mensaje += 'CLIENTE:\n\n';
+    mensaje += 'Nombre: ' + (formData.get('customerName') || 'No proporcionado') + '\n';
+    mensaje += 'Telefono: ' + (formData.get('customerPhone') || 'No proporcionado') + '\n';
+    mensaje += 'Direccion: ' + (formData.get('customerAddress') || 'No proporcionada') + '\n\n';
     
     // Detalles del pedido
     mensaje += 'PRODUCTOS:\n';
@@ -1000,172 +1082,36 @@ function sendOrderToWhatsApp(formData) {
     appState.cartItems.forEach((item) => {
         const itemTotal = parseFloat(item.price) * item.quantity;
         total += itemTotal;
-        mensaje += '- ' + item.title + ' (' + item.color + ') - ' + item.quantity + ' x $' + item.price + ' = $' + itemTotal.toFixed(2) + '\n';
+        mensaje += '\n- ' + item.title + ' (' + item.color + ') - ' + item.quantity + ' x ₡' + item.price + ' = ₡' + itemTotal.toFixed(2) + '\n';
     });
     
-    mensaje += '\nTOTAL: $' + total.toFixed(2) + '\n\n';
+    mensaje += '\nTOTAL: ₡' + total.toFixed(2) + '\n\n';
     mensaje += 'Por favor confirmar disponibilidad y costo de envio. Gracias.';
 
-    // Crear popup/modal minimalista
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        font-family: 'Segoe UI', system-ui, sans-serif;
-    `;
+    // Codificar el mensaje
+    const mensajeCodificado = encodeURIComponent(mensaje);
     
-    modal.innerHTML = `
-        <div style="
-            background: white;
-            padding: 0;
-            border-radius: 12px;
-            max-width: 420px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            overflow: hidden;
-        ">
-            <div style="
-                background: #f8f9fa;
-                padding: 24px 20px;
-                border-bottom: 1px solid #e9ecef;
-            ">
-                <h3 style="margin: 0 0 8px 0; font-size: 1.4em; font-weight: 600; color: #2b2d42;">Listo para enviar</h3>
-                <p style="margin: 0; color: #6c757d; font-size: 0.95em;">Tu pedido ha sido preparado</p>
-            </div>
-            
-            <div style="padding: 28px 30px;">
-                <div style="
-                    background: #f8f9fa;
-                    padding: 20px;
-                    border-radius: 8px;
-                    margin-bottom: 24px;
-                    border: 1px solid #e9ecef;
-                ">
-                    <p style="margin: 0 0 16px 0; font-weight: 600; color: #2b2d42; font-size: 1.1em;">Sigue estos pasos:</p>
-                    <div style="text-align: left; color: #495057;">
-                        <p style="margin: 12px 0; display: flex; align-items: center;">
-                            <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">1</span>
-                            <span>Se abrirá WhatsApp</span>
-                        </p>
-                        <p style="margin: 12px 0; display: flex; align-items: center;">
-                            <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">2</span>
-                            <span>Pega el mensaje (Ctrl+V si estás en PC)</span>
-                        </p>
-                        <p style="margin: 12px 0; display: flex; align-items: center;">
-                            <span style="display: inline-block; width: 24px; height: 24px; background: #007bff; color: white; border-radius: 50%; text-align: center; line-height: 24px; margin-right: 12px; font-size: 0.8em;">3</span>
-                            <span>Envía tu cotización</span>
-                        </p>
-                    </div>
-                </div>
-                
-                <button id="continuarBtn" style="
-                    background: #28a745;
-                    color: white;
-                    border: none;
-                    padding: 14px 30px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    font-size: 1em;
-                    font-weight: 600;
-                    width: 100%;
-                    transition: all 0.2s ease;
-                ">Continuar a WhatsApp</button>
-                
-                <p style="
-                    margin: 16px 0 0 0;
-                    font-size: 0.85em;
-                    color: #6c757d;
-                ">El mensaje se ha copiado automáticamente</p>
-            </div>
-        </div>
-    `;
     
-    document.body.appendChild(modal);
+    // Opción 2: Formato con código de país explícito
+    const url1 = `https://web.whatsapp.com/send?phone=${numero}&text=${mensajeCodificado}`;
     
-    // Efecto hover para el botón
-    const button = document.getElementById('continuarBtn');
-    button.addEventListener('mouseenter', function() {
-        this.style.background = '#218838';
-        this.style.transform = 'translateY(-1px)';
-    });
+ 
     
-    button.addEventListener('mouseleave', function() {
-        this.style.background = '#28a745';
-        this.style.transform = 'translateY(0)';
-    });
+    console.log('URLs generadas:');
+    console.log('Opción 1:', url1);
+
     
-    // Copiar mensaje al portapapeles
-    navigator.clipboard.writeText(mensaje).then(() => {
-        console.log('Mensaje copiado al portapapeles');
-    }).catch(() => {
-        // Si falla el clipboard, mostrar área de texto
-        const stepsDiv = modal.querySelector('div[style*="background: #f8f9fa"]');
-        stepsDiv.innerHTML = `
-            <p style="margin: 0 0 16px 0; font-weight: 600; color: #2b2d42; font-size: 1.1em;">Copia el siguiente mensaje:</p>
-            <textarea 
-                style="
-                    width: 100%; 
-                    height: 120px; 
-                    margin: 10px 0; 
-                    padding: 12px;
-                    border: 1px solid #ced4da;
-                    border-radius: 6px;
-                    font-family: inherit;
-                    resize: none;
-                    background: #fff;
-                    font-size: 0.9em;
-                "
-                readonly
-            >${mensaje}</textarea>
-            <p style="margin: 8px 0 0 0; font-size: 0.85em; color: #6c757d;">Selecciona y copia el texto arriba</p>
-        `;
-    });
+    // Probar con la opción 1 primero
+    window.open(url1, '_blank');
     
-    // Evento del botón
-    button.addEventListener('click', function() {
-        // Abrir WhatsApp
-        const url = `https://wa.me/${numero}`;
-        window.open(url, '_blank');
-        
-        // Cerrar modal con animación
-        modal.style.opacity = '0';
-        modal.style.transition = 'opacity 0.2s ease';
-        setTimeout(() => {
-            if (document.body.contains(modal)) {
-                document.body.removeChild(modal);
-            }
-        }, 200);
-        
-        // Limpiar carrito
-        appState.cartItems = [];
-        appState.updateCartCount();
-        appState.saveCart();
-        updateCartView();
-        updateCartBadge();
-        
-        showNotification('Redirigiendo a WhatsApp...', 'success');
-    });
+    // Limpiar carrito
+    appState.cartItems = [];
+    appState.updateCartCount();
+    appState.saveCart();
+    updateCartView();
+    updateCartBadge();
     
-    // Cerrar modal haciendo click fuera
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                if (document.body.contains(modal)) {
-                    document.body.removeChild(modal);
-                }
-            }, 200);
-        }
-    });
+    showNotification('Información enviada a WhatsApp', 'success');
 }
 
 // ==================== SISTEMA DE BÚSQUEDA ====================
@@ -2126,10 +2072,12 @@ function initProductCardEvents() {
 }
 
 // ==================== FUNCIÓN MEJORADA PARA WISHLIST ====================
+// ==================== FUNCIÓN MEJORADA PARA WISHLIST ====================
 function toggleWishlistItem(productId, product, btn = null) {
     const existingItemIndex = appState.wishlistItems.findIndex(item => item.id === productId);
     
     if (existingItemIndex !== -1) {
+        // ELIMINAR DE FAVORITOS
         appState.wishlistItems.splice(existingItemIndex, 1);
         appState.updateWishlistCount();
         appState.saveWishlist();
@@ -2142,8 +2090,11 @@ function toggleWishlistItem(productId, product, btn = null) {
             icon.classList.add('far');
         }
         
+        // CORRECCIÓN: Mostrar mensaje correcto para eliminación
         showNotification('Producto removido de favoritos', 'info');
+        
     } else {
+        // AGREGAR A FAVORITOS
         appState.wishlistItems.push({
             id: product.id,
             title: product.title,
@@ -2162,6 +2113,7 @@ function toggleWishlistItem(productId, product, btn = null) {
             icon.classList.add('fas');
         }
         
+        // Mensaje correcto para agregar
         showNotification('Producto añadido a favoritos', 'success');
         
         setTimeout(() => {
@@ -2549,6 +2501,8 @@ function attachWishlistItemEvents() {
                 updateWishlistView();
                 updateWishlistBadge();
                 updateWishlistButton();
+                
+                // CORRECCIÓN: Mostrar mensaje correcto para eliminación
                 showNotification('Producto removido de favoritos', 'info');
             }, 300);
         });
@@ -2591,9 +2545,25 @@ function updateWishlistBadge() {
 }
 
 // ==================== NOTIFICACIONES MEJORADAS ====================
+// ==================== NOTIFICACIONES MEJORADAS ====================
 function showNotification(message = 'El artículo se ha añadido al carrito', type = 'success') {
-    const notificationText = DOM.notification.querySelector('.notification-text p');
-    notificationText.textContent = message;
+    const notificationText = DOM.notification.querySelector('.notification-text');
+    const notificationTitle = notificationText.querySelector('h4');
+    const notificationMessage = notificationText.querySelector('p');
+    
+    // Cambiar el título según el tipo de notificación
+    if (type === 'error') {
+        notificationTitle.textContent = '¡Error!';
+    } else if (type === 'warning') {
+        notificationTitle.textContent = '¡Advertencia!';
+    } else if (type === 'info') {
+        notificationTitle.textContent = 'Producto removido';
+    } else {
+        notificationTitle.textContent = '¡Producto agregado!';
+    }
+    
+    // Actualizar el mensaje
+    notificationMessage.textContent = message;
     
     // Reset classes
     DOM.notification.className = 'notification active';

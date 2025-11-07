@@ -1781,6 +1781,12 @@ body {
     z-index: 2;
     font-size: 0.9rem;
 }
+.footer-bottom a{
+        color: rgba(255, 255, 255, 0.737);
+        text-decoration: none;
+}
+
+ 
 
 /* ANIMATIONS */
 @keyframes fadeInDown {
