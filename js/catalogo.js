@@ -2134,10 +2134,10 @@ function loadProduct(productId, keepRelatedProducts = false) {
     // BADGES EN CONTAINER SEPARADO
     let badgesHTML = '';
     if (product.discount) {
-        badgesHTML += '<span class="product-badge discount-badge">🏷️ DESCUENTO APLICADO</span>';
+        badgesHTML += '<span class="product-badge discount-badge">🏷️APLICA DESCUENTO</span>';
     }
     if (product.wholesale) {
-        badgesHTML += '<span class="product-badge wholesale-badge">📦 PRECIO MAYOREO</span>';
+        badgesHTML += '<span class="product-badge wholesale-badge">📦APLICA MAYOREO</span>';
     }
     
     if (badgesHTML) {
