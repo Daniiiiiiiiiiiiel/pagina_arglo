@@ -11,7 +11,9 @@ export const productsData = {
         categories: 'Insumos Médicos, Desechables',
         tags: 'Lancetas, Estética, Punción',
         colors: ['Blanco'],
-        characteristics: 'Estériles, aguja ultra fina 30G, profundidad controlada 1.5mm, seguridad con tapa protectora, material hipoalergénico'
+        characteristics: 'Estériles, aguja ultra fina 30G, profundidad controlada 1.5mm, seguridad con tapa protectora, material hipoalergénico',
+        wholesale: true,
+        discount: false
     },
     1: {
         id: 1,
@@ -25,7 +27,9 @@ export const productsData = {
         categories: 'Insumos Médicos, Estética',
         tags: 'Ultrasonido, Gel, Lubricante',
         colors: ['Blanco'],
-        characteristics: 'Base acuosa, hipoalergénico, pH neutro 7.0, no mancha, transparente, conductividad optimizada para equipos médicos'
+        characteristics: 'Base acuosa, hipoalergénico, pH neutro 7.0, no mancha, transparente, conductividad optimizada para equipos médicos',
+        wholesale: false,
+        discount: true
     },
     2: {
         id: 2,
@@ -39,12 +43,14 @@ export const productsData = {
         categories: 'Curación, Insumos Médicos',
         tags: 'Micropore, 3M, Cinta Médica',
         colors: ['Blanco'],
-        characteristics: 'Adhesivo hipoalergénico, transpirable, poros de 0.65mm, resistencia a la humedad, ancho 2.5cm, largo 9.1m'
+        characteristics: 'Adhesivo hipoalergénico, transpirable, poros de 0.65mm, resistencia a la humedad, ancho 2.5cm, largo 9.1m',
+        wholesale: false,
+        discount: true
     },
     3: {
         id: 3,
         title: 'Bolsas para Esterilizar',
-        price: 3500,
+        price: "Precio a cotizar", 
         description: 'Papel grado médico, indicado para el proceso de esterilización, diferentes tamaños disponibles. Caja con 200 unidades.',
         rating: 4,
         reviews: 67,
@@ -53,12 +59,14 @@ export const productsData = {
         categories: 'Esterilización, Insumos Médicos',
         tags: 'Esterilización, Bolsas, Médico',
         colors: ['Blanco'],
-        characteristics: 'Papel crepado grado médico, indicador químico integrado, sellado térmico a 121°C, resistente a autoclave, tamaños 10x15cm a 30x40cm'
+        characteristics: 'Papel crepado grado médico, indicador químico integrado, sellado térmico a 121°C, resistente a autoclave, tamaños 10x15cm a 30x40cm',
+        wholesale: false,
+        discount: false
     },
     4: {
         id: 4,
         title: 'Rollo para Esterilizar',
-        price: 4800,
+        price: "Precio a cotizar",
         description: 'Rollo de bolsas para esterilización de diferentes instrumentos, papel grados médico, cada rollo contiene 200 metros, hay de diferentes tamaños.',
         rating: 4,
         reviews: 45,
@@ -67,7 +75,9 @@ export const productsData = {
         categories: 'Esterilización, Insumos Médicos',
         tags: 'Esterilización, Rollo, Papel Médico',
         colors: ['Blanco'],
-        characteristics: 'Papel kraft médico 200 metros, ancho 50cm, resistencia a vapor 134°C, poroso para penetración de esterilizante, libre de toxinas'
+        characteristics: 'Papel kraft médico 200 metros, ancho 50cm, resistencia a vapor 134°C, poroso para penetración de esterilizante, libre de toxinas',
+        wholesale: false,
+        discount: false
     },
     5: {
         id: 5,
@@ -81,7 +91,9 @@ export const productsData = {
         categories: 'Protección, Insumos Médicos',
         tags: 'Barrera, Adhesiva, Protección',
         colors: ['Azul', 'Transparente'],
-        characteristics: 'Film polipropileno 25 micras, adhesivo de baja adherencia, ancho 45cm, transparente/azul, resistente a líquidos, no deja residuos'
+        characteristics: 'Film polipropileno 25 micras, adhesivo de baja adherencia, ancho 45cm, transparente/azul, resistente a líquidos, no deja residuos',
+        wholesale: true,
+        discount: false
     },
     6: {
         id: 6,
@@ -95,12 +107,14 @@ export const productsData = {
         categories: 'Antisépticos, Curación',
         tags: 'Yodo, Antiséptico, Pads',
         colors: ['Blanco'],
-        characteristics: 'Povidona yodada 10%, almohadilla no tejida 6x6cm, empaque individual estéril, acción bactericida rápida, efectivo contra hongos y virus'
+        characteristics: 'Povidona yodada 10%, almohadilla no tejida 6x6cm, empaque individual estéril, acción bactericida rápida, efectivo contra hongos y virus',
+        wholesale: true,
+        discount: false
     },
     7: {
         id: 7,
         title: 'Pads de Alcohol',
-        price: 2500,
+        price: "Precio a cotizar",
         description: 'Toallitas impregnadas en alcohol de 70%, para desinfectar heridas, cortes o áreas pequeñas antes de realizar un procedimiento. Caja con 100 unidades.',
         rating: 4,
         reviews: 189,
@@ -109,7 +123,9 @@ export const productsData = {
         categories: 'Desinfección, Curación',
         tags: 'Alcohol, Desinfectante, Pads',
         colors: ['Blanco'],
-        characteristics: 'Alcohol isopropílico 70%, tamaño 5x5cm, material no tejido, empaque individual, secado rápido, acción desinfectante inmediata'
+        characteristics: 'Alcohol isopropílico 70%, tamaño 5x5cm, material no tejido, empaque individual, secado rápido, acción desinfectante inmediata',
+        wholesale: true,
+        discount: false
     },
     8: {
         id: 8,
@@ -123,7 +139,9 @@ export const productsData = {
         categories: 'Odontología, Insumos Médicos',
         tags: 'Suctor, Saliva, Odontología',
         colors: ['Blanco'],
-        characteristics: 'Polipropileno flexible, longitud 15cm, diámetro 8mm, punta redondeada, esterilizable, no reactivo con saliva'
+        characteristics: 'Polipropileno flexible, longitud 15cm, diámetro 8mm, punta redondeada, esterilizable, no reactivo con saliva',
+        wholesale: true,
+        discount: false
     },
     9: {
         id: 9,
@@ -137,7 +155,9 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Cubre Zapatos, Protección, Hospital',
         colors: ['Blanco'],
-        characteristics: 'Tela SMS 35gsm, suela antideslizante texturizada, elástico en tobillo, talla única 28-46, resistencia a líquidos, peso 8g por unidad'
+        characteristics: 'Tela SMS 35gsm, suela antideslizante texturizada, elástico en tobillo, talla única 28-46, resistencia a líquidos, peso 8g por unidad',
+        wholesale: true,
+        discount: false
     },
     10: {
         id: 10,
@@ -151,7 +171,9 @@ export const productsData = {
         categories: 'Ropa Médica, Protección',
         tags: 'Bata, Desechable, Médico',
         colors: ['Azul', 'Negro'],
-        characteristics: 'Tela SMS 40gsm, cintas de polipropileno, apertura posterior, nivel de protección AAMI 1, resistencia a líquidos, talla única 110x140cm'
+        characteristics: 'Tela SMS 40gsm, cintas de polipropileno, apertura posterior, nivel de protección AAMI 1, resistencia a líquidos, talla única 110x140cm',
+        wholesale: true,
+        discount: false
     },
     11: {
         id: 11,
@@ -165,7 +187,9 @@ export const productsData = {
         categories: 'Ropa Médica, Protección',
         tags: 'Bata, Manga Larga, Protección',
         colors: ['Azul', 'Negro'],
-        characteristics: 'Tela SMS 45gsm, mangas con puños elásticos, protección AAMI 2, barrera contra fluidos, refuerzos en costuras, talla única 120x150cm'
+        characteristics: 'Tela SMS 45gsm, mangas con puños elásticos, protección AAMI 2, barrera contra fluidos, refuerzos en costuras, talla única 120x150cm',
+        wholesale: true,
+        discount: false
     },
     12: {
         id: 12,
@@ -179,7 +203,9 @@ export const productsData = {
         categories: 'Estética, Insumos',
         tags: 'Sábana, Estética, Masaje',
         colors: ['Azul', 'Negro'],
-        characteristics: 'Polipropileno 60gsm, tamaño 140x180cm, tratamiento hidrófugo, superficie no tejida, resistente a aceites, suave al contacto'
+        characteristics: 'Polipropileno 60gsm, tamaño 140x180cm, tratamiento hidrófugo, superficie no tejida, resistente a aceites, suave al contacto',
+        wholesale: true,
+        discount: false
     },
     13: {
         id: 13,
@@ -193,7 +219,9 @@ export const productsData = {
         categories: 'Estética, Insumos Médicos',
         tags: 'Cubre Camilla, Estética, Protección',
         colors: ['Azul', 'Negro'],
-        characteristics: 'Polipropileno 65gsm, elástico perimetral 1.5cm, tamaño 140x180cm, resistencia a líquidos, ajuste seguro hasta 90cm ancho'
+        characteristics: 'Polipropileno 65gsm, elástico perimetral 1.5cm, tamaño 140x180cm, resistencia a líquidos, ajuste seguro hasta 90cm ancho',
+        wholesale: true,
+        discount: false
     },
     14: {
         id: 14,
@@ -207,7 +235,9 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Cubre Barba, Protección, Alimentos',
         colors: ['Blanco'],
-        characteristics: 'Tela no tejida 25gsm, diseño tipo máscara, elástico ajustable, cubre barba y bigote, transpirable, cumple normas HACCP'
+        characteristics: 'Tela no tejida 25gsm, diseño tipo máscara, elástico ajustable, cubre barba y bigote, transpirable, cumple normas HACCP',
+        wholesale: true,
+        discount: false
     },
     15: {
         id: 15,
@@ -221,7 +251,9 @@ export const productsData = {
         categories: 'Estética, Odontología',
         tags: 'Babero, Servitoallas, Estética',
         colors: ['Rosa', 'Blanco', 'Negro', 'Verde', 'Turquesa', 'Morado', 'Rojo', 'Amarillo', 'Naranja', 'Azul'],
-        characteristics: 'Papel crepado 2 capas, tamaño 33x46cm, alta absorbencia 400ml/m², resistencia humedad, colores diferenciados, libre de latex'
+        characteristics: 'Papel crepado 2 capas, tamaño 33x46cm, alta absorbencia 400ml/m², resistencia humedad, colores diferenciados, libre de latex',
+        wholesale: true,
+        discount: false
     },
     16: {
         id: 16,
@@ -235,7 +267,9 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Capucha, Protección, Higiene',
         colors: ['Blanco'],
-        characteristics: 'Polietileno 25 micras, diseño tipo capucha, sello elástico facial, transpirable, protección completa cabello y cuello, talla única'
+        characteristics: 'Polietileno 25 micras, diseño tipo capucha, sello elástico facial, transpirable, protección completa cabello y cuello, talla única',
+        wholesale: true,
+        discount: false
     },
     17: {
         id: 17,
@@ -249,7 +283,9 @@ export const productsData = {
         categories: 'Protección Personal, Estética',
         tags: 'Gorro, Acordeón, Protección',
         colors: ['Rosa', 'Celeste', 'Negro'],
-        characteristics: 'Polipropileno no tejido, diseño acordeón extensible, talla única 50-60cm, elástico interno, peso 5g, colores diferenciados por área'
+        characteristics: 'Polipropileno no tejido, diseño acordeón extensible, talla única 50-60cm, elástico interno, peso 5g, colores diferenciados por área',
+        wholesale: true,
+        discount: false
     },
     18: {
         id: 18,
@@ -263,12 +299,14 @@ export const productsData = {
         categories: 'Protección Personal, Alimentos',
         tags: 'Gorro Malla, Protección, Alimentos',
         colors: ['Blanco', 'Negro'],
-        characteristics: 'Poliéster mesh, malla 1.5mm, diseño tipo redecilla, talla ajustable, lavable reusable, cumple normas alimentarias FDA'
+        characteristics: 'Poliéster mesh, malla 1.5mm, diseño tipo redecilla, talla ajustable, lavable reusable, cumple normas alimentarias FDA',
+        wholesale: true,
+        discount: false
     },
     19: {
         id: 19,
         title: 'Aceite para Masaje',
-        price: 8500,
+        price: "Precio a cotizar",
         description: 'Aceite a base de uva y extractos naturales, no contiene aceite mineral, es decir proveniente del petróleo. Tamaños: 250ml, litro o galón.',
         rating: 5,
         reviews: 234,
@@ -277,7 +315,9 @@ export const productsData = {
         categories: 'Estética, Masajes',
         tags: 'Aceite, Masaje, Natural',
         colors: ['Blanco'],
-        characteristics: 'Base aceite de uva, extractos naturales, pH 5.5, no comedogénico, absorción rápida, libre de parabenos y mineral oil'
+        characteristics: 'Base aceite de uva, extractos naturales, pH 5.5, no comedogénico, absorción rápida, libre de parabenos y mineral oil',
+        wholesale: false,
+        discount: false
     },
     20: {
         id: 20,
@@ -291,7 +331,9 @@ export const productsData = {
         categories: 'Insumos Médicos, Desechables',
         tags: 'Aplicadores, Largos, Desechables',
         colors: ['Blanco'],
-        characteristics: 'Vara de madera 15cm, punta algodón puro, diámetro punta 8mm, no estéril, absorción media, empaque individual'
+        characteristics: 'Vara de madera 15cm, punta algodón puro, diámetro punta 8mm, no estéril, absorción media, empaque individual',
+        wholesale: false,
+        discount: false
     },
     21: {
         id: 21,
@@ -305,7 +347,9 @@ export const productsData = {
         categories: 'Insumos Médicos, Desechables',
         tags: 'Aplicadores, Cortos, Desechables',
         colors: ['Blanco'],
-        characteristics: 'Vara de madera 7.5cm, punta algodón compacto, diámetro punta 6mm, precisión aplicaciones, empaque a granel, peso ligero'
+        characteristics: 'Vara de madera 7.5cm, punta algodón compacto, diámetro punta 6mm, precisión aplicaciones, empaque a granel, peso ligero',
+        wholesale: false,
+        discount: false
     },
     22: {
         id: 22,
@@ -319,12 +363,14 @@ export const productsData = {
         categories: 'Curación, Ortopedia',
         tags: 'Venda, Coban, Elástica',
         colors: ['Negro', 'Morado', 'Azul', 'Rojo'],
-        characteristics: 'Material cohesivo latex-free, ancho 5cm, largo 4.5m, elasticidad 150%, autoadherente, poroso transpirable, colores diferenciados'
+        characteristics: 'Material cohesivo latex-free, ancho 5cm, largo 4.5m, elasticidad 150%, autoadherente, poroso transpirable, colores diferenciados',
+        wholesale: true,
+        discount: false
     },
     23: {
         id: 23,
         title: 'Gasa No Tejida',
-        price: 2800,
+        price: "Precio a cotizar",
         description: '100% algodonada, extra absorbente, bajo en pelusa, libre de látex, no tejida, de un solo uso, no estéril, paquete de 200 unidades. Diferentes tamaños disponibles: 2x2, 3x3, 4x4.',
         rating: 4,
         reviews: 167,
@@ -333,7 +379,9 @@ export const productsData = {
         categories: 'Curación, Insumos Médicos',
         tags: 'Gasa, No Tejida, Absorbente',
         colors: ['Blanco'],
-        characteristics: 'Algodón 100% hidrófilo, baja pelusidad, tamaño 10x10cm, absorción 12g/g, libre de latex, empaque a granel'
+        characteristics: 'Algodón 100% hidrófilo, baja pelusidad, tamaño 10x10cm, absorción 12g/g, libre de latex, empaque a granel',
+        wholesale: true,
+        discount: false
     },
     24: {
         id: 24,
@@ -347,7 +395,9 @@ export const productsData = {
         categories: 'Limpieza, Desinfección',
         tags: 'Esterilix, Desinfectante, Equipos',
         colors: ['Blanco'],
-        characteristics: 'Glutaraldehído 2.4%, acción esporicida en 10h, compatibilidad metales, uso directo sin diluir, efectivo TB, HIV, HBV'
+        characteristics: 'Glutaraldehído 2.4%, acción esporicida en 10h, compatibilidad metales, uso directo sin diluir, efectivo TB, HIV, HBV',
+        wholesale: true,
+        discount: false
     },
     25: {
         id: 25,
@@ -361,13 +411,15 @@ export const productsData = {
         categories: 'Limpieza, Desinfección',
         tags: 'Esterilix, Superficie, Desinfectante',
         colors: ['Blanco'],
-        characteristics: 'Amonios cuaternarios 0.5%, listo para usar, acción bactericida en 5min, spray 500ml, no corrosivo, secado rápido 3min'
+        characteristics: 'Amonios cuaternarios 0.5%, listo para usar, acción bactericida en 5min, spray 500ml, no corrosivo, secado rápido 3min',
+        wholesale: true,
+        discount: false
     },
     26: {
         id: 26,
         title: 'Esterilix X-7',
         price: 10000,
-        description: 'Indicado para la desinfección en frío de instrumental, equipo medico o superficie.',
+        description: 'Indicado para la desinfección en frío de instrumental, equipo medico u superficie.',
         rating: 4,
         reviews: 78,
         review: "Excelente para instrumental que no puede ir al autoclave. La desinfección en frío es muy efectiva y no corroe los metales. Muy recomendado.",
@@ -375,7 +427,9 @@ export const productsData = {
         categories: 'Limpieza, Desinfección',
         tags: 'Esterilix, X-7, Desinfección',
         colors: ['Blanco'],
-        characteristics: 'Glutaraldehído 3.4%, desinfección nivel alto, tiempo activación 30min, vida útil 28 días, compatible acero inoxidable'
+        characteristics: 'Glutaraldehído 3.4%, desinfección nivel alto, tiempo activación 30min, vida útil 28 días, compatible acero inoxidable',
+        wholesale: true,
+        discount: false
     },
     27: {
         id: 27,
@@ -389,7 +443,9 @@ export const productsData = {
         categories: 'Limpieza, Desinfección',
         tags: 'Cleaner, 256, Concentrado',
         colors: ['Blanco'],
-        characteristics: 'Concentrado triple acción, dilución 1:256, amonios cuaternarios 5G, efectivo virus enveloped, rendimiento 256L por litro'
+        characteristics: 'Concentrado triple acción, dilución 1:256, amonios cuaternarios 5G, efectivo virus enveloped, rendimiento 256L por litro',
+        wholesale: true,
+        discount: false
     },
     28: {
         id: 28,
@@ -403,7 +459,9 @@ export const productsData = {
         categories: 'Limpieza, Enzimático',
         tags: 'Detercel, Enzimático, Detergente',
         colors: ['Blanco'],
-        characteristics: 'Enzimas proteasa/amilasa/lipasa, pH neutro 7.2, antioxidantes integrados, dilución 1:200, baja espuma, protección anticorrosión'
+        characteristics: 'Enzimas proteasa/amilasa/lipasa, pH neutro 7.2, antioxidantes integrados, dilución 1:200, baja espuma, protección anticorrosión',
+        wholesale: true,
+        discount: false
     },
     29: {
         id: 29,
@@ -417,7 +475,9 @@ export const productsData = {
         categories: 'Limpieza, Ambientadores',
         tags: 'Neutralizador, Olor, Ambientador',
         colors: ['Blanco'],
-        characteristics: 'Tecnología encapsulación olores, base zeolita natural, duración 30 días, área cobertura 20m², libre de CFC, aroma fresco natural'
+        characteristics: 'Tecnología encapsulación olores, base zeolita natural, duración 30 días, área cobertura 20m², libre de CFC, aroma fresco natural',
+        wholesale: true,
+        discount: false
     },
     30: {
         id: 30,
@@ -431,7 +491,9 @@ export const productsData = {
         categories: 'Antisépticos, Higiene',
         tags: 'Cloridex, Antiséptico, Quirúrgico',
         colors: ['Blanco'],
-        characteristics: 'Clorhexidina 4%, solución jabonosa, acción residual 6h, efectivo Gram+ y Gram-, pH balanceado, emolientes piel'
+        characteristics: 'Clorhexidina 4%, solución jabonosa, acción residual 6h, efectivo Gram+ y Gram-, pH balanceado, emolientes piel',
+        wholesale: true,
+        discount: false
     },
     31: {
         id: 31,
@@ -445,7 +507,9 @@ export const productsData = {
         categories: 'Insumos Médicos, Laboratorio',
         tags: 'Agua, Destilada, Purificada',
         colors: ['Blanco'],
-        characteristics: 'Pureza 99.9%, conductividad <5µS/cm, libre iones, pH 7.0, envase galón HDPE, uso autoclave y equipos médicos'
+        characteristics: 'Pureza 99.9%, conductividad <5µS/cm, libre iones, pH 7.0, envase galón HDPE, uso autoclave y equipos médicos',
+        wholesale: true,
+        discount: false
     },
     32: {
         id: 32,
@@ -459,7 +523,9 @@ export const productsData = {
         categories: 'Limpieza, Cuidado Personal',
         tags: 'Agua, Oxigenada, Blanqueador',
         colors: ['Blanco'],
-        characteristics: 'Peróxido hidrógeno 10vol, acción oxidante, desinfectante heridas, blanqueador natural, envase PET oscuro, estabilizado'
+        characteristics: 'Peróxido hidrógeno 10vol, acción oxidante, desinfectante heridas, blanqueador natural, envase PET oscuro, estabilizado',
+        wholesale: true,
+        discount: false
     },
     33: {
         id: 33,
@@ -473,7 +539,9 @@ export const productsData = {
         categories: 'Antisépticos, Limpieza',
         tags: 'Alcohol, Líquido, Antiséptico',
         colors: ['Blanco'],
-        characteristics: 'Etanol 96°, pureza USP, densidad 0.789g/ml, punto ebullición 78°C, envase galón, múltiples usos médico-industriales'
+        characteristics: 'Etanol 96°, pureza USP, densidad 0.789g/ml, punto ebullición 78°C, envase galón, múltiples usos médico-industriales',
+        wholesale: true,
+        discount: false
     },
     34: {
         id: 34,
@@ -487,7 +555,9 @@ export const productsData = {
         categories: 'Limpieza, Cocina',
         tags: 'Lavaplatos, Multiacción, Limpieza',
         colors: ['Blanco'],
-        characteristics: 'Microabrasivos sílice, agentes humectantes glicerina, pH neutro 7.5, acción desengrasante, protección dermatológica, aroma limón'
+        characteristics: 'Microabrasivos sílice, agentes humectantes glicerina, pH neutro 7.5, acción desengrasante, protección dermatológica, aroma limón',
+        wholesale: false,
+        discount: false
     },
     35: {
         id: 35,
@@ -501,12 +571,14 @@ export const productsData = {
         categories: 'Higiene, Antisépticos',
         tags: 'Alcohol, Gel, Desinfectante',
         colors: ['Blanco'],
-        characteristics: 'Etanol 70%, gel carbopol, humectantes pantenol, viscosidad 3000cps, acción rápida 30s, envase 300ml con dispensador'
+        characteristics: 'Etanol 70%, gel carbopol, humectantes pantenol, viscosidad 3000cps, acción rápida 30s, envase 300ml con dispensador',
+        wholesale: true,
+        discount: false
     },
     36: {
         id: 36,
         title: 'Alcohol en Gel',
-        price: 15000,
+        price: "Agotado",
         description: 'Reconocido por su rápida actividad contra una amplia gama de virus, bacterias y virus, hongos, no requiere enjuague, fácil aplicación.',
         rating: 5,
         reviews: 189,
@@ -515,12 +587,14 @@ export const productsData = {
         categories: 'Higiene, Antisépticos',
         tags: 'Alcohol, Gel, Desinfectante',
         colors: ['Blanco'],
-        characteristics: 'Etanol 70% grado médico, gelificación carbomer, emolientes piel, presentación 5L, rendimiento 5000 aplicaciones, recargable'
+        characteristics: 'Etanol 70% grado médico, gelificación carbomer, emolientes piel, presentación 5L, rendimiento 5000 aplicaciones, recargable',
+        wholesale: false,
+        discount: false
     },
     37: {
         id: 37,
         title: 'Jabón Líquido',
-        price: 6500,
+        price: "Agotado",
         description: 'El Jabón Líquido para Manos está diseñado para la limpieza y humectación de las manos, sin provocar resequedad después de su aplicación. Disponible en diferentes cromas y neutro.',
         rating: 4,
         reviews: 278,
@@ -529,7 +603,9 @@ export const productsData = {
         categories: 'Higiene, Cuidado Personal',
         tags: 'Jabón, Líquido, Manos',
         colors: ['Blanco'],
-        characteristics: 'Base tensioactivos suaves, pH 5.5, humectantes aloe vera, presentación 1L, aromas variados, rendimiento 800 lavados'
+        characteristics: 'Base tensioactivos suaves, pH 5.5, humectantes aloe vera, presentación 1L, aromas variados, rendimiento 800 lavados',
+        wholesale: false,
+        discount: false
     },
     38: {
         id: 38,
@@ -543,7 +619,9 @@ export const productsData = {
         categories: 'Esterilización, Control Calidad',
         tags: 'Cinta, Testigo, Esterilización',
         colors: ['Blanco'],
-        characteristics: 'Indicador químico vapor, cambio color beige a negro, temperatura 121°C, tiempo 15min, ancho 1.5cm, rollo 18m'
+        characteristics: 'Indicador químico vapor, cambio color beige a negro, temperatura 121°C, tiempo 15min, ancho 1.5cm, rollo 18m',
+        wholesale: false,
+        discount: false
     },
     39: {
         id: 39,
@@ -557,7 +635,9 @@ export const productsData = {
         categories: 'Protección Personal, Mascarillas',
         tags: 'KN95, Mascarilla, Protección',
         colors: ['Blanco', 'Rosa', 'Negro', 'Verde', 'Azul', 'Naranja', 'Amarillo', 'Rojo', 'Gris', 'Morado'],
-        characteristics: 'Eficiencia filtración 95%, 5 capas incluyendo meltblown, resistencia respiración <120Pa, ajuste nasal metálico, bandas elásticas, certificación GB2626-2006'
+        characteristics: 'Eficiencia filtración 95%, 5 capas incluyendo meltblown, resistencia respiración <120Pa, ajuste nasal metálico, bandas elásticas, certificación GB2626-2006',
+        wholesale: true,
+        discount: false
     },
     40: {
         id: 40,
@@ -571,7 +651,9 @@ export const productsData = {
         categories: 'Protección Personal, Mascarillas',
         tags: 'N95, Mascarilla, Protección',
         colors: ['Blanco'],
-        characteristics: 'Diseño cónico 3D, eficiencia NIOSH 95%, espacio interno amplio, sello facial mejorado, válvula exhalación opcional, uso médico-industrial'
+        characteristics: 'Diseño cónico 3D, eficiencia NIOSH 95%, espacio interno amplio, sello facial mejorado, válvula exhalación opcional, uso médico-industrial',
+        wholesale: true,
+        discount: false
     },
     41: {
         id: 41,
@@ -585,7 +667,9 @@ export const productsData = {
         categories: 'Protección Personal, Mascarillas',
         tags: 'KF94, Mascarilla, Coreana',
         colors: ['Blanco', 'Rosa', 'Negro', 'Verde', 'Azul', 'Naranja', 'Amarillo', 'Rojo', 'Gris', 'Morado'],
-        characteristics: 'Estándar coreano KF94, 4 capas protección, eficiencia 94%, diseño plegable 3D, clip nasal ajustable, resistencia respiración 70Pa'
+        characteristics: 'Estándar coreano KF94, 4 capas protección, eficiencia 94%, diseño plegable 3D, clip nasal ajustable, resistencia respiración 70Pa',
+        wholesale: true,
+        discount: false
     },
     42: {
         id: 42,
@@ -599,7 +683,9 @@ export const productsData = {
         categories: 'Protección Personal, Mascarillas',
         tags: 'Cubre Boca, Desechable, Protección',
         colors: ['Blanco', 'Rosa', 'Negro', 'Verde', 'Morado', 'Celeste'],
-        characteristics: '3 capas no tejido, eficiencia bacteriana 98%, diseño plano plisado, elásticos oreja, gramaje 25gsm, colores y estampados variados'
+        characteristics: '3 capas no tejido, eficiencia bacteriana 98%, diseño plano plisado, elásticos oreja, gramaje 25gsm, colores y estampados variados',
+        wholesale: true,
+        discount: false
     },
     43: {
         id: 43,
@@ -613,12 +699,14 @@ export const productsData = {
         categories: 'Cuidado Personal, Dermatología',
         tags: 'Vaselina, Pasta, Piel',
         colors: ['Blanco'],
-        characteristics: 'Petrolato USP 99.9%, consistencia pasta, oclusividad alta, protección barrera, uso tópico, envase 100g, pureza farmacéutica'
+        characteristics: 'Petrolato USP 99.9%, consistencia pasta, oclusividad alta, protección barrera, uso tópico, envase 100g, pureza farmacéutica',
+        wholesale: true,
+        discount: false
     },
     44: {
         id: 44,
         title: 'Rollo Plástico',
-        price: 3300,
+        price: "Precio a cotizar",
         description: 'Rollo plástico fino, transparente, resistente y estirable, con diferentes usos, envuelve y protege las camillas de la suciedad y polvo. Tamaños: 18 pulgadas y 6 pulgadas.',
         rating: 4,
         reviews: 98,
@@ -627,7 +715,9 @@ export const productsData = {
         categories: 'Protección, Insumos',
         tags: 'Rollo, Plástico, Protección',
         colors: ['Blanco'],
-        characteristics: 'Polietileno 15 micras, ancho 45cm, largo 300m, transparente, auto adhesivo, protección camillas y equipos'
+        characteristics: 'Polietileno 15 micras, ancho 45cm, largo 300m, transparente, auto adhesivo, protección camillas y equipos',
+        wholesale: true,
+        discount: false
     },
     45: {
         id: 45,
@@ -641,7 +731,9 @@ export const productsData = {
         categories: 'Desechables, Odontología',
         tags: 'Vasos, Cartón, Desechables',
         colors: ['Blanco'],
-        characteristics: 'Cartón kraft reciclable, capacidad 90ml, tratamiento parafina interior, base estable, diámetro boca 7cm, altura 8cm'
+        characteristics: 'Cartón kraft reciclable, capacidad 90ml, tratamiento parafina interior, base estable, diámetro boca 7cm, altura 8cm',
+        wholesale: true,
+        discount: false
     },
     46: {
         id: 46,
@@ -655,7 +747,9 @@ export const productsData = {
         categories: 'Desechables, Odontología',
         tags: 'Vasos, Plásticos, Desechables',
         colors: ['Blanco','Negro', 'Azul', 'Rosa', 'Morado', 'Celeste'],
-        characteristics: 'Polipropileno transparente, capacidad 90ml, pared 0.3mm, estabilidad líquidos calientes, colores diferenciados, apilables'
+        characteristics: 'Polipropileno transparente, capacidad 90ml, pared 0.3mm, estabilidad líquidos calientes, colores diferenciados, apilables',
+        wholesale: true,
+        discount: false
     },
     47: {
         id: 47,
@@ -669,7 +763,9 @@ export const productsData = {
         categories: 'Curación, Insumos Médicos',
         tags: 'Algodón, Rollo, Absorbente',
         colors: ['Blanco'],
-        characteristics: 'Algodón hidrófilo 100%, peso 500g, ancho 5cm, largo 100m, absorción rápida, baja pelusidad, uso médico general'
+        characteristics: 'Algodón hidrófilo 100%, peso 500g, ancho 5cm, largo 100m, absorción rápida, baja pelusidad, uso médico general',
+        wholesale: true,
+        discount: false
     },
     48: {
         id: 48,
@@ -683,7 +779,9 @@ export const productsData = {
         categories: 'Curación, Insumos Médicos',
         tags: 'Algodón, Torunda, Bolitas',
         colors: ['Blanco'],
-        characteristics: 'Bolas algodón prensado, diámetro 3cm, peso 0.5g unidad, alta densidad, absorción uniforme, empaque a granel 500 unidades'
+        characteristics: 'Bolas algodón prensado, diámetro 3cm, peso 0.5g unidad, alta densidad, absorción uniforme, empaque a granel 500 unidades',
+        wholesale: true,
+        discount: false
     },
     49: {
         id: 49,
@@ -697,7 +795,9 @@ export const productsData = {
         categories: 'Odontología, Instrumental',
         tags: 'Rodillo, Dental, Odontología',
         colors: ['Blanco'],
-        characteristics: 'Algodón grado odontológico, tamaño 3x4cm, compactación media, flexibilidad alta, esterilizable, uso aislamiento y secado'
+        characteristics: 'Algodón grado odontológico, tamaño 3x4cm, compactación media, flexibilidad alta, esterilizable, uso aislamiento y secado',
+        wholesale: true,
+        discount: false
     },
     50: {
         id: 50,
@@ -711,7 +811,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Guantes, Plástico, Alimentos',
         colors: ['Blanco'],
-        characteristics: 'Polietileno 15 micras, transparente, ambidiestro, talla única, aprobación contacto alimentos, peso 2g por guante'
+        characteristics: 'Polietileno 15 micras, transparente, ambidiestro, talla única, aprobación contacto alimentos, peso 2g por guante',
+        wholesale: false,
+        discount: false
     },
     51: {
         id: 51,
@@ -725,7 +827,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Latex, Bajos Polvo, Guantes',
         colors: ['Blanco', 'Rosa', 'Negro', 'Naranja', 'Morado', 'Celeste'],
-        characteristics: 'Latex natural, polvo maíz <2mg, espesor 0.08mm, sensibilidad alta, biodegradabilidad 90%, colores diferenciados por talla'
+        characteristics: 'Latex natural, polvo maíz <2mg, espesor 0.08mm, sensibilidad alta, biodegradabilidad 90%, colores diferenciados por talla',
+        wholesale: true,
+        discount: false
     },
     52: {
         id: 52,
@@ -739,7 +843,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Latex, Sin Polvo, Guantes',
         colors: ['Blanco'],
-        characteristics: 'Latex 100% natural, libre de polvo, tratamiento cloración, espesor 0.1mm, elasticidad 800%, sensibilidad extrema'
+        characteristics: 'Latex 100% natural, libre de polvo, tratamiento cloración, espesor 0.1mm, elasticidad 800%, sensibilidad extrema',
+        wholesale: true,
+        discount: false
     },
     53: {
         id: 53,
@@ -753,7 +859,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Vinyl, Guantes, Alimentos',
         colors: ['Blanco'],
-        characteristics: 'PVC plastificado, libre latex y polvo, ambidiestro, permeabilidad media, uso alimentario, espesor 0.08mm'
+        characteristics: 'PVC plastificado, libre latex y polvo, ambidiestro, permeabilidad media, uso alimentario, espesor 0.08mm',
+        wholesale: true,
+        discount: false
     },
     54: {
         id: 54,
@@ -767,7 +875,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Alto Riesgo, Protección, Químicos',
         colors: ['Verde', 'Celeste'],
-        characteristics: 'Nitrilo 100%, espesor 0.15mm, longitud 30cm, resistencia química nivel 3, protección mecánica, colores según riesgo'
+        characteristics: 'Nitrilo 100%, espesor 0.15mm, longitud 30cm, resistencia química nivel 3, protección mecánica, colores según riesgo',
+        wholesale: true,
+        discount: false
     },
     55: {
         id: 55,
@@ -781,7 +891,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Texturizados, Antideslizante, Guantes',
         colors: ['Negro'],
-        characteristics: 'Nitrilo texturizado, agarre micro-pattern, espesor 0.12mm, resistencia desgarro 18MPa, uso industrial-médico, color negro'
+        characteristics: 'Nitrilo texturizado, agarre micro-pattern, espesor 0.12mm, resistencia desgarro 18MPa, uso industrial-médico, color negro',
+        wholesale: true,
+        discount: false
     },
     56: {
         id: 56,
@@ -795,7 +907,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Vinyl, Color, Guantes',
         colors: ['Negro', 'Rosa', 'Morado','Celeste'],
-        characteristics: 'Mezcla vinyl/nitrilo 30/70, colores vivos, libre latex, espesor 0.1mm, resistencia media, diferenciación visual tareas'
+        characteristics: 'Mezcla vinyl/nitrilo 30/70, colores vivos, libre latex, espesor 0.1mm, resistencia media, diferenciación visual tareas',
+        wholesale: true,
+        discount: false
     },
     57: {
         id: 57,
@@ -809,7 +923,9 @@ export const productsData = {
         categories: 'Protección, Guantes',
         tags: 'Nitrilo, Guantes, Sin Látex',
         colors: ['Negro', 'Rosa', 'Celeste', 'Morado', 'Blanco'],
-        characteristics: 'Nitrilo 100% sintético, texturizado punta dedos, espesor 0.08mm, resistencia química, colores diferenciados, libre alergenos'
+        characteristics: 'Nitrilo 100% sintético, texturizado punta dedos, espesor 0.08mm, resistencia química, colores diferenciados, libre alergenos',
+        wholesale: true,
+        discount: false
     },
     58: {
         id: 58,
@@ -823,7 +939,9 @@ export const productsData = {
         categories: 'Limpieza, Protección',
         tags: 'Afelpados, Lavado, Protección',
         colors: ['Blanco'],
-        characteristics: 'Poliéster afelpado interior, textura antideslizante palma, espesor 0.5mm, lavable reusable, talla única, protección térmica básica'
+        characteristics: 'Poliéster afelpado interior, textura antideslizante palma, espesor 0.5mm, lavable reusable, talla única, protección térmica básica',
+        wholesale: true,
+        discount: false
     },
     59: {
         id: 59,
@@ -837,7 +955,9 @@ export const productsData = {
         categories: 'Quirúrgico, Guantes',
         tags: 'Quirúrgicos, Estériles, Látex',
         colors: ['Blanco'],
-        characteristics: 'Latex estéril quirúrgico, microtextura completa, espesor 0.18mm, esterilidad garantizada, prueba aire, cumple ASTM D3577'
+        characteristics: 'Latex estéril quirúrgico, microtextura completa, espesor 0.18mm, esterilidad garantizada, prueba aire, cumple ASTM D3577',
+        wholesale: true,
+        discount: false
     },
     60: {
         id: 60,
@@ -851,7 +971,9 @@ export const productsData = {
         categories: 'Estética, Insumos',
         tags: 'Papel, Camilla, Protección',
         colors: ['Blanco'],
-        characteristics: 'Papel kraft médico, ancho 54cm, largo 38m, resistencia humedad, no tejido, dispensador compatible, cambio rápido entre pacientes'
+        characteristics: 'Papel kraft médico, ancho 54cm, largo 38m, resistencia humedad, no tejido, dispensador compatible, cambio rápido entre pacientes',
+        wholesale: true,
+        discount: false
     },
     61: {
         id: 61,
@@ -865,7 +987,9 @@ export const productsData = {
         categories: 'Estética, Desechables',
         tags: 'Paletas, Madera, Aplicadores',
         colors: ['Blanco'],
-        characteristics: 'Madera abedul natural, tamaño 15cm, punta plana/ancha, superficie lisa, no reactiva, biodegradable, uso cosmético'
+        characteristics: 'Madera abedul natural, tamaño 15cm, punta plana/ancha, superficie lisa, no reactiva, biodegradable, uso cosmético',
+        wholesale: true,
+        discount: false
     },
     62: {
         id: 62,
@@ -879,7 +1003,9 @@ export const productsData = {
         categories: 'Monitoreo, Médico',
         tags: 'Oxímetro, Saturación, Salud',
         colors: ['Blanco'],
-        characteristics: 'Pantalla OLED, rango SpO2 70-99%, precisión ±2%, medición pulso 30-250bpm, batería Li-ion, tamaño dedos 8-25mm'
+        characteristics: 'Pantalla OLED, rango SpO2 70-99%, precisión ±2%, medición pulso 30-250bpm, batería Li-ion, tamaño dedos 8-25mm',
+        wholesale: false,
+        discount: false
     },
     63: {
         id: 63,
@@ -893,7 +1019,9 @@ export const productsData = {
         categories: 'Tecnología, Seguridad',
         tags: 'K9 Pro, Temperatura, Desinfección',
         colors: ['Blanco'],
-        characteristics: 'Termómetro infrarrojo sin contacto, rango 34-42°C, precisión ±0.2°C, dispensador gel 70%, sensor distancia 5-15cm, pantalla LCD'
+        characteristics: 'Termómetro infrarrojo sin contacto, rango 34-42°C, precisión ±0.2°C, dispensador gel 70%, sensor distancia 5-15cm, pantalla LCD',
+        wholesale: false,
+        discount: false
     },
     64: {
         id: 64,
@@ -907,7 +1035,9 @@ export const productsData = {
         categories: 'Limpieza, Higiene',
         tags: 'Papel, Toalla, Rollo',
         colors: ['Blanco'],
-        characteristics: 'Papel 2 capas crepado, ancho 21cm, diámetro rollo 12cm, absorción 300ml/m², resistencia humedad, dispensador estándar'
+        characteristics: 'Papel 2 capas crepado, ancho 21cm, diámetro rollo 12cm, absorción 300ml/m², resistencia humedad, dispensador estándar',
+        wholesale: false,
+        discount: false
     },
     65: {
         id: 65,
@@ -921,7 +1051,9 @@ export const productsData = {
         categories: 'Limpieza, Higiene',
         tags: 'Toallas, Papel, Manos',
         colors: ['Blanco'],
-        characteristics: 'Sistema interfoliado, tamaño 22.5x23cm, 2 capas, absorción rápida, dispensación individual, paquete 200 unidades'
+        characteristics: 'Sistema interfoliado, tamaño 22.5x23cm, 2 capas, absorción rápida, dispensación individual, paquete 200 unidades',
+        wholesale: true,
+        discount: false
     },
     66: {
         id: 66,
@@ -935,12 +1067,14 @@ export const productsData = {
         categories: 'Protección, Ropa Médica',
         tags: 'Bata, Impermeable, Protección',
         colors: ['Celeste'],
-        characteristics: 'Polietileno 35 micras, diseño espalda abierta, sello neck-guard, mangas largas, protección nivel 4, talla única'
+        characteristics: 'Polietileno 35 micras, diseño espalda abierta, sello neck-guard, mangas largas, protección nivel 4, talla única',
+        wholesale: true,
+        discount: false
     },
     67: {
         id: 67,
         title: 'Camilla Hidráulica',
-        price: 250000,
+        price: "Precio a cotizar",
         description: 'Brazos abatibles y ajustable soporte de piernas ajustables, cabecera removible, pistón de aire para ajustar la altura.',
         rating: 5,
         reviews: 45,
@@ -949,12 +1083,14 @@ export const productsData = {
         categories: 'Equipamiento, Médico',
         tags: 'Camilla, Hidráulica, Ajustable',
         colors: ['Blanco'],
-        characteristics: 'Sistema hidráulico bomba pedal, altura 65-95cm, estructura acero, tapizado vinílico, peso máximo 180kg, ruedas bloqueables'
+        characteristics: 'Sistema hidráulico bomba pedal, altura 65-95cm, estructura acero, tapizado vinílico, peso máximo 180kg, ruedas bloqueables',
+        wholesale: false,
+        discount: false
     },
     68: {
         id: 68,
         title: 'Banco Giratorio con Respaldo',
-        price: 45000,
+        price: "Precio a cotizar",
         description: 'Hecho de aluminio, hierro esmaltado y vinyl, altura ajustable, con respaldar, varios colores a elegir.',
         rating: 4,
         reviews: 67,
@@ -963,12 +1099,14 @@ export const productsData = {
         categories: 'Muebles, Estética',
         tags: 'Banco, Giratorio, Respaldo',
         colors: ['Blanco'],
-        characteristics: 'Estructura aluminio, asiento vinílico, altura 50-70cm, giro 360°, respaldo lumbar, capacidad 120kg, base 5 patas'
+        characteristics: 'Estructura aluminio, asiento vinílico, altura 50-70cm, giro 360°, respaldo lumbar, capacidad 120kg, base 5 patas',
+        wholesale: false,
+        discount: false
     },
     69: {
         id: 69,
         title: 'Canilla Fija',
-        price: 180000,
+        price: "Precio a cotizar",
         description: 'Camillas cómoda, resistente, fija, soporta un peso aproximado de 150 kilos, apta para realizar masajes, tatuajes, microblading, lashista, etc. 6 diferentes estilos y varios colores a elegir.',
         rating: 4,
         reviews: 89,
@@ -977,12 +1115,14 @@ export const productsData = {
         categories: 'Muebles, Estética',
         tags: 'Canilla, Fija, Masajes',
         colors: ['Blanco'],
-        characteristics: 'Estructura acero 2mm, tapizado cuero ecológico, espesor espuma 10cm, altura 75cm, peso máximo 150kg, acabado epoxy'
+        characteristics: 'Estructura acero 2mm, tapizado cuero ecológico, espesor espuma 10cm, altura 75cm, peso máximo 150kg, acabado epoxy',
+        wholesale: false,
+        discount: false
     },
     70: {
         id: 70,
         title: 'Banco Giratorio sin Respaldo',
-        price: 35000,
+        price: "Precio a cotizar",
         description: 'Hecho de aluminio, hierro esmaltado y vinyl, altura ajustable, sin respaldar, varios colores a elegir.',
         rating: 4,
         reviews: 56,
@@ -991,7 +1131,9 @@ export const productsData = {
         categories: 'Muebles, Estética',
         tags: 'Banco, Giratorio, Sin Respaldo',
         colors: ['Blanco'],
-        characteristics: 'Aluminio anodizado, asiento vinílico, altura 45-65cm, giro libre, base estrella, peso 4.5kg, portátil'
+        characteristics: 'Aluminio anodizado, asiento vinílico, altura 45-65cm, giro libre, base estrella, peso 4.5kg, portátil',
+        wholesale: false,
+        discount: false
     },
     71: {
         id: 71,
@@ -1005,7 +1147,9 @@ export const productsData = {
         categories: 'Muebles, Portátil',
         tags: 'Camilla, Maleta, Portátil',
         colors: ['Blanco'],
-        characteristics: 'Diseño plegable, peso 12kg, estructura aluminio, tapizado lavable, altura 65cm, peso máximo 120kg, asa transporte'
+        characteristics: 'Diseño plegable, peso 12kg, estructura aluminio, tapizado lavable, altura 65cm, peso máximo 120kg, asa transporte',
+        wholesale: false,
+        discount: false
     },
     72: {
         id: 72,
@@ -1019,7 +1163,9 @@ export const productsData = {
         categories: 'Accesorios, Estética',
         tags: 'Apoya, Brazos, Ajustable',
         colors: ['Blanco'],
-        characteristics: 'Ajuste altura 70-90cm, superficie vinílica, estructura aluminio, base estable, ancho 25cm, uso manicure y estética'
+        characteristics: 'Ajuste altura 70-90cm, superficie vinílica, estructura aluminio, base estable, ancho 25cm, uso manicure y estética',
+        wholesale: false,
+        discount: false
     },
     73: {
         id: 73,
@@ -1033,7 +1179,9 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Gorro, Cirugía, Protección',
         colors: ['Blanco'],
-        characteristics: 'Polipropileno no tejido, diseño bouffant, elástico suave, cobertura completa, peso 8g, esterilización gamma'
+        characteristics: 'Polipropileno no tejido, diseño bouffant, elástico suave, cobertura completa, peso 8g, esterilización gamma',
+        wholesale: true,
+        discount: false
     },
     74: {
         id: 74,
@@ -1047,7 +1195,9 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Careta, Protectora, Facial',
         colors: ['Blanco'],
-        characteristics: 'Policarbonato 0.5mm, banda elástica ajustable, visibilidad 180°, peso 45g, protección salpicaduras, limpieza fácil'
+        characteristics: 'Policarbonato 0.5mm, banda elástica ajustable, visibilidad 180°, peso 45g, protección salpicaduras, limpieza fácil',
+        wholesale: false,
+        discount: false
     },
     75: {
         id: 75,
@@ -1061,7 +1211,9 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Careta, Lentes, Protección',
         colors: ['Blanco'],
-        characteristics: 'PET 0.3mm, diseño espacio anteojos, elástico suave, protección facial completa, pack 6 unidades, almacenamiento plano'
+        characteristics: 'PET 0.3mm, diseño espacio anteojos, elástico suave, protección facial completa, pack 6 unidades, almacenamiento plano',
+        wholesale: false,
+        discount: false
     },
     76: {
         id: 76,
@@ -1075,7 +1227,9 @@ export const productsData = {
         categories: 'Protección, Ropa Médica',
         tags: 'Kimono, Protector, Barrera',
         colors: ['Blanco'],
-        characteristics: 'Tyvek 45gsm, costuras selladas, cierre frontal completo, capucha integrada, tallas S-XXL, protección partículas 0.5 micras'
+        characteristics: 'Tyvek 45gsm, costuras selladas, cierre frontal completo, capucha integrada, tallas S-XXL, protección partículas 0.5 micras',
+        wholesale: false,
+        discount: false
     },
     77: {
         id: 77,
@@ -1089,12 +1243,14 @@ export const productsData = {
         categories: 'Equipamiento, Oficina',
         tags: 'Dispensador, Agua, Electrónico',
         colors: ['Blanco'],
-        characteristics: 'Sistema touch electrónico, doble motor 12V, batería 2000mAh, capacidad garrafón 20L, flujo 1.5L/min, material ABS alimentario'
+        characteristics: 'Sistema touch electrónico, doble motor 12V, batería 2000mAh, capacidad garrafón 20L, flujo 1.5L/min, material ABS alimentario',
+        wholesale: false,
+        discount: false
     },
     78: {
         id: 78,
         title: 'Dispensador de Toalla',
-        price: 8500,
+        price: "Precio a cotizar",
         description: 'Diseñado para la dispensación controlada de toallas de papel, usado principalmente en baños, cocinas o áreas de trabajo donde se requiere higiene.',
         rating: 4,
         reviews: 78,
@@ -1103,12 +1259,14 @@ export const productsData = {
         categories: 'Equipamiento, Higiene',
         tags: 'Dispensador, Toalla, Papel',
         colors: ['Blanco'],
-        characteristics: 'Acero inoxidable 304, mecanismo palanca, capacidad 200 toallas, montaje pared, protección anti-vandalismo, fácil recarga'
+        characteristics: 'Acero inoxidable 304, mecanismo palanca, capacidad 200 toallas, montaje pared, protección anti-vandalismo, fácil recarga',
+        wholesale: false,
+        discount: false
     },
     79: {
         id: 79,
         title: 'Dispensador en Rollo',
-        price: 9500,
+        price: "Precio a cotizar",
         description: 'Diseñado para suministrar toalla de papel en rollo, ideal para el secado de manos en baños, cocinas o áreas industriales.',
         rating: 4,
         reviews: 56,
@@ -1117,12 +1275,14 @@ export const productsData = {
         categories: 'Equipamiento, Higiene',
         tags: 'Dispensador, Rollo, Toalla',
         colors: ['Blanco'],
-        characteristics: 'Diseño para rollo jumbo, corte automático, acero inoxidable, ancho rollo 21cm, diámetro máximo 15cm, montaje superficie'
+        characteristics: 'Diseño para rollo jumbo, corte automático, acero inoxidable, ancho rollo 21cm, diámetro máximo 15cm, montaje superficie',
+        wholesale: false,
+        discount: false
     },
     80: {
         id: 80,
         title: 'Gafa de Seguridad',
-        price: 3500,
+        price: "Precio a cotizar",
         description: 'Para la protección ocular en diversas actividades laborales, industriales, médicas o de laboratorio. Protección contra salpicaduras químicas, polvo o partículas.',
         rating: 4,
         reviews: 134,
@@ -1131,12 +1291,14 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Gafa, Seguridad, Ocular',
         colors: ['Blanco'],
-        characteristics: 'Lente policarbonato, protección UV400, montura flexible, ventilación indirecta, ajuste universal, cumple ANSI Z87.1'
+        characteristics: 'Lente policarbonato, protección UV400, montura flexible, ventilación indirecta, ajuste universal, cumple ANSI Z87.1',
+        wholesale: false,
+        discount: false
     },
     81: {
         id: 81,
         title: 'Lentes de Seguridad',
-        price: 2800,
+        price: "Precio a cotizar",
         description: 'Patillas ajustables. Se usan para proteger los ojos de distintos peligros en el entorno. Protección contra impacto evitando partículas, astillas de madera, metal o fragmentos de vidrio golpeen los ojos, protección contra salpicaduras químicas y protección contra polvo y escombros.',
         rating: 5,
         reviews: 189,
@@ -1145,12 +1307,14 @@ export const productsData = {
         categories: 'Protección Personal, EPP',
         tags: 'Lentes, Seguridad, Protección',
         colors: ['Blanco'],
-        characteristics: 'Diseño tipo gafas, patillas ajustables, lente anti-rayas, protección lateral, peso 25g, protección impacto alta velocidad'
+        characteristics: 'Diseño tipo gafas, patillas ajustables, lente anti-rayas, protección lateral, peso 25g, protección impacto alta velocidad',
+        wholesale: false,
+        discount: false
     },
     82: {
         id: 82,
         title: 'Basurero Rojo',
-        price: 15000,
+        price: "Precio a cotizar",
         description: 'Un basurero para residuos bioinfecciosos está diseñado para desechar materiales que puedan transmitir enfermedades (como gasas con sangre, agujas, guantes contaminados, etc.). Obligatorio en hospitales, clínicas, laboratorios y lugares donde se generen desechos biológicos.',
         rating: 4,
         reviews: 67,
@@ -1159,7 +1323,9 @@ export const productsData = {
         categories: 'Equipamiento, Hospitalario',
         tags: 'Basurero, Rojo, Bioinfeccioso',
         colors: ['Blanco'],
-        characteristics: 'Color rojo riesgo biológico, capacidad 30L, pedal apertura, material polipropileno, tapa con sello, bolsa compatible 40x50cm'
+        characteristics: 'Color rojo riesgo biológico, capacidad 30L, pedal apertura, material polipropileno, tapa con sello, bolsa compatible 40x50cm',
+        wholesale: false,
+        discount: false
     },
     83: {
         id: 83,
@@ -1173,7 +1339,9 @@ export const productsData = {
         categories: 'Equipamiento, Hospitalario',
         tags: 'Recipiente, Rojo, Quirúrgico',
         colors: ['Blanco'],
-        characteristics: 'Policarbonato resistente, capacidad 1L, tapa seguridad, color rojo punzocortantes, autoclavable, graduación volumétrica'
+        characteristics: 'Policarbonato resistente, capacidad 1L, tapa seguridad, color rojo punzocortantes, autoclavable, graduación volumétrica',
+        wholesale: false,
+        discount: false
     },
     84: {
         id: 84,
@@ -1187,7 +1355,9 @@ export const productsData = {
         categories: 'Insumos Médicos, Desechables',
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
-        characteristics: 'Estéril por radiación gamma, capacidad 3ml, aguja 25G, escala 0.1ml, émbolo siliconizado, triple esterilización'
+        characteristics: 'Estéril por radiación gamma, capacidad 3ml, aguja 25G, escala 0.1ml, émbolo siliconizado, triple esterilización',
+        wholesale: false,
+        discount: false
     },
     85: {
         id: 85,
@@ -1201,7 +1371,9 @@ export const productsData = {
         categories: 'Curación, Insumos Médicos',
         tags: 'Gasa, Estéril, Quirúrgica',
         colors: ['Blanco'],
-        characteristics: 'Estéril por óxido etileno, tamaño 10x10cm 8 capas, absorción 12g/g, baja pelusidad, empaque individual, esterilidad 2 años'
+        characteristics: 'Estéril por óxido etileno, tamaño 10x10cm 8 capas, absorción 12g/g, baja pelusidad, empaque individual, esterilidad 2 años',
+        wholesale: false,
+        discount: false
     },
     86: {
         id: 86,
@@ -1215,7 +1387,9 @@ export const productsData = {
         categories: 'Curación, Insumos Médicos',
         tags: 'Gasa, Tejida, Absorbente',
         colors: ['Blanco'],
-        characteristics: 'Tejido plano 44 hilos, 100% algodón, tamaño 10x10cm, esterilización gamma, porosidad controlada, empaque 100 unidades'
+        characteristics: 'Tejido plano 44 hilos, 100% algodón, tamaño 10x10cm, esterilización gamma, porosidad controlada, empaque 100 unidades',
+        wholesale: false,
+        discount: false
     },
     87: {
         id: 87,
@@ -1229,6 +1403,8 @@ export const productsData = {
         categories: 'Protección Personal, Mascarillas',
         tags: 'Mascarilla, Niños, Protección',
         colors: ['Blanco'],
-        characteristics: 'Tamaño infantil 12x7cm, 3 capas no tejido, elásticos suaves oreja, diseños infantiles, eficiencia bacteriana 95%, peso 3g'
+        characteristics: 'Tamaño infantil 12x7cm, 3 capas no tejido, elásticos suaves oreja, diseños infantiles, eficiencia bacteriana 95%, peso 3g',
+        wholesale: false,
+        discount: false
     }
 };

@@ -15,7 +15,7 @@ function initCustomCursor() {
 
         // Función para agregar eventos a los elementos
         function addHoverEvents() {
-            const hoverElements = document.querySelectorAll('a, button, .service-card, .dev');
+            const hoverElements = document.querySelectorAll('a, button .dev, .submit-button, .contact-form, .logo-container');
             
             hoverElements.forEach(el => {
                 // Remover eventos previos para evitar duplicados

@@ -53,7 +53,7 @@ function initCustomCursor() {
         // Agregar eventos a todos los elementos hover
         function addHoverEvents() {
             const hoverElements = document.querySelectorAll(
-                'a, button, .product-card, .service-card, .floating-device, .dev, .color-option'
+                'a, button, .product-card, .service-card, .floating-device, .dev, .color-option, .fa-shopping-cart, .pagination-dot'
             );
             
             console.log(`Encontrados ${hoverElements.length} elementos para hover`);
@@ -441,7 +441,68 @@ function addColorSelectorStyles() {
     
     document.head.appendChild(style);
 }
-
+function addPriceBadgeStyles() {
+    if (document.getElementById('price-badge-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'price-badge-styles';
+    style.textContent = `
+        .price-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .price-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+        }
+        
+        .wholesale-badge {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        .price-badge i {
+            font-size: 0.7rem;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Estilos para badges en el carrito */
+        .cart-item-badges {
+            display: flex;
+            gap: 0.3rem;
+            margin-top: 0.3rem;
+        }
+        
+        .cart-item-badges .price-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
 // ==================== MODAL DE FORMULARIO DE COMPRA ====================
 
 function createCheckoutModal() {
@@ -971,15 +1032,24 @@ function renderCheckoutSummary() {
         const itemTotal = parseFloat(item.price) * item.quantity;
         total += itemTotal;
         
+        // NUEVO: Generar badges
+        let badges = '';
+        if (item.discount) {
+            badges += '<span class="price-badge discount-badge" style="font-size: 0.65rem; margin-left: 0.3rem;"><i class="fas fa-tag"></i> Dto</span>';
+        }
+        if (item.wholesale) {
+            badges += '<span class="price-badge wholesale-badge" style="font-size: 0.65rem; margin-left: 0.3rem;"><i class="fas fa-boxes"></i> May</span>';
+        }
+        
         summaryHTML += `
             <div class="checkout-summary-item">
                 <div>
-                    <strong>${item.title}</strong>
+                    <strong>${item.title}</strong> ${badges}
                     <div style="font-size: 0.85rem; color: var(--text-light);">
                         Color: ${item.color} | Cantidad: ${item.quantity}
                     </div>
                 </div>
-                <div>₡  ${itemTotal.toFixed(2)}</div>
+                <div>₡${itemTotal.toFixed(2)}</div>
             </div>
         `;
     });
@@ -1055,7 +1125,13 @@ function sendOrderToWhatsApp(formData) {
     appState.cartItems.forEach((item) => {
         const itemTotal = parseFloat(item.price) * item.quantity;
         total += itemTotal;
-        mensaje += '\n- ' + item.title + ' (' + item.color + ') - ' + item.quantity + ' x ₡' + item.price + ' = ₡' + itemTotal.toFixed(2) + '\n';
+        
+        // NUEVO: Agregar indicadores de descuento/mayoreo
+        let badges = '';
+        if (item.discount) badges += ' [DESCUENTO]';
+        if (item.wholesale) badges += ' [MAYOREO]';
+        
+        mensaje += '\n- ' + item.title + badges + ' (' + item.color + ') - ' + item.quantity + ' x ₡' + item.price + ' = ₡' + itemTotal.toFixed(2) + '\n';
     });
     
     mensaje += '\nTOTAL: ₡' + total.toFixed(2) + '\n\n';
@@ -1070,10 +1146,8 @@ function sendOrderToWhatsApp(formData) {
     let urlWhatsApp;
     
     if (esMovil) {
-        // Para móviles: usar api.whatsapp.com (más confiable)
         urlWhatsApp = `https://api.whatsapp.com/send?phone=${numero}&text=${mensajeCodificado}`;
     } else {
-        // Para desktop: usar web.whatsapp.com
         urlWhatsApp = `https://web.whatsapp.com/send?phone=${numero}&text=${mensajeCodificado}`;
     }
     
@@ -1911,8 +1985,118 @@ function initPaginationEvents() {
         });
     });
 }
-
+function addProductBadgesStyles() {
+    if (document.getElementById('product-badges-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'product-badges-styles';
+    style.textContent = `
+        /* ESTRUCTURA MEJORADA DEL PRECIO */
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .current-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+        
+        .old-price {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+        
+        /* CONTENEDOR DE BADGES */
+        .product-badges-container {
+            display: flex;
+            gap: 0.8rem;
+            margin: 1rem 0 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        /* BADGES MEJORADOS */
+        .product-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            line-height: 1;
+            border: 2px solid transparent;
+        }
+        
+        .product-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+        
+        .wholesale-badge {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-color: rgba(76, 175, 80, 0.3);
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .price-container {
+                gap: 0.7rem;
+            }
+            
+            .current-price {
+                font-size: 1.8rem;
+            }
+            
+            .old-price {
+                font-size: 1.2rem;
+            }
+            
+            .product-badges-container {
+                gap: 0.6rem;
+                margin: 0.8rem 0 1.2rem 0;
+            }
+            
+            .product-badge {
+                padding: 0.6rem 1rem;
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-badges-container {
+                justify-content: center;
+            }
+            
+            .product-badge {
+                flex: 1;
+                min-width: 140px;
+                justify-content: center;
+            }
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
 // ==================== FUNCIÓN ACTUALIZADA loadProduct ====================
+// ==================== 2. REEMPLAZAR loadProduct ====================
 function loadProduct(productId, keepRelatedProducts = false) {
     const product = productsData[productId];
     if (!product) return;
@@ -1922,21 +2106,55 @@ function loadProduct(productId, keepRelatedProducts = false) {
     DOM.productTitle.textContent = product.title;
     DOM.productDescription.textContent = product.description;
     
+    // PRECIO CON MEJOR ESTRUCTURA
+    let priceHTML = '';
     if (product.oldPrice) {
-        DOM.productPrice.innerHTML = `${product.price} <span style="font-size: 1.5rem; color: var(--text-light); text-decoration: line-through; margin-left: 0.5rem;">${product.oldPrice}</span>`;
+        priceHTML = `
+            <div class="price-container">
+                <div class="current-price">₡${product.price}</div>
+                <div class="old-price">₡${product.oldPrice}</div>
+            </div>
+        `;
     } else {
-        DOM.productPrice.textContent = `₡${product.price}`;
+        priceHTML = `
+            <div class="price-container">
+                <div class="current-price">₡${product.price}</div>
+            </div>
+        `;
     }
     
-    renderStars(product.rating, DOM.productStars);
-    // DOM.reviewCount.textContent = `(${product.reviews} customer reviews)`;
+    DOM.productPrice.innerHTML = priceHTML;
     
+    // ELIMINAR BADGES EXISTENTES ANTES DE AGREGAR NUEVOS
+    const existingBadges = document.querySelector('.product-badges-container');
+    if (existingBadges) {
+        existingBadges.remove();
+    }
+    
+    // BADGES EN CONTAINER SEPARADO
+    let badgesHTML = '';
+    if (product.discount) {
+        badgesHTML += '<span class="product-badge discount-badge">🏷️ DESCUENTO APLICADO</span>';
+    }
+    if (product.wholesale) {
+        badgesHTML += '<span class="product-badge wholesale-badge">📦 PRECIO MAYOREO</span>';
+    }
+    
+    if (badgesHTML) {
+        // Crear contenedor de badges debajo del precio
+        const badgesContainer = document.createElement('div');
+        badgesContainer.className = 'product-badges-container';
+        badgesContainer.innerHTML = badgesHTML;
+        
+        // Insertar después del contenedor de precio
+        DOM.productPrice.parentNode.insertBefore(badgesContainer, DOM.productPrice.nextSibling);
+    }
+    
+    // ... resto del código igual
+    renderStars(product.rating, DOM.productStars);
     DOM.mainImage.src = product.images[0];
     renderThumbnails(product.images);
-    
-    // IMPORTANTE: Renderizar selector de colores dinámicamente
     renderColorSelector(product);
-    
     renderBreadcrumb(product);
     renderProductMeta(product);
     renderTabsContent(product);
@@ -1946,7 +2164,11 @@ function loadProduct(productId, keepRelatedProducts = false) {
     }
     
     updateWishlistButton();
+    
+    // Agregar estilos para la nueva estructura
+    addProductBadgesStyles();
 }
+
 
 // ==================== EVENTOS DE THUMBNAILS ====================
 function initThumbnailEvents() {
@@ -2117,7 +2339,9 @@ function addToCart(product, quantity, color) {
             price: product.price,
             quantity: quantity,
             color: color,
-            image: product.images[0]
+            image: product.images[0],
+            discount: product.discount || false,
+            wholesale: product.wholesale || false
         });
     }
     
@@ -2140,6 +2364,15 @@ function updateCartView() {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
         
+        // NUEVO: Generar badges
+        let badges = '';
+        if (item.discount) {
+            badges += '<span class="price-badge discount-badge"><i class="fas fa-tag"></i> Dto</span>';
+        }
+        if (item.wholesale) {
+            badges += '<span class="price-badge wholesale-badge"><i class="fas fa-boxes"></i> May</span>';
+        }
+        
         return `
             <div class="cart-item">
                 <div class="cart-item-image">
@@ -2147,8 +2380,9 @@ function updateCartView() {
                 </div>
                 <div class="cart-item-details">
                     <div class="cart-item-title">${item.title}</div>
-                    <div class="cart-item-price">${item.price} x ${item.quantity}</div>
+                    <div class="cart-item-price">₡${item.price} x ${item.quantity}</div>
                     <div style="font-size: 0.8rem; color: var(--text-light);">Color: ${item.color}</div>
+                    ${badges ? `<div class="cart-item-badges">${badges}</div>` : ''}
                 </div>
                 <div class="cart-item-actions">
                     <div class="cart-item-qty">
@@ -2841,6 +3075,7 @@ function init() {
     
     // Agregar estilos de colores al inicializar
     addColorSelectorStyles();
+    addPriceBadgeStyles(); // ← AGREGAR ESTA LÍNEA
     
     console.log('✅ Arglo Médica - Sistema de Productos Optimizado');
     console.log('📦 Productos cargados:', Object.keys(productsData).length);
@@ -2851,6 +3086,7 @@ function init() {
     console.log('📄 Sistema de paginación: 20 productos por página');
     console.log('📋 Modal de checkout con formulario implementado');
     console.log('🎨 Sistema de colores dinámico implementado');
+    console.log('🏷️ Sistema de badges de descuento/mayoreo implementado'); // ← NUEVO
     console.log('⌨️ Atajos de teclado:');
     console.log('   - ← → o P/N para navegar páginas');
     console.log('   - Ctrl+K o Cmd+K para abrir búsqueda');
