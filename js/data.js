@@ -386,7 +386,7 @@ export const productsData = {
     24: {
         id: 24,
         title: 'Esterilix Equipos',
-        price: 5500,
+        price: "Precio a cotizar",
         description: 'Desinfectante de alto nivel de uso directo, formulada para la eliminación de todo tipo de microorganismos, patógenos.',
         rating: 5,
         reviews: 89,
@@ -1346,7 +1346,7 @@ export const productsData = {
     84: {
         id: 84,
         title: 'Jeringas Desechables',
-        price: 800,
+        price: "Precio a cotizar",
         description: 'Diseñadas para ofrecer la máxima precisión y comodidad en cada uso. Asegura una punción suave y reducir al mínimo el dolor en el paciente. Estéril y desechable.',
         rating: 5,
         reviews: 278,
@@ -1362,7 +1362,7 @@ export const productsData = {
     85: {
         id: 85,
         title: 'Gasa Estéril',
-        price: 1500,
+        price: 6800,
         description: 'Diseñada para usarse directamente sobre heridas abiertas o durante procedimientos médicos y quirúrgicos; Permite limpiar, cubrir y proteger heridas, absorber fluidos y aplicar medicamentos sin riesgo de contaminación.',
         rating: 5,
         reviews: 189,
@@ -1378,7 +1378,7 @@ export const productsData = {
     86: {
         id: 86,
         title: 'Gasa Tejida',
-        price: 2200,
+        price: 5500,
         description: 'Tejido entrelazado que permite el paso de aire y la absorción de líquidos; se utiliza en la limpieza y protección de heridas, aplicación de medicamentos y absorción de fluidos.',
         rating: 4,
         reviews: 156,
