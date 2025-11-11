@@ -44,7 +44,7 @@ export const productsData = {
         tags: 'Ultrasonido, Gel, Lubricante',
         colors: ['Blanco'],
         characteristics: 'Base acuosa, hipoalergénico, pH neutro 7.0, no mancha, transparente, conductividad optimizada para equipos médicos',
-        wholesale: false,
+        wholesale: true,
         discount: true
     },
     2: {
@@ -60,7 +60,7 @@ export const productsData = {
         tags: 'Micropore, 3M, Cinta Médica',
         colors: ['Blanco'],
         characteristics: 'Adhesivo hipoalergénico, transpirable, poros de 0.65mm, resistencia a la humedad, ancho 2.5cm, largo 9.1m',
-        wholesale: false,
+        wholesale: true,
         discount: true
     },
     3: {
@@ -76,7 +76,7 @@ export const productsData = {
         tags: 'Esterilización, Bolsas, Médico',
         colors: ['Blanco'],
         characteristics: 'Papel crepado grado médico, indicador químico integrado, sellado térmico a 121°C, resistente a autoclave, tamaños 10x15cm a 30x40cm',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     88: {
@@ -92,7 +92,7 @@ export const productsData = {
         tags: 'Esterilización, Bolsas, Médico',
         colors: ['Blanco'],
         characteristics: 'Papel crepado grado médico, indicador químico integrado, sellado térmico a 121°C, resistente a autoclave, tamaños 10x15cm a 30x40cm',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
         89: {
@@ -108,7 +108,7 @@ export const productsData = {
         tags: 'Esterilización, Bolsas, Médico',
         colors: ['Blanco'],
         characteristics: 'Papel crepado grado médico, indicador químico integrado, sellado térmico a 121°C, resistente a autoclave, tamaños 10x15cm a 30x40cm',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     90: {
@@ -124,7 +124,7 @@ export const productsData = {
         tags: 'Esterilización, Bolsas, Médico',
         colors: ['Blanco'],
         characteristics: 'Papel crepado grado médico, indicador químico integrado, sellado térmico a 121°C, resistente a autoclave, tamaños 10x15cm a 30x40cm',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     4: {
@@ -140,7 +140,7 @@ export const productsData = {
         tags: 'Esterilización, Rollo, Papel Médico',
         colors: ['Blanco'],
         characteristics: 'Papel kraft médico 200 metros, ancho 50cm, resistencia a vapor 134°C, poroso para penetración de esterilizante, libre de toxinas',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     91: {
@@ -156,7 +156,7 @@ export const productsData = {
         tags: 'Esterilización, Rollo, Papel Médico',
         colors: ['Blanco'],
         characteristics: 'Papel kraft médico 200 metros, ancho 50cm, resistencia a vapor 134°C, poroso para penetración de esterilizante, libre de toxinas',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     92: {
@@ -172,7 +172,7 @@ export const productsData = {
         tags: 'Esterilización, Rollo, Papel Médico',
         colors: ['Blanco'],
         characteristics: 'Papel kraft médico 200 metros, ancho 50cm, resistencia a vapor 134°C, poroso para penetración de esterilizante, libre de toxinas',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     5: {
@@ -428,7 +428,7 @@ export const productsData = {
         tags: 'Aceite, Masaje, Natural',
         colors: ['Blanco'],
         characteristics: 'Base aceite de uva, extractos naturales, pH 5.5, no comedogénico, absorción rápida, libre de parabenos y mineral oil',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
         94: {
@@ -444,7 +444,7 @@ export const productsData = {
         tags: 'Aceite, Masaje, Natural',
         colors: ['Blanco'],
         characteristics: 'Base aceite de uva, extractos naturales, pH 5.5, no comedogénico, absorción rápida, libre de parabenos y mineral oil',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     95: {
@@ -460,7 +460,7 @@ export const productsData = {
         tags: 'Aceite, Masaje, Natural',
         colors: ['Blanco'],
         characteristics: 'Base aceite de uva, extractos naturales, pH 5.5, no comedogénico, absorción rápida, libre de parabenos y mineral oil',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     20: {
@@ -476,7 +476,7 @@ export const productsData = {
         tags: 'Aplicadores, Largos, Desechables',
         colors: ['Blanco'],
         characteristics: 'Vara de madera 15cm, punta algodón puro, diámetro punta 8mm, no estéril, absorción media, empaque individual',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     21: {
@@ -492,7 +492,7 @@ export const productsData = {
         tags: 'Aplicadores, Cortos, Desechables',
         colors: ['Blanco'],
         characteristics: 'Vara de madera 7.5cm, punta algodón compacto, diámetro punta 6mm, precisión aplicaciones, empaque a granel, peso ligero',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     22: {
@@ -732,7 +732,7 @@ export const productsData = {
         tags: 'Lavaplatos, Multiacción, Limpieza',
         colors: ['Blanco'],
         characteristics: 'Microabrasivos sílice, agentes humectantes glicerina, pH neutro 7.5, acción desengrasante, protección dermatológica, aroma limón',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     35: {
@@ -764,7 +764,7 @@ export const productsData = {
         tags: 'Alcohol, Gel, Desinfectante',
         colors: ['Blanco'],
         characteristics: 'Etanol 70% grado médico, gelificación carbomer, emolientes piel, presentación 5L, rendimiento 5000 aplicaciones, recargable',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     37: {
@@ -780,7 +780,7 @@ export const productsData = {
         tags: 'Jabón, Líquido, Manos',
         colors: ['Blanco'],
         characteristics: 'Base tensioactivos suaves, pH 5.5, humectantes aloe vera, presentación 1L, aromas variados, rendimiento 800 lavados',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     38: {
@@ -796,7 +796,7 @@ export const productsData = {
         tags: 'Cinta, Testigo, Esterilización',
         colors: ['Blanco'],
         characteristics: 'Indicador químico vapor, cambio color beige a negro, temperatura 121°C, tiempo 15min, ancho 1.5cm, rollo 18m',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     39: {
@@ -1004,7 +1004,7 @@ export const productsData = {
         tags: 'Guantes, Plástico, Alimentos',
         colors: ['Blanco'],
         characteristics: 'Polietileno 15 micras, transparente, ambidiestro, talla única, aprobación contacto alimentos, peso 2g por guante',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     51: {
@@ -1196,7 +1196,7 @@ export const productsData = {
         tags: 'Oxímetro, Saturación, Salud',
         colors: ['Blanco'],
         characteristics: 'Pantalla OLED, rango SpO2 70-99%, precisión ±2%, medición pulso 30-250bpm, batería Li-ion, tamaño dedos 8-25mm',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     63: {
@@ -1212,7 +1212,7 @@ export const productsData = {
         tags: 'K9 Pro, Temperatura, Desinfección',
         colors: ['Blanco'],
         characteristics: 'Termómetro infrarrojo sin contacto, rango 34-42°C, precisión ±0.2°C, dispensador gel 70%, sensor distancia 5-15cm, pantalla LCD',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     64: {
@@ -1228,7 +1228,7 @@ export const productsData = {
         tags: 'Papel, Toalla, Rollo',
         colors: ['Blanco'],
         characteristics: 'Papel 2 capas crepado, ancho 21cm, diámetro rollo 12cm, absorción 300ml/m², resistencia humedad, dispensador estándar',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     99: {
@@ -1244,7 +1244,7 @@ export const productsData = {
         tags: 'Papel, Toalla, Rollo',
         colors: ['Blanco'],
         characteristics: 'Papel 2 capas crepado, ancho 21cm, diámetro rollo 12cm, absorción 300ml/m², resistencia humedad, dispensador estándar',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     65: {
@@ -1292,7 +1292,7 @@ export const productsData = {
         tags: 'Camilla, Hidráulica, Ajustable',
         colors: ['Blanco'],
         characteristics: 'Sistema hidráulico bomba pedal, altura 65-95cm, estructura acero, tapizado vinílico, peso máximo 180kg, ruedas bloqueables',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     68: {
@@ -1308,7 +1308,7 @@ export const productsData = {
         tags: 'Banco, Giratorio, Respaldo',
         colors: ['Blanco'],
         characteristics: 'Estructura aluminio, asiento vinílico, altura 50-70cm, giro 360°, respaldo lumbar, capacidad 120kg, base 5 patas',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     69: {
@@ -1324,7 +1324,7 @@ export const productsData = {
         tags: 'Canilla, Fija, Masajes',
         colors: ['Blanco'],
         characteristics: 'Estructura acero 2mm, tapizado cuero ecológico, espesor espuma 10cm, altura 75cm, peso máximo 150kg, acabado epoxy',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     70: {
@@ -1340,7 +1340,7 @@ export const productsData = {
         tags: 'Banco, Giratorio, Sin Respaldo',
         colors: ['Blanco'],
         characteristics: 'Aluminio anodizado, asiento vinílico, altura 45-65cm, giro libre, base estrella, peso 4.5kg, portátil',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     71: {
@@ -1356,7 +1356,7 @@ export const productsData = {
         tags: 'Camilla, Maleta, Portátil',
         colors: ['Blanco'],
         characteristics: 'Diseño plegable, peso 12kg, estructura aluminio, tapizado lavable, altura 65cm, peso máximo 120kg, asa transporte',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     72: {
@@ -1372,7 +1372,7 @@ export const productsData = {
         tags: 'Apoya, Brazos, Ajustable',
         colors: ['Blanco'],
         characteristics: 'Ajuste altura 70-90cm, superficie vinílica, estructura aluminio, base estable, ancho 25cm, uso manicure y estética',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     73: {
@@ -1404,7 +1404,7 @@ export const productsData = {
         tags: 'Careta, Protectora, Facial',
         colors: ['Blanco'],
         characteristics: 'Policarbonato 0.5mm, banda elástica ajustable, visibilidad 180°, peso 45g, protección salpicaduras, limpieza fácil',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     75: {
@@ -1420,7 +1420,7 @@ export const productsData = {
         tags: 'Careta, Lentes, Protección',
         colors: ['Blanco'],
         characteristics: 'PET 0.3mm, diseño espacio anteojos, elástico suave, protección facial completa, pack 6 unidades, almacenamiento plano',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     76: {
@@ -1436,7 +1436,7 @@ export const productsData = {
         tags: 'Kimono, Protector, Barrera',
         colors: ['Blanco'],
         characteristics: 'Tyvek 45gsm, costuras selladas, cierre frontal completo, capucha integrada, tallas S-XXL, protección partículas 0.5 micras',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     77: {
@@ -1452,7 +1452,7 @@ export const productsData = {
         tags: 'Dispensador, Agua, Electrónico',
         colors: ['Blanco'],
         characteristics: 'Sistema touch electrónico, doble motor 12V, batería 2000mAh, capacidad garrafón 20L, flujo 1.5L/min, material ABS alimentario',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     78: {
@@ -1468,7 +1468,7 @@ export const productsData = {
         tags: 'Dispensador, Toalla, Papel',
         colors: ['Blanco'],
         characteristics: 'Acero inoxidable 304, mecanismo palanca, capacidad 200 toallas, montaje pared, protección anti-vandalismo, fácil recarga',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     79: {
@@ -1484,7 +1484,7 @@ export const productsData = {
         tags: 'Dispensador, Rollo, Toalla',
         colors: ['Blanco'],
         characteristics: 'Diseño para rollo jumbo, corte automático, acero inoxidable, ancho rollo 21cm, diámetro máximo 15cm, montaje superficie',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     80: {
@@ -1500,7 +1500,7 @@ export const productsData = {
         tags: 'Gafa, Seguridad, Ocular',
         colors: ['Blanco'],
         characteristics: 'Lente policarbonato, protección UV400, montura flexible, ventilación indirecta, ajuste universal, cumple ANSI Z87.1',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     81: {
@@ -1516,7 +1516,7 @@ export const productsData = {
         tags: 'Lentes, Seguridad, Protección',
         colors: ['Blanco'],
         characteristics: 'Diseño tipo gafas, patillas ajustables, lente anti-rayas, protección lateral, peso 25g, protección impacto alta velocidad',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     82: {
@@ -1532,7 +1532,7 @@ export const productsData = {
         tags: 'Basurero, Rojo, Bioinfeccioso',
         colors: ['Blanco'],
         characteristics: 'Color rojo riesgo biológico, capacidad 30L, pedal apertura, material polipropileno, tapa con sello, bolsa compatible 40x50cm',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     83: {
@@ -1548,7 +1548,7 @@ export const productsData = {
         tags: 'Recipiente, Rojo, Quirúrgico',
         colors: ['Blanco'],
         characteristics: 'Policarbonato resistente, capacidad 1L, tapa seguridad, color rojo punzocortantes, autoclavable, graduación volumétrica',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     106: {
@@ -1559,12 +1559,12 @@ export const productsData = {
         rating: 4,
         reviews: 45,
         review: "Recipiente resistente para desechos punzocortantes. La tapa de seguridad evita accidentes. Buen tamaño para uso en consultorios.",
-        images: ['../img/img2/producto84.png'],
+        images: ['../img/recipiente_2g.png'],
         categories: 'Equipamiento, Hospitalario',
         tags: 'Recipiente, Rojo, Quirúrgico',
         colors: ['Blanco'],
         characteristics: 'Policarbonato resistente, capacidad 1L, tapa seguridad, color rojo punzocortantes, autoclavable, graduación volumétrica',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     107: {
@@ -1575,12 +1575,12 @@ export const productsData = {
         rating: 4,
         reviews: 45,
         review: "Recipiente resistente para desechos punzocortantes. La tapa de seguridad evita accidentes. Buen tamaño para uso en consultorios.",
-        images: ['../img/img2/producto84.png'],
+        images: ['../img/recipiente_18g.png'],
         categories: 'Equipamiento, Hospitalario',
         tags: 'Recipiente, Rojo, Quirúrgico',
         colors: ['Blanco'],
         characteristics: 'Policarbonato resistente, capacidad 1L, tapa seguridad, color rojo punzocortantes, autoclavable, graduación volumétrica',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     84: {
@@ -1596,7 +1596,7 @@ export const productsData = {
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
         characteristics: 'Estéril por radiación gamma, émbolo siliconizado, triple esterilización',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     101: {
@@ -1612,7 +1612,7 @@ export const productsData = {
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
         characteristics: 'Estéril por radiación gamma, émbolo siliconizado, triple esterilización',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     102: {
@@ -1628,7 +1628,7 @@ export const productsData = {
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
         characteristics: 'Estéril por radiación gamma, émbolo siliconizado, triple esterilización',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     103: {
@@ -1644,7 +1644,7 @@ export const productsData = {
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
         characteristics: 'Estéril por radiación gamma, émbolo siliconizado, triple esterilización',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     104: {
@@ -1660,7 +1660,7 @@ export const productsData = {
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
         characteristics: 'Estéril por radiación gamma, émbolo siliconizado, triple esterilización',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     105: {
@@ -1676,7 +1676,7 @@ export const productsData = {
         tags: 'Jeringas, Desechables, Estériles',
         colors: ['Blanco'],
         characteristics: 'Estéril por radiación gamma, émbolo siliconizado, triple esterilización',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     85: {
@@ -1692,7 +1692,7 @@ export const productsData = {
         tags: 'Gasa, Estéril, Quirúrgica',
         colors: ['Blanco'],
         characteristics: 'Estéril por óxido etileno, tamaño 10x10cm 8 capas, absorción 12g/g, baja pelusidad, empaque individual, esterilidad 2 años',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     86: {
@@ -1708,7 +1708,7 @@ export const productsData = {
         tags: 'Gasa, Tejida, Absorbente',
         colors: ['Blanco'],
         characteristics: 'Tejido plano 44 hilos, 100% algodón, tamaño 10x10cm, esterilización gamma, porosidad controlada, empaque 100 unidades',
-        wholesale: false,
+        wholesale: true,
         discount: false
     },
     87: {
@@ -1724,7 +1724,7 @@ export const productsData = {
         tags: 'Mascarilla, Niños, Protección',
         colors: ['Blanco'],
         characteristics: 'Tamaño infantil 12x7cm, 3 capas no tejido, elásticos suaves oreja, diseños infantiles, eficiencia bacteriana 95%, peso 3g',
-        wholesale: false,
+        wholesale: true,
         discount: false
     }
 };
