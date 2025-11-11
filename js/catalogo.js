@@ -1606,8 +1606,8 @@ function renderBreadcrumb(product) {
     
     DOM.breadcrumb.innerHTML = `
         <a href="#">${categories[0]}</a>
-        <span>/</span>
-        ${categories[1] ? `<a href="#">${categories[1]}</a><span>/</span>` : ''}
+        <span>•</span>
+        ${categories[1] ? `<a href="#">${categories[1]}</a><span>•</span>` : ''}
         <span>${product.title}</span>
     `;
 }
