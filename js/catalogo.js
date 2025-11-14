@@ -639,10 +639,12 @@ function addCheckoutModalStyles() {
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 700px;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-height: 85vh;
+            overflow: hidden;
             transform: translateY(-50px);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         
         .checkout-modal.active .checkout-modal-content {
@@ -658,6 +660,7 @@ function addCheckoutModalStyles() {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
             color: white;
             border-radius: 20px 20px 0 0;
+            flex-shrink: 0;
         }
         
         .checkout-modal-header h2 {
@@ -688,6 +691,33 @@ function addCheckoutModalStyles() {
         
         .checkout-form {
             padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+            position: relative;
+        }
+        
+        .checkout-form::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .checkout-form::-webkit-scrollbar-track {
+            background: var(--off-white);
+            border-radius: 4px;
+        }
+        
+        .checkout-form::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            border-radius: 4px;
+            border: 2px solid var(--off-white);
+        }
+        
+        .checkout-form::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-blue) 100%);
+        }
+        
+        .checkout-form {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-blue) var(--off-white);
         }
         
         .form-section {
@@ -790,8 +820,15 @@ function addCheckoutModalStyles() {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
-            padding-top: 1.5rem;
+            padding: 1.5rem 0;
             border-top: 2px solid var(--off-white);
+            flex-shrink: 0;
+            background: white;
+            position: sticky;
+            bottom: -2rem;
+            padding-bottom: 2rem;
+            margin-bottom: -2rem;
+            z-index: 10;
         }
         
         .btn-secondary {
@@ -1099,7 +1136,7 @@ function closeCheckoutModal() {
     }
 }
 
-// ==================== WHATSAPP INTEGRATION MEJORADA ====================
+
 
 // ==================== WHATSAPP INTEGRATION MEJORADA ====================
 
