@@ -1101,6 +1101,8 @@ function closeCheckoutModal() {
 
 // ==================== WHATSAPP INTEGRATION MEJORADA ====================
 
+// ==================== WHATSAPP INTEGRATION MEJORADA ====================
+
 function sendOrderToWhatsApp(formData) {
     if (appState.cartItems.length === 0) {
         showNotification('Tu carrito está vacío', 'error');
@@ -1116,7 +1118,7 @@ function sendOrderToWhatsApp(formData) {
     mensaje += 'Nombre: ' + (formData.get('customerName') || 'No proporcionado') + '\n';
     mensaje += 'Email: ' + (formData.get('customerEmail') || 'No proporcionado') + '\n';
     mensaje += 'Telefono: ' + (formData.get('customerPhone') || 'No proporcionado') + '\n';
-    mensaje += 'Direccion: ' + (formData.get('customerAddress') || 'No proporcionada') + '\n\n';
+    mensaje += 'Direccion: ' + (formData.get('customerAddress') || 'No proporcionada') + '\n';
     
     // Detalles del pedido
     mensaje += 'PRODUCTOS:\n';
@@ -1134,8 +1136,43 @@ function sendOrderToWhatsApp(formData) {
         mensaje += '\n- ' + item.title + badges + ' (' + item.color + ') - ' + item.quantity + ' x ₡' + item.price + ' = ₡' + itemTotal.toFixed(2) + '\n';
     });
     
-    mensaje += '\nTOTAL: ₡' + total.toFixed(2) + '\n\n';
-    mensaje += 'Por favor confirmar disponibilidad y costo de envio. Gracias.';
+    // Calcular costo de envío
+    let costoEnvio = 0;
+    const direccion = (formData.get('customerAddress') || '').toLowerCase();
+    
+    // Verificar si está dentro del GAM (San José, Heredia, Cartago)
+    const enGAM = direccion.includes('san josé') || 
+                  direccion.includes('san jose') ||
+                  direccion.includes('heredia') ||
+                  direccion.includes('cartago') ||
+                  direccion.includes('sanjose') ||
+                  direccion.includes('sanjosé');
+    
+    if (!enGAM) {
+        costoEnvio = 3000; // Fuera del GAM
+    } else if (total >= 10000) {
+        costoEnvio = 1000; // GAM con compra mayor a ₡10,000
+    } else {
+        costoEnvio = 2000; // GAM con compra menor o igual a ₡10,000
+    }
+    
+    const totalConEnvio = total + costoEnvio;
+    
+    mensaje += '\nSUBTOTAL: ₡' + total.toFixed(2);
+    mensaje += '\nCOSTO DE ENVÍO: ₡' + costoEnvio.toFixed(2);
+    mensaje += '\nTOTAL: ₡' + totalConEnvio.toFixed(2) + '\n\n';
+    
+    // Información del envío
+    mensaje += 'INFORMACIÓN DE ENVÍO:\n';
+    if (!enGAM) {
+        mensaje += '• Área: Fuera del GAM ';
+    } else if (total > 10000) {
+        mensaje += '• Área: GAM ';
+    } else {
+        mensaje += '• Área: GAM ';
+    }
+    
+    mensaje += '\nPor favor confirmar disponibilidad. Gracias.';
 
     // Codificar el mensaje
     const mensajeCodificado = encodeURIComponent(mensaje);

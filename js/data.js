@@ -178,7 +178,7 @@ export const productsData = {
     5: {
         id: 5,
         title: 'Barrera Adhesiva',
-        price: 6800,
+        price: 5500,
         description: 'Film adhesivo que se emplea para no dejar residuos de ningún tipo sea la superficie que sea. Desechable, fácil de aplicar y quitar, no deja ningún residuo.',
         rating: 4,
         reviews: 78,
@@ -338,7 +338,7 @@ export const productsData = {
     14: {
         id: 14,
         title: 'Cubre Barba',
-        price: 3500,
+        price: 2000,
         description: 'Se usa para cubrir el vello facial y evitar que el pelo suelto caiga en un espacio de trabajo, retiene la caída del vello facial durante la manipulación de alimentos u otros artículos. Se usa en laboratorios, industria alimentaria, labores de limpieza. Paquete con 100 unidades.',
         rating: 4,
         reviews: 87,
@@ -418,7 +418,7 @@ export const productsData = {
     19: {
         id: 19,
         title: 'Aceite para Masaje (250ML)',
-        price: 5800,
+        price: 4000,
         description: 'Aceite a base de uva y extractos naturales, no contiene aceite mineral, es decir proveniente del petróleo. Tamaños: 250ml, litro o galón.',
         rating: 5,
         reviews: 234,
@@ -434,7 +434,7 @@ export const productsData = {
         94: {
         id: 94,
         title: 'Aceite para Masaje (Litro)',
-        price: 11800,
+        price: 12000,
         description: 'Aceite a base de uva y extractos naturales, no contiene aceite mineral, es decir proveniente del petróleo. Tamaños: 250ml, litro o galón.',
         rating: 5,
         reviews: 234,
@@ -450,7 +450,7 @@ export const productsData = {
     95: {
         id: 95,
         title: 'Aceite para Masaje (Galón)',
-        price: 21800,
+        price: 25000,
         description: 'Aceite a base de uva y extractos naturales, no contiene aceite mineral, es decir proveniente del petróleo. Tamaños: 250ml, litro o galón.',
         rating: 5,
         reviews: 234,
